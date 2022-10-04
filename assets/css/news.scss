@@ -1,0 +1,294 @@
+/* News */
+
+section {
+  max-width: 90%;
+  margin: auto;
+  margin-bottom: 5em;
+}
+  
+.allNewsGroup {
+  width: 100%;
+  max-width: 100em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 18.5em 18.5em;
+  grid-auto-flow: column;
+  margin: auto;
+}
+
+.newsCard {
+  background-color: #141720;
+  border-radius: 1.5em;
+  margin-bottom: 2em;
+  position: relative;
+}
+  
+.allNewsGroup .newsCard:first-child {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  margin-right: 2em;
+}
+  
+.newsCard:nth-child(2), .newsCard:nth-child(3) {
+  display: flex;
+}
+  
+.contentNews {
+  width: 30em;
+  padding-left: 1.6em;
+  padding-right: 1.6em;
+  padding-top: 0.5em;
+}
+
+.newsCard:first-child .newsImage {
+  width: 100%;
+  max-width: 100%;
+  height: 17em;
+  clip-path: ellipse(100% 100% at 50% 0%);
+}
+
+.newsCard:first-child .imageNews{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 1em 1em 0 0;
+}
+
+
+.newsCard:nth-child(2) .newsImage, .newsCard:nth-child(3) .newsImage {
+  width: 11em;
+  max-width: 11em;
+  height: 100%;
+  clip-path: ellipse(90% 100% at 5% 50%);
+}
+  
+.newsCard:nth-child(2) .imageNews, .newsCard:nth-child(3) .imageNews {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 1em 0 0 1em;
+}
+  
+.footerNews {
+  min-height: 3em;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+ }
+  
+.linkArticle {
+  position: absolute;
+  bottom: 0;
+  width: 95%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+  color: #f85ed7;
+  text-decoration: none;
+  text-align: right;
+  padding-bottom: 1em;
+}
+  
+.newsCard:first-child .linkArticle {
+  padding-bottom: 1em;
+  padding-left: 1.6em;
+  text-align: left;
+}
+
+.titleNews {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: #fefefe;
+}
+
+.descriptionNews {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: #fefefe;
+}
+  
+.linkNews {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: #f85ed7;
+  text-decoration: none;
+}
+  
+.linkArchive a {
+  font-family: 'Poppins', sans-serif;
+  float: right;
+  font-weight: bold;
+  text-decoration: none;
+  color: #f85ed7;
+}
+  
+.lastAnimes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.anime {
+  flex: 0 0 30em;
+  margin-bottom: 5em;
+  height: 15.8em;
+}
+  
+.anime>h3, .mangas>h3, .articles>h3 {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+ 
+.anime img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+/* Flexbox Coup de coeur */
+#coupCoeur {
+  border-radius: 2em;
+  background-color: #1e1e1e;
+  min-height: 19em;
+  height: auto;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+}
+  
+.itemFlex:first-child {
+  padding: 3em;
+  padding-top: 1em;
+  width: 60%;
+}
+
+.titleCoeur{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+}
+
+.synopsisAnime {
+  font-family: 'Poppins', sans-serif;
+  text-align: justify;
+  padding-bottom: 3em;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+  
+.linkAnime {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: #f85ed7;
+}
+
+.itemFlex:nth-child(2) {
+  width: 40%;
+  height: 19em;
+}
+  
+.imageAnime {
+  width: 90%;
+  height: 100%;
+  object-fit: cover; 
+  clip-path: ellipse(90% 100% at 100% 50%);
+  float: right;
+  border-radius: 0 1em 1em 0;
+}
+  
+/* Last mangas */
+.lastMangas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-height: 30em;
+  margin-bottom: 1em;
+  gap: 1em;
+}
+
+.containerManga {
+  margin-right: 1em;
+}
+
+.mangas {  
+  width: 17em;
+  height: 25em;
+}
+  
+.mangas img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1em;
+}
+  
+.linkMangas a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: #f85ed7;
+  float: right; 
+}
+  
+/* Boutique */
+.itemBoutique:first-child {
+  width: 40%;
+  min-height: 21.65em;
+}
+  
+.itemBoutique:nth-child(2) {
+  width: 60%;
+  padding: 3em;
+  padding-top: 1em;
+  height: auto;
+}
+  
+.imageBoutique {
+  width: 90%;
+  height: 100%;
+  object-fit: cover; 
+  clip-path: ellipse(90% 100% at 5% 50%);
+  border-radius: 1em 0 0 1em;
+  float: left;
+}
+  
+/* Derniers articles */
+.articles {
+  width: 21em;
+  height: 20em;
+}
+  
+.articles img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1em;
+}

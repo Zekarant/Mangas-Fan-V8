@@ -1,0 +1,11 @@
+{% for article in lastArticlesAnime %}
+    <div class="containerManga">
+        <div class="articles">
+            <a href="#">
+                <img src="{{ article.coverArticle }}" alt="Image d'accueil de {{ article.titleArticle }}" title="Image du manga {{ article.titleArticle }}" />
+            </a>
+            <h3>{{ article.idAnime.titleAnime }}<br/>
+            {{ article.titleArticle }}</h3>
+        </div>
+    </div>
+{% endfor %}

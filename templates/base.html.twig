@@ -2,9 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <title>Mangas'Fan - {% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="https://www.mangasfan.fr/v8/images/logo.png" />
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -14,6 +13,61 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav>
+                <div id="container">
+                    <div class="column">
+                        <a href="{{ path('app_home') }}">
+                            <img src="https://www.mangasfan.fr/v8/images/logo.png" alt="Logo de Mangas'Fan" width="60" height="60" />
+                        </a>
+                    </div>
+                    <div class="column">
+                        <ul>
+                            <li>
+                                <img src="https://www.mangasfan.fr/v8/images/icon_search.png" alt="Logo de recherche" width="22" height="22" />
+                            </li>
+                            <li>
+                                <a href="#">Animes</a>
+                            </li>
+                            <li>
+                                <a href="#">Mangas</a>
+                            </li>
+                            <li>
+                                <a href="#">Wiki</a>
+                            </li>
+                            <li>
+                                <a href="#">Boutique</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin') }}">Admin</a>
+                            </li>
+                            <li>
+                                <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60" height="60" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id="banner">
+                    <div class="element">
+                        <h1>Mangas'Fan</h1>
+                        <p class="slogan">Votre site d'actualité sur les mangas et les animes</p>
+                        <div id="imageReseaux">
+                            <img src="https://www.mangasfan.fr/v8/images/discord.png" alt="Logo de Discord" width="54" height="54" />
+                            <img src="https://www.mangasfan.fr/v8/images/youtube.png" alt="Logo de youtube" width="54" height="54" />
+                            <img src="https://www.mangasfan.fr/v8/images/twitter.png" alt="Logo de twitter" width="54" height="54" />
+                            <img src="https://www.mangasfan.fr/v8/images/instagram.png" alt="Logo de instagram" width="54" height="54" />
+                        </div>
+                    </div>
+                    <div class="element">
+                        <div class="renderImage">
+                            <img src="https://www.mangasfan.fr/v8/images/render/dejlo8m-733a1d26-0ff8-409d-b3c2-43e31e13dde1.png" alt="Render bannière" class="imageBanner"/>
+                        </div>
+                    </div>
+            </div>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>
