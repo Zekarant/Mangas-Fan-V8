@@ -1,5 +1,5 @@
 /* News */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 section {
   max-width: 90%;
   margin: auto;
@@ -10,7 +10,8 @@ section {
   width: 100%;
   max-width: 100em;
   display: grid;
-  grid-template-columns: 50% 50%;
+  //grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)); 
   grid-template-rows: 18.5em 18.5em;
   grid-auto-flow: column;
   margin: auto;
@@ -34,10 +35,11 @@ section {
 }
   
 .contentNews {
-  width: 30em;
+  width: 90%;
   padding-left: 1.6em;
   padding-right: 1.6em;
   padding-top: 0.5em;
+  font-family: 'Poppins', sans-serif;
 }
 
 .newsCard:first-child .newsImage {
@@ -56,7 +58,7 @@ section {
 
 
 .newsCard:nth-child(2) .newsImage, .newsCard:nth-child(3) .newsImage {
-  width: 11em;
+  width: 12em;
   height: 100%;
   clip-path: ellipse(90% 100% at 5% 50%);
 }
@@ -81,8 +83,8 @@ section {
   bottom: 0;
   width: 95%;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1em;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.17;
@@ -100,7 +102,6 @@ section {
 }
 
 .titleNews {
-  font-family: 'Poppins', sans-serif;
   font-size: 1.5em;
   font-weight: 600;
   font-stretch: normal;
@@ -112,7 +113,6 @@ section {
 }
 
 .descriptionNews {
-  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   font-stretch: normal;
@@ -125,8 +125,8 @@ section {
   
 .linkNews {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1em;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.17;
@@ -146,7 +146,7 @@ section {
   
 .lastAnimes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25em, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
   grid-gap: 3em;
 }
 
@@ -226,8 +226,8 @@ section {
 /* Last mangas */
 .lastMangas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); 
-  gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(14em, 1fr)); 
+  grid-gap: 3em;
 }
 
 .containerManga {
@@ -235,7 +235,7 @@ section {
 }
 
 .mangas {  
-  width: 17em;
+  //width: 17em;
   min-height: 25em;
 }
   
@@ -280,7 +280,7 @@ section {
 .lastArticles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); 
-  gap: 2em;
+  gap: 3em;
   justify-items: center;
 }
 
