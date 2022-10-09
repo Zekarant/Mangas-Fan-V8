@@ -57,7 +57,6 @@ section {
 
 .newsCard:nth-child(2) .newsImage, .newsCard:nth-child(3) .newsImage {
   width: 11em;
-  max-width: 11em;
   height: 100%;
   clip-path: ellipse(90% 100% at 5% 50%);
 }
@@ -66,6 +65,7 @@ section {
   display: block;
   height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: 1em 0 0 1em;
 }
   
@@ -145,13 +145,12 @@ section {
 }
   
 .lastAnimes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25em, 1fr)); 
+  grid-gap: 3em;
 }
 
 .anime {
-  flex: 0 0 30em;
   margin-bottom: 5em;
   height: 15.8em;
 }
@@ -212,11 +211,11 @@ section {
 
 .itemFlex:nth-child(2) {
   width: 40%;
-  height: 19em;
+  min-height: 19em;
 }
   
 .imageAnime {
-  width: 90%;
+  width: 100%;
   height: 100%;
   object-fit: cover; 
   clip-path: ellipse(90% 100% at 100% 50%);
@@ -226,12 +225,9 @@ section {
   
 /* Last mangas */
 .lastMangas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  min-height: 30em;
-  margin-bottom: 1em;
-  gap: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); 
+  gap: 2em;
 }
 
 .containerManga {
@@ -240,12 +236,12 @@ section {
 
 .mangas {  
   width: 17em;
-  height: 25em;
+  min-height: 25em;
 }
   
 .mangas img {
   width: 100%;
-  height: 100%;
+  height: 25em;
   object-fit: cover;
   border-radius: 1em;
 }
@@ -281,14 +277,21 @@ section {
 }
   
 /* Derniers articles */
+.lastArticles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); 
+  gap: 2em;
+  justify-items: center;
+}
+
 .articles {
   width: 21em;
-  height: 20em;
+  min-height: 20em;
 }
   
 .articles img {
   width: 100%;
-  height: 100%;
+  height: 20em;
   object-fit: cover;
   border-radius: 1em;
 }
