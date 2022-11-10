@@ -2,18 +2,28 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\News;
 use App\Model\TimestampedInterface;
+use App\Service\WebhookDiscordService;
+use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 
 class AdminSubscriber implements EventSubscriberInterface {
-    
+
+    private WebhookDiscordService $webhookDiscordService;
+
+    public function __construct(WebhookDiscordService $webhookDiscordService) {
+        $this->webhookDiscordService = $webhookDiscordService;
+    }
+
     public static function getSubscribedEvents(): array
     {
         return [
-            BeforeEntityPersistedEvent::class => ['setEntityCreatedAt'],
+            BeforeEntityPersistedEvent::class => [ 'setEntityCreatedAt' ],
             BeforeEntityUpdatedEvent::class => ['setEntityUpdatedAt'],
+            AfterEntityPersistedEvent::class => [ 'sendWebhookAfterPersist' ]
         ];
     }
 
@@ -37,5 +47,16 @@ class AdminSubscriber implements EventSubscriberInterface {
         }
 
         $entity->setUpdatedAt(new \DateTime());
+    }
+
+    public function sendWebhookAfterPersist(AfterEntityPersistedEvent $event): void {
+        $entity = $event->getEntityInstance();
+
+        if ($entity instanceof News) {
+            /* @var News */
+            $news = $entity;
+
+            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews());
+        }
     }
 }

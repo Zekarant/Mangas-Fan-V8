@@ -20,6 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
     # Default configuration
+
 discord_webhook:
     default_url:          https://discord.com/api/webhooks/1039980053880131704/SZ0CuPht6W07pY33xWuvFgoQpxl0cSq717dH0Oa8pEfEQuw7-UqcqvxoGR3OoQk5TC89 # required, The Webhook URL for the default service.
     clients:
