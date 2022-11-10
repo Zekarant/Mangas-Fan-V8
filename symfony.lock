@@ -44,6 +44,15 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
+    "labymod/discord-webhook-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "5ca3ad26a8ce5233cdb80b2ad1b4fdc3f931c18e"
+        }
+    },
     "phpunit/phpunit": {
         "version": "9.5",
         "recipe": {
