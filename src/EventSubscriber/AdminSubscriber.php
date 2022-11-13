@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class AdminSubscriber implements EventSubscriberInterface {
 
@@ -49,6 +50,9 @@ class AdminSubscriber implements EventSubscriberInterface {
         $entity->setUpdatedAt(new \DateTime());
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function sendWebhookAfterPersist(AfterEntityPersistedEvent $event): void {
         $entity = $event->getEntityInstance();
 

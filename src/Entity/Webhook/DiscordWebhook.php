@@ -2,7 +2,9 @@
 
 namespace App\Entity\Webhook;
 
-class DiscordWebhook {
+use App\Entity\Webhook\Embed\EmbedDiscordWebhook;
+
+class DiscordWebhook implements DiscordWebhookInterface {
     private ?string $content = null;
     private ?array $embeds = [];
 
@@ -22,7 +24,7 @@ class DiscordWebhook {
         return [
             "content" => $this->getContent(),
             "embeds" => array_map(
-                fn(EmbedDiscordWebhook $embed): array => $embed->convertToArray(),
+                fn(EmbedDiscordWebhook $embed): array => $embed->convertToJson(),
                 $this->embeds
             )
         ];

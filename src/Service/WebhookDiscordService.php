@@ -2,11 +2,16 @@
     namespace App\Service;
 
     use App\Entity\Webhook\DiscordWebhook;
-    use App\Entity\Webhook\EmbedDiscordWebhook;
+    use App\Entity\Webhook\Embed\AuthorEmbedDiscordWebhook;
+    use App\Entity\Webhook\Embed\EmbedDiscordWebhook;
     use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
     use Symfony\Contracts\HttpClient\HttpClientInterface;
 
     class WebhookDiscordService {
+        const MF_NEWS_TITLE_AUTHOR = "Mangas'Fan - Nouvelle news !";
+        const MF_NEWS_URL_AUTHOR = "https://www.mangasfan.fr";
+        const MF_NEWS_ICON_AUTHOR = "https://zupimages.net/up/21/03/hjkk.png";
+
         private string $idWebhookDiscord;
         private string $tokenWebhookDiscord;
         private HttpClientInterface $client;
@@ -27,36 +32,49 @@
             $discordWebhook = new DiscordWebhook();
             $discordWebhook->setContent($content);
 
-            $this->sendRequest("POST", $discordWebhook->convertToJson());
+            $this->sendRequest($discordWebhook->convertToJson());
         }
 
         /**
          * @throws TransportExceptionInterface
          */
-        public function sendMessageEmbed(string $title, string $description): void {
+        public function sendMessageEmbed(string $title, string $description, bool $showAuthor = true): void {
             $discordWebhook = new DiscordWebhook();
 
             $embed = new EmbedDiscordWebhook();
             $embed->setTitle($title);
             $embed->setDescription($description);
 
+            if ($showAuthor) {
+                $embed->setAuthor($this->mangasFanSignature());
+            }
+
             $discordWebhook->addEmbed($embed);
 
-            $this->sendRequest("POST", $discordWebhook->convertToJson());
+            $this->sendRequest($discordWebhook->convertToJson());
         }
 
         /**
          * @throws TransportExceptionInterface
          * @link https://discord.com/developers/docs/resources/webhook
          */
-        private function sendRequest(string $method, array $json): void {
+        private function sendRequest(array $json): void {
             $url = "https://discordapp.com/api/webhooks/{$this->idWebhookDiscord}/{$this->tokenWebhookDiscord}";
 
-            $this->client->request($method, $url, [
+            $this->client->request("POST", $url, [
                 'headers' => [
                     'content-type' => 'application/json'
                 ],
                 'json' => $json
             ]);
+        }
+
+        private function mangasFanSignature(): AuthorEmbedDiscordWebhook {
+            $author = new AuthorEmbedDiscordWebhook(self::MF_NEWS_TITLE_AUTHOR);
+
+            $author->setIconUrl(self::MF_NEWS_ICON_AUTHOR);
+            $author->setUrl(self::MF_NEWS_URL_AUTHOR);
+
+            return $author;
         }
     }

@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Entity\Webhook;
+namespace App\Entity\Webhook\Embed;
 
-class EmbedDiscordWebhook {
+use App\Entity\Webhook\DiscordWebhookInterface;
+
+class EmbedDiscordWebhook implements DiscordWebhookInterface {
     private ?string $title = null;
     private ?string $type = null;
     private ?string $description = null;
     private ?string $url = null;
+
+    private ?AuthorEmbedDiscordWebhook $author = null;
 
     public function getTitle(): ?string {
         return $this->title;
@@ -40,12 +44,17 @@ class EmbedDiscordWebhook {
         $this->url = $url;
     }
 
-    public function convertToArray(): array {
+    public function setAuthor(AuthorEmbedDiscordWebhook $author): void {
+        $this->author = $author;
+    }
+
+    public function convertToJson(): array {
         return [
             "title" => $this->getTitle(),
             "type" => $this->getType(),
             "description" => $this->getDescription(),
-            "url" => $this->getUrl()
+            "url" => $this->getUrl(),
+            "author" => $this->author->convertToJson()
         ];
     }
 }
