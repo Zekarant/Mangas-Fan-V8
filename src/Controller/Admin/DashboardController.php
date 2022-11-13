@@ -31,16 +31,6 @@ class DashboardController extends AbstractDashboardController
         
     }
 
-    #[Route('/test', name: 'test')]
-    public static function test() : void {
-        
-        $embed = new Embed();
-        $wh = new Webhook('https://discord.com/api/webhooks/1039980053880131704/SZ0CuPht6W07pY33xWuvFgoQpxl0cSq717dH0Oa8pEfEQuw7-UqcqvxoGR3OoQk5TC89');
-        $embed->setTitle('Bon, ça me gonfle ça marche pas quand on poste une news, on verra demain')
-        ->setTimestamp(new DateTime('now'));
-        $wh->addEmbed($embed)->send();
-    }
-
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()

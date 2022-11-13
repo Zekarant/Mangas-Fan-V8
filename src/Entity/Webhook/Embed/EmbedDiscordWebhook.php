@@ -8,6 +8,7 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
     private ?string $title = null;
     private ?string $type = null;
     private ?string $description = null;
+    private ?int $color = null;
     private ?string $url = null;
 
     private ?AuthorEmbedDiscordWebhook $author = null;
@@ -44,6 +45,14 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
         $this->url = $url;
     }
 
+    public function getColor(): ?string {
+        return $this->color;
+    }
+
+    public function setColor(string $color): void {
+        $this->color = $color;
+    }
+
     public function setAuthor(AuthorEmbedDiscordWebhook $author): void {
         $this->author = $author;
     }
@@ -54,6 +63,7 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
             "type" => $this->getType(),
             "description" => $this->getDescription(),
             "url" => $this->getUrl(),
+            "color" => $this->getColor(),
             "author" => $this->author->convertToJson()
         ];
     }

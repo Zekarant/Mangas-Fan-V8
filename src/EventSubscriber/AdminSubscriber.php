@@ -60,7 +60,7 @@ class AdminSubscriber implements EventSubscriberInterface {
             /* @var News */
             $news = $entity;
 
-            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews());
+            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), 8388980);
         }
     }
 }

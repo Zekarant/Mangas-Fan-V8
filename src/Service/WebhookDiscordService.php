@@ -38,13 +38,14 @@
         /**
          * @throws TransportExceptionInterface
          */
-        public function sendMessageEmbed(string $title, string $description, bool $showAuthor = true): void {
+        public function sendMessageEmbed(string $title, string $description, string $url, int $color, bool $showAuthor = true): void {
             $discordWebhook = new DiscordWebhook();
 
             $embed = new EmbedDiscordWebhook();
             $embed->setTitle($title);
             $embed->setDescription($description);
-
+            $embed->setUrl('https://127.0.0.1:8000/news/' . $url);
+            $embed->setColor($color);
             if ($showAuthor) {
                 $embed->setAuthor($this->mangasFanSignature());
             }

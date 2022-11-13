@@ -24,7 +24,7 @@ class NewsCrudController extends AbstractCrudController
         yield SlugField::new('slug')
             ->setTargetFieldName('title_news');
 
-        yield TextEditorField::new('description_news');
+        yield TextField::new('description_news');
 
         yield TextEditorField::new('content_news');
 

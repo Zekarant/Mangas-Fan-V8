@@ -26,10 +26,9 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(NewsRepository $newsRepository, AnimesRepository $animesRepository, TomeMangasRepository $tomeMangasRepository, ArticlesAnimeRepository $articlesAnimeRepository): Response
     {
-        $this->webhookDiscordService->sendMessageEmbed("Test symfony", "Custom discord webhook");
 
         return $this->render('home/index.html.twig', [
-            'news' => $newsRepository->findAll(),
+            'news' => $newsRepository->findBy(array(), array('id' => 'DESC'), 3),
             'lastAnimes' => $animesRepository->findBy(array(), array('id' => 'DESC'), 6),
             'coupdeCoeur' => $animesRepository->findOneBy(array('coupCoeur' => 1)),
             'lastMangas' => $tomeMangasRepository->findBy(array(), array('createdAt' => 'DESC'), 6),
