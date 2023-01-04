@@ -35,7 +35,7 @@ class News implements TimestampedInterface
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $updatedAt;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'news')]
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'news')]
     private Collection $categories;
 
     #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]

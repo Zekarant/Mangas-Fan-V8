@@ -24,7 +24,7 @@ class Category
     #[ORM\Column(length: 10)]
     private ?string $color = null;
 
-    #[ORM\ManyToMany(targetEntity: News::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: News::class, mappedBy: 'categories')]
     private Collection $news;
 
     public function __construct()
@@ -95,5 +95,10 @@ class Category
         $this->news->removeElement($news);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

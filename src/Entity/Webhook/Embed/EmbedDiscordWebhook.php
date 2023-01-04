@@ -12,6 +12,7 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
     private ?string $url = null;
 
     private ?AuthorEmbedDiscordWebhook $author = null;
+    private ?ImageEmbedDiscordWebhook $image = null;
 
     public function getTitle(): ?string {
         return $this->title;
@@ -57,6 +58,10 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
         $this->author = $author;
     }
 
+    public function setImage(ImageEmbedDiscordWebhook $image): void {
+        $this->image = $image;
+    }
+
     public function convertToJson(): array {
         return [
             "title" => $this->getTitle(),
@@ -64,7 +69,8 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
             "description" => $this->getDescription(),
             "url" => $this->getUrl(),
             "color" => $this->getColor(),
-            "author" => $this->author->convertToJson()
+            "author" => $this->author->convertToJson(),
+            "image" => $this->image->convertToJson()
         ];
     }
 }

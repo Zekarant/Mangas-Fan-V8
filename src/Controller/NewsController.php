@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\News;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +19,7 @@ class NewsController extends AbstractController
         }
         return $this->render('news/show.html.twig', [
             'news' => $news,
+            'categories' => $news->getCategories(),
         ]);
     }
 }

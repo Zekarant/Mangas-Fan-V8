@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class NewsCrudController extends AbstractCrudController
 {
@@ -27,6 +28,8 @@ class NewsCrudController extends AbstractCrudController
         yield TextField::new('description_news');
 
         yield TextEditorField::new('content_news');
+
+        yield AssociationField::new('categories');
 
         yield DateTimeField::new('createdAt')->hideOnForm();
         yield DateTimeField::new('updatedAt')->hideOnForm();

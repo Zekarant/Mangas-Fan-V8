@@ -1,8 +1,10 @@
 <?php
+
     namespace App\Service;
 
     use App\Entity\Webhook\DiscordWebhook;
     use App\Entity\Webhook\Embed\AuthorEmbedDiscordWebhook;
+    use App\Entity\Webhook\Embed\ImageEmbedDiscordWebhook;
     use App\Entity\Webhook\Embed\EmbedDiscordWebhook;
     use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
     use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -11,6 +13,7 @@
         const MF_NEWS_TITLE_AUTHOR = "Mangas'Fan - Nouvelle news !";
         const MF_NEWS_URL_AUTHOR = "https://www.mangasfan.fr";
         const MF_NEWS_ICON_AUTHOR = "https://zupimages.net/up/21/03/hjkk.png";
+        const MF_NEWS_URL_IMAGE = 'https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg';
 
         private string $idWebhookDiscord;
         private string $tokenWebhookDiscord;
@@ -49,6 +52,7 @@
             if ($showAuthor) {
                 $embed->setAuthor($this->mangasFanSignature());
             }
+            $embed->setImage($this->imageNews());
 
             $discordWebhook->addEmbed($embed);
 
@@ -77,5 +81,13 @@
             $author->setUrl(self::MF_NEWS_URL_AUTHOR);
 
             return $author;
+        }
+
+        private function imageNews(): ImageEmbedDiscordWebhook {
+            $image = new ImageEmbedDiscordWebhook();
+
+            $image->setUrl(self::MF_NEWS_URL_IMAGE);
+
+            return $image;
         }
     }
