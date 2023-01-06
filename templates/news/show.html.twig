@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ news.titleNews }} {% endblock %}
+{% block title %}{{ news.titleNews }}{% endblock %}
 
 {% block body %}
     <div class="container">
         <h1>{{ news.titleNews }}</h1>
-        <hr>
-        {% for category in categories %}
-            <a href="{{ path('category_show', {'slug': category.slug}) }}"><button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button></a>
+        <hr />
+        {% for category in news.categories %}
+            <a href="{{ path('category_show', { 'slug': category.slug }) }}">
+                <button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button>
+            </a>
         {% endfor %}
-        <hr>
+        <hr />
         {{ news.contentNews|raw }}
     </div>
 {% endblock %}
