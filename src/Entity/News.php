@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Model\TimestampedInterface;
-use App\Repository\NewsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
+use App\Repository\NewsRepository;
+use App\Model\TimestampedInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface
@@ -39,6 +40,7 @@ class News implements TimestampedInterface
     private Collection $categories;
 
     #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]
+    #[OrderBy(["createdAt" => "DESC"])]
     private Collection $comments;
 
     #[ORM\ManyToOne]
@@ -210,5 +212,9 @@ class News implements TimestampedInterface
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->titleNews;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use DateTime;
 use App\Entity\News;
 use App\Entity\Category;
+use App\Entity\Comments;
 use DiscordWebhook\Embed;
 use DiscordWebhook\Webhook;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,9 +42,13 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToRoute('Aller sur le site', 'fas fa-undo', 'app_home');
 
+        yield MenuItem::linkToDashboard('Index du pannel', 'fas fa-home');
+
         yield MenuItem::subMenu('News', 'fas fa-newspaper')->setSubItems([
             MenuItem::linkToCrud('Ajouter une news', 'fas fa-newspaper', News::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Catégories', 'fas fa-newspaper', Category::class),
         ]);
+
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
     }
 }

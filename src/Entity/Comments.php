@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CommentsRepository;
+use App\Entity\News;
 
 #[ORM\Entity(repositoryClass: CommentsRepository::class)]
 class Comments 
@@ -23,6 +24,15 @@ class Comments
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?News $news = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    public function __construct(News $news) 
+    {
+        $this->news = $news;
+    }
 
     public function getId(): ?int
     {
@@ -61,6 +71,18 @@ class Comments
     public function setNews(?News $news): self
     {
         $this->news = $news;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
