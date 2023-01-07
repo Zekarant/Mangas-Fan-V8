@@ -1,12 +1,13 @@
-/* Bar de navigation principale du site */
+@import 'imports';
 
+/* Principal navbar website */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #1e1e1e;
+    background-color: $dark-blue-background-navbar;
     left: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: $poppins;
     z-index: 9999;
 }
 
@@ -16,8 +17,7 @@ nav {
 
 .column:nth-child(1) {
     flex: 1;
-    margin: 1em;
-    margin-left: 12em;
+    margin: 1em 1em 1em 12em;
 }
 
 .column:nth-child(2) {
@@ -49,24 +49,24 @@ li {
 }
 
 li a {
-    color: #fff;
+    color: $white;
     text-decoration: none;
 }
 
 /* Bannière du site */
 header {
-    font-family: 'Poppins', sans-serif;
+    font-family: $poppins;
 }
 
 h1 {
-  margin: 0 110px 18px 0;
+  margin: 0 pixels-to-em(110) pixels-to-em(18) 0;
   font-weight: 600;
   font-size: 4em;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #fff;
+  color: $white;
 }
 
 #banner {

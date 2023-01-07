@@ -1,0 +1,5 @@
+@use 'sass:math';
+
+@function pixels-to-em($pixels, $context: $browser-context-font-size) {
+  @return #{math.div($pixels, $context)}em;
+}

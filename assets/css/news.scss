@@ -1,9 +1,9 @@
+@import 'imports';
+
 /* News */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 section {
   max-width: 90%;
-  margin: auto;
-  margin-bottom: 5em;
+  margin: auto auto 5em;
 }
   
 .allNewsGroup {
@@ -18,7 +18,7 @@ section {
 }
 
 .newsCard {
-  background-color: #141720;
+  background-color: $dark-blue-background-news-card;
   border-radius: 1.5em;
   margin-bottom: 2em;
   position: relative;
@@ -39,7 +39,7 @@ section {
   padding-left: 1.6em;
   padding-right: 1.6em;
   padding-top: 0.5em;
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
 }
 
 .newsCard:first-child .newsImage {
@@ -89,7 +89,7 @@ section {
   font-style: normal;
   line-height: 1.17;
   letter-spacing: 0.01em;
-  color: #f85ed7;
+  color: $light-pink-link;
   text-decoration: none;
   text-align: right;
   padding-bottom: 1em;
@@ -120,11 +120,11 @@ section {
   line-height: 1.33;
   letter-spacing: 0.01em;
   text-align: left;
-  color: #fefefe;
+  color: $very-light-grey;
 }
   
 .linkNews {
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   font-size: 1em;
   font-weight: 600;
   font-stretch: normal;
@@ -132,12 +132,12 @@ section {
   line-height: 1.17;
   letter-spacing: 0.01em;
   text-align: left;
-  color: #f85ed7;
+  color: $light-pink-link;
   text-decoration: none;
 }
   
 .linkArchive a {
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   float: right;
   font-weight: bold;
   text-decoration: none;
@@ -155,8 +155,10 @@ section {
   height: 15.8em;
 }
   
-.anime>h3, .mangas>h3, .articles>h3 {
-  font-family: 'Poppins', sans-serif;
+.anime > h3,
+.mangas > h3,
+.articles > h3 {
+  font-family: $poppins;
   text-align: center;
 }
  
@@ -170,7 +172,7 @@ section {
 /* Flexbox Coup de coeur */
 #coupCoeur {
   border-radius: 2em;
-  background-color: #1e1e1e;
+  background-color: $dark-blue-background-navbar;
   min-height: 19em;
   height: auto;
 }
@@ -181,18 +183,17 @@ section {
 }
   
 .itemFlex:first-child {
-  padding: 3em;
-  padding-top: 1em;
+  padding: 1em 3em 3em;
   width: 60%;
 }
 
 .titleCoeur{
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   font-size: 1.5em;
 }
 
 .synopsisAnime {
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   text-align: justify;
   padding-bottom: 3em;
   font-weight: 300;
@@ -203,7 +204,7 @@ section {
 }
   
 .linkAnime {
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   font-weight: bold;
   text-decoration: none;
   color: #f85ed7;
@@ -247,10 +248,10 @@ section {
 }
   
 .linkMangas a {
-  font-family: 'Poppins', sans-serif;
+  font-family: $poppins;
   font-weight: bold;
   text-decoration: none;
-  color: #f85ed7;
+  color: $light-pink-link;
   float: right; 
 }
   
@@ -262,8 +263,7 @@ section {
   
 .itemBoutique:nth-child(2) {
   width: 60%;
-  padding: 3em;
-  padding-top: 1em;
+  padding: 1em 3em 3em;
   height: auto;
 }
   
@@ -298,8 +298,8 @@ section {
 
 .buttonCategory {
   padding: 0.4em;
-  border-radius: 8px;
-  color:#fff;
+  border-radius: pixels-to-em(8);
+  color: $white;
   font-size: 0.8em;
   cursor: pointer;
   margin-right: 0.3em;
@@ -310,8 +310,8 @@ section {
 .buttonComment {
   background-color: transparent; /* Green */
   border: none;
-  color: #bd00a0;
+  color: $pink-button-comment;
   padding-top: 1em;
-  font-size: 16px;
+  font-size: pixels-to-em(16);
   cursor: pointer;
 }

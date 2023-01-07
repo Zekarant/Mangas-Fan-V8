@@ -1,7 +1,8 @@
-//@import "~bootstrap/scss/bootstrap";
+@import 'imports';
+
 body {
-    background-color: #060a16;
-    color: white;
+    background-color: $dark-blue-background-website;
+    color: $white;
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
@@ -11,13 +12,13 @@ main {
 }
     
 h2 {
-    font-family: 'Poppins', sans-serif;
+    font-family: $poppins;
     font-size: 1.7em;
     font-weight: 600;
 }
     
 p {
-    font-family: 'Poppins';
+    font-family: $poppins;
     font-size: 1.3em;
     font-weight: 300;
 }
