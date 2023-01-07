@@ -1,4 +1,4 @@
-{% extends 'baseWithoutBanner.html.twig' %}
+{% extends 'base_without_banner.html.twig' %}
 
 {% block title %}{{ news.titleNews }}{% endblock %}
 
@@ -6,27 +6,36 @@
 <section>
     <div style="display: flex; justify-content: center; flex-direction: column;">
         <img src="https://zupimages.net/up/23/01/dblx.png" style="margin-top: 8em;" />
+
         <div>
             <h1 style="margin-top: 0.7em; font-family: Poppins;">{{ news.titleNews }}</h1>
             <hr align="left" style="background-color: black; width: 65%; border: 1px solid black; margin-bottom: 2.5em;">
             <div style="display: flex; justify-content: space-between;">
                 <div>
-                    <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">Par <span style="color: #bd00a0; font-weight: bold; font-style: normal;">AUTEUR</span> - GRADE
+                    <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">
+                        Par <span style="color: #bd00a0; font-weight: bold; font-style: normal;">AUTEUR</span> - GRADE
+                    </span>
                 </div>
+
                 <div>
                     <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">News redigée le {{ news.createdAt|date("d/m/Y à H:m") }}
                 </div>
             </div>
+
             <hr style="margin-top: 1.5em;">
+
             {# {% for category in news.categories %}
                 <a href="{{ path('category_show', {'slug': category.slug}) }}"><button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button></a>
             {% endfor %} #}
+
             <article style="margin-top: 2em; ont-family: Poppins;font-size: 18px;font-weight: 300;font-stretch: normal;font-style: normal;line-height: 1.5;letter-spacing: normal;">
                 {{ news.contentNews|raw }}
             </article>
+
             <h2 style="font-weight: bold;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;">Commentaires</h2>
+
             <div class="commentArea">
-                {{ form(commentForm, { 'attr': {'class': 'comment-form'}}) }}
+                {{ form(comment_form, { 'attr': { 'class': 'comment-form' } }) }}
             </div>
 
             <div class="comments-list">

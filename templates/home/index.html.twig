@@ -7,7 +7,7 @@
     <section class="newsSection">
         <h2>Dernières actualités</h2>
         <div class="allNewsGroup">
-            {% include 'news/itemNews.html.twig' with { news } %}
+            {% include 'news/item_news.html.twig' with { news } %}
         </div>
         <div class="linkArchive"><a href="#">Voir toutes les actualités</a></div>
     </section>
@@ -15,23 +15,23 @@
     <section>
         <h2>Nos dernières japanimation</h2>
         <div class="lastAnimes">
-            {% include 'animes/lastAnimeHome.html.twig' with { lastAnimes } %}
+            {% include 'animes/last_anime_home.html.twig' with { last_animes } %}
         </div>
         <div class="linkMangas"><a href="#">Voir toutes les japanimations</a></div>
     </section>
 
-    {% if coupdeCoeur %}
+    {% if month_favorite %}
         <section>
             <h2>Notre coup de coeur</h2>
             <div id="coupCoeur">
                 <div class="flexbox">
                     <div class="itemFlex">
-                        <h3 class="titleCoeur">{{ coupdeCoeur.titleAnime }}</h3>
-                        <div class="synopsisAnime">{{ coupdeCoeur.synopsisAnime }}</div>
+                        <h3 class="titleCoeur">{{ month_favorite.titleAnime }}</h3>
+                        <div class="synopsisAnime">{{ month_favorite.synopsisAnime }}</div>
                         <div class="linkAnime">Voir l'anime</div>
                     </div>
                     <div class="itemFlex">
-                        <img src="{{ coupdeCoeur.imageAnime }}" class="imageAnime" alt="Image de l'anime {{ coupdeCoeur.titleAnime }}" title="Image de l'anime {{ coupdeCoeur.titleAnime }}" />
+                        <img src="{{ month_favorite.imageAnime }}" class="imageAnime" alt="Image de l'anime {{ month_favorite.titleAnime }}" title="Image de l'anime {{ month_favorite.titleAnime }}" />
                     </div>
                 </div>
             </div>
@@ -41,17 +41,23 @@
     <section>
         <h2>Nos derniers mangas</h2>
         <div class="lastMangas">
-           {% include 'mangas/lastMangasHome.html.twig' with { lastMangas } %}
+           {% include 'mangas/last_mangas_home.html.twig' with { last_mangas } %}
         </div>
-        <div class="linkMangas"><a href="#">Voir tous les mangas</a></div>
+
+        <div class="linkMangas">
+            <a href="#">Voir tous les mangas</a>
+        </div>
     </section>
 
     <section>
         <h2>Mangas'Wiki</h2>
         <div class="lastArticles">
-           {% include 'animes/lastArticlesAnime.html.twig' with { lastArticlesAnime } %}
+           {% include 'animes/last_articles_anime.html.twig' with { last_articles_anime } %}
         </div>
-        <div class="linkMangas"><a href="#">Voir tous nos wikis</a></div>
+
+        <div class="linkMangas">
+            <a href="#">Voir tous nos wikis</a>
+        </div>
     </section>
 
     <section>
