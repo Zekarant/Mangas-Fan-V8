@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mangas'Fan - {% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="https://www.mangasfan.fr/v8/images/logo.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div id="container">
+                    <div class="column">
+                        <a href="{{ path('app_home') }}">
+                            <img src="https://www.mangasfan.fr/v8/images/logo.png" alt="Logo de Mangas'Fan" width="60" height="60" />
+                        </a>
+                    </div>
+                    <div class="column">
+                        <ul>
+                            <li>
+                                <img src="https://www.mangasfan.fr/v8/images/icon_search.png" alt="Logo de recherche" width="22" height="22" />
+                            </li>
+                            <li>
+                                <a href="#">Animes</a>
+                            </li>
+                            <li>
+                                <a href="#">Mangas</a>
+                            </li>
+                            <li>
+                                <a href="#">Wiki</a>
+                            </li>
+                            <li>
+                                <a href="#">Boutique</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin') }}">Admin</a>
+                            </li>
+                            <li>
+                                <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60" height="60" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+    </body>
+</html>
