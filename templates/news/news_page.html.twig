@@ -2,6 +2,11 @@
 
 {% block title %}{{ news.titleNews }}{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('news-requests') }}
+{% endblock %}
+
 {% block body %}
 <section>
     <div style="display: flex; justify-content: center; flex-direction: column;">

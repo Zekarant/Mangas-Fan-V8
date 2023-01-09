@@ -19,16 +19,16 @@ class CommentsController extends AbstractController
     {
         $commentData = $request->request->all('comment');
 
-        if(!$this->isCsrfTokenValid('comments-add', $commentData['_token'])){
+        if (!$this->isCsrfTokenValid('comments-add', $commentData['_token'])) {
             return $this->json([
-                'code' => 'INVALID_CSRF_TOKEN',
+                'error' => 'Le token CSRF est invalide.',
             ], RESPONSE::HTTP_BAD_REQUEST);
         }
 
         $news = $newsRepository->findOneBy(['id' => $commentData['news']]);
-        if(!$news){
+        if (!$news) {
             return $this->json([
-                'code' => 'NEWS_NOT_FOUND'
+                'error' => 'La news n\'existe pas.'
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -44,7 +44,6 @@ class CommentsController extends AbstractController
         ]);
 
         return $this->json([
-            'code' => 'COMMENT_ADDED_SUCCESSFULLY',
             'message' => $html,
             'numberOfComments' => $commentsRepository->count(['news' => $news])
         ]);
