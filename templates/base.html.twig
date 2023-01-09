@@ -1,77 +1,85 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Mangas'Fan - {% block title %}{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="https://www.mangasfan.fr/v8/images/logo.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Mangas'Fan - {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="https://www.mangasfan.fr/v8/images/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div id="container">
-                    <div class="column">
-                        <a href="{{ path('app_home') }}">
-                            <img src="https://www.mangasfan.fr/v8/images/logo.png" alt="Logo de Mangas'Fan" width="60" height="60" />
-                        </a>
-                    </div>
-                    <div class="column">
-                        <ul>
-                            <li>
-                                <img src="https://www.mangasfan.fr/v8/images/icon_search.png" alt="Logo de recherche" width="22" height="22" />
-                            </li>
-                            <li>
-                                <a href="#">Animes</a>
-                            </li>
-                            <li>
-                                <a href="#">Mangas</a>
-                            </li>
-                            <li>
-                                <a href="#">Wiki</a>
-                            </li>
-                            <li>
-                                <a href="#">Boutique</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('admin') }}">Admin</a>
-                            </li>
-                            <li>
-                                <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60" height="60" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div id="banner">
-                    <div class="element">
-                        <h1>Mangas'Fan</h1>
-                        <p class="slogan">Votre site d'actualité sur les mangas et les animes</p>
-                        <div id="imageReseaux">
-                            <img src="https://www.mangasfan.fr/v8/images/discord.png" alt="Logo de Discord" width="54" height="54" />
-                            <img src="https://www.mangasfan.fr/v8/images/youtube.png" alt="Logo de youtube" width="54" height="54" />
-                            <img src="https://www.mangasfan.fr/v8/images/twitter.png" alt="Logo de twitter" width="54" height="54" />
-                            <img src="https://www.mangasfan.fr/v8/images/instagram.png" alt="Logo de instagram" width="54" height="54" />
-                        </div>
-                    </div>
-                    <div class="element">
-                        <div class="renderImage">
-                            <img src="https://www.mangasfan.fr/v8/images/render/dejlo8m-733a1d26-0ff8-409d-b3c2-43e31e13dde1.png" alt="Render bannière" class="imageBanner"/>
-                        </div>
-                    </div>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <div id="container">
+            <div class="column">
+                <a href="{{ path('app_home') }}">
+                    <img src="https://www.mangasfan.fr/v8/images/logo.png" alt="Logo de Mangas'Fan" width="60"
+                         height="60"/>
+                </a>
             </div>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-    </body>
+            <div class="column">
+                <ul>
+                    <li>
+                        <img src="https://www.mangasfan.fr/v8/images/icon_search.png" alt="Logo de recherche" width="22"
+                             height="22"/>
+                    </li>
+                    <li>
+                        <a href="#">Animes</a>
+                    </li>
+                    <li>
+                        <a href="#">Mangas</a>
+                    </li>
+                    <li>
+                        <a href="#">Wiki</a>
+                    </li>
+                    <li>
+                        <a href="#">Boutique</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin') }}">Admin</a>
+                    </li>
+                    <li>
+                        <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60"
+                             height="60"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="banner">
+        <div class="element">
+            <h1>Mangas'Fan</h1>
+            <p class="slogan">Votre site d'actualité sur les mangas et les animes</p>
+
+            <div id="imageReseaux">
+                <img src="https://www.mangasfan.fr/v8/images/discord.png" alt="Logo de Discord" width="54" height="54"/>
+                <img src="https://www.mangasfan.fr/v8/images/youtube.png" alt="Logo de youtube" width="54" height="54"/>
+                <img src="https://www.mangasfan.fr/v8/images/twitter.png" alt="Logo de twitter" width="54" height="54"/>
+                <img src="https://www.mangasfan.fr/v8/images/instagram.png" alt="Logo de instagram" width="54"
+                     height="54"/>
+            </div>
+        </div>
+
+        <div class="element">
+            <div class="renderImage">
+                <img src="{{ asset(random(render_assets())) }}"
+                     alt="Render bannière" class="imageBanner"/>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    {% block body %}{% endblock %}
+</main>
+</body>
 </html>
