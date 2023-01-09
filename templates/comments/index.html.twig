@@ -1,9 +1,11 @@
 {% set username = comment.user.username %}
 <div class="comment" id="comment-{{ comment.id }}" style="display: flex; margin-top: 3em">
-    <div class="avatar" style="width: 250px; height: 250px; margin: 0 36.2px 299.6px 0; object-fit: contain; height: 3em;">
+    <div class="avatar"
+         style="width: 250px; height: 250px; margin: 0 36.2px 299.6px 0; object-fit: contain; height: 3em;">
         <img src="https://zupimages.net/up/23/01/9pu9.png" alt="Avatar de test" width="100%"/>
     </div>
-    <div class="content" style="width: 90%; margin: 0 0 0 36.2px; padding: 36.2px 36.2px 35.4px 36.2px;border-radius: 18.1px; background-color: #1e1e1e; position: relative;">
+    <div class="content"
+         style="width: 90%; margin: 0 0 0 36.2px; padding: 36.2px 36.2px 35.4px 36.2px;border-radius: 18.1px; background-color: #1e1e1e; position: relative;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 3em;">
             <div style="font-weight: bold">
                 {{ username }}
@@ -12,11 +14,11 @@
                 {{ comment.createdAt|date('d F Y') }}
             </div>
         </div>
-        {{comment.content}}
+        {{ comment.content }}
         <div style="position: absolute;bottom: 0;margin-bottom: 2em;color: #bd00a0;right: 0;margin-right: 2em; font-weight: 600;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;">
             Répondre
         </div>
     </div>
-    {#  {{ comment.createdAt|date('d/m/y') }}
+    {# {{ comment.createdAt|date('d/m/y') }}
     <p>{{comment.content}}</p> #}
 </div>
