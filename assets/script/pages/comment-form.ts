@@ -1,5 +1,5 @@
-import { postRequest } from '@script/ajax/post-request';
-import { waitLoadingPage } from '@script/functions/wait-loading-page';
+import { postRequest } from '../ajax/post-request';
+import { waitLoadingPage } from '../functions/wait-loading-page';
 
 waitLoadingPage((): void => {
   document.querySelector('form.comment-form')?.addEventListener('submit', (event: Event) => {

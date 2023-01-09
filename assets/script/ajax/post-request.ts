@@ -1,4 +1,4 @@
-import { showError } from '@script/functions/show-error';
+import { showError } from '../functions/show-error';
 
 export async function postRequest(route: string, body: any, callback: Function): Promise<void> {
   try {

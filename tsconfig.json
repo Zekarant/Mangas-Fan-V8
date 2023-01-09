@@ -1,9 +1,0 @@
-{
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./assets/",
-    "paths": {
-      "@script/*": [ "./script/*" ]
-    }
-  }
-}
