@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class CommentsController extends AbstractController
 {
     #[Route('/ajax/comments', name: 'comments_add')]
@@ -32,9 +33,16 @@ class CommentsController extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $user = $this->getUser();
+        if(!$user){
+            return $this->json([
+                'code' => 'L\'utilisateur n\'est pas connecté !'
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
         $comment = new Comments($news);
         $comment->setContent($commentData['content']);
-        $comment->setUser($userRepository->findOneBy(['id' => 1]));
+        $comment->setUser($user);
         $comment->setCreatedAt(new \DateTime());
         $em->persist($comment);
         $em->flush();
