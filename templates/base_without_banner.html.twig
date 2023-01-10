@@ -43,12 +43,28 @@
                             <li>
                                 <a href="#">Boutique</a>
                             </li>
-                            <li>
-                                <a href="{{ path('admin') }}">Admin</a>
-                            </li>
-                            <li>
-                                <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60" height="60" />
-                            </li>
+                            {% if app.user %}
+                                <li>
+                                    <a href="{{ path('admin') }}">Admin</a>
+                                </li>
+                                <li>
+                                    <span style="color: red;">{{ app.user.username}}</span>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                                </li>
+                                <li>
+                                    <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60"
+                                    height="60"/>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('app_register') }}">S'inscrire</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_login') }}">Connexion</a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
