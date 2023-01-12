@@ -31,6 +31,8 @@ class NewsCrudController extends AbstractCrudController
 
         yield AssociationField::new('categories');
 
+        yield AssociationField::new('image');
+
         yield DateTimeField::new('createdAt')->hideOnForm();
         yield DateTimeField::new('updatedAt')->hideOnForm();
     }

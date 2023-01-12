@@ -1,7 +1,7 @@
 {% for new in news %}
     <article class="newsCard">
         <div class="newsImage">
-            <img src="https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg" class="imageNews" />
+            <img src="/uploads/{{ new.image.filename }}" alt="{{ new.image.altText }}" class="imageNews" />
         </div>
         <div class="contentNews">
             <h2 class="titleNews">{{ new.titleNews }}</h2>

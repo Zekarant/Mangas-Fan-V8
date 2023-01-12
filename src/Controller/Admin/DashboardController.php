@@ -6,6 +6,8 @@ use DateTime;
 use App\Entity\News;
 use App\Entity\Category;
 use App\Entity\Comments;
+use App\Entity\Images;
+use App\Entity\User;
 use DiscordWebhook\Embed;
 use DiscordWebhook\Webhook;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,11 +46,23 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Index du pannel', 'fas fa-home');
 
-        yield MenuItem::subMenu('News', 'fas fa-newspaper')->setSubItems([
-            MenuItem::linkToCrud('Ajouter une news', 'fas fa-newspaper', News::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Catégories', 'fas fa-newspaper', Category::class),
-        ]);
+        if($this->isGranted('ROLE_NEWSEUR')){
+            yield MenuItem::subMenu('News', 'fas fa-newspaper')->setSubItems([
+                MenuItem::linkToCrud('Ajouter une news', 'fas fa-plus', News::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Catégories', 'fas fa-newspaper', Category::class),
+            ]);
 
-        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
+            yield MenuItem::subMenu('Images', 'fas fa-photo-video')->setSubItems([
+                MenuItem::linkToCrud('Toutes les images', 'fas fa-photo-video', Images::class),
+                MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Images::class)->setAction(Crud::PAGE_NEW),
+            ]);
+        }
+        
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
+            yield MenuItem::subMenu('Comptes', 'fas fa-user')->setSubItems([
+                MenuItem::linkToCrud('Tous les comptes', 'fas fa-user-friends', User::class),
+            ]);
+        }
     }
 }
