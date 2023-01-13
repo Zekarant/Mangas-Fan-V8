@@ -30,6 +30,7 @@ class NewsCrudController extends AbstractCrudController
         yield TextEditorField::new('content_news');
 
         yield AssociationField::new('categories');
+        
 
         yield AssociationField::new('image');
 

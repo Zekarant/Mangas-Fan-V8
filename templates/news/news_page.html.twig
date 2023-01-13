@@ -18,8 +18,8 @@
             <div style="display: flex; justify-content: space-between;">
                 <div>
                     <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">
-                        Par <span style="color: #bd00a0; font-weight: bold; font-style: normal;">AUTEUR</span> - GRADE
-                    </span>
+                        Par <span><a href="{{ path('app_user', {'id': news.author.id }) }}" style="text-decoration: none; color: #bd00a0; font-weight: bold; font-style: normal;">
+                        {{ news.author.username }}</a></span> - {% for roles in news.author.roles %} {{ roles|replace({'ROLE_ADMIN': 'Administrateur,', 'ROLE_NEWSEUR': "Newseur," , 'ROLE_USER': "Membre"}) }} {% endfor %}
                 </div>
 
                 <div>

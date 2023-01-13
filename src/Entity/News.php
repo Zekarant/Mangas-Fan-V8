@@ -50,6 +50,9 @@ class News implements TimestampedInterface
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\ManyToOne(inversedBy: 'news')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -216,5 +219,17 @@ class News implements TimestampedInterface
 
     public function __toString(){
         return $this->titleNews;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }
