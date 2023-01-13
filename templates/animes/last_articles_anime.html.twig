@@ -2,10 +2,10 @@
     <div class="containerManga">
         <div class="articles">
             <a href="#">
-                <img src="{{ article.coverArticle }}" alt="Image d'accueil de {{ article.titleArticle }}" title="Image du manga {{ article.titleArticle }}" />
+                <img src="{{ article.coverPicture }}" alt="Image d'accueil de {{ article.title }}" title="Image du manga {{ article.title }}" />
             </a>
-            <h3>{{ article.idAnime.title }}<br/>
-            {{ article.titleArticle }}</h3>
+            <h3>{{ article.anime.title }}<br/>
+            {{ article.title }}</h3>
         </div>
     </div>
 {% endfor %}

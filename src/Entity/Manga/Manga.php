@@ -22,7 +22,7 @@ class Manga
     #[ORM\Column(options: [ 'default' => false ])]
     private bool $isFinish = false;
 
-    #[ORM\OneToMany(mappedBy: 'idManga', targetEntity: Tome::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'manga', targetEntity: Tome::class, orphanRemoval: true)]
     private Collection $tomes;
 
     public function __construct()

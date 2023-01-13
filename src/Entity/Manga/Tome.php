@@ -22,9 +22,9 @@ class Tome
     #[ORM\Column(length: 255)]
     private ?string $coverPicture = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tomeMangas')]
+    #[ORM\ManyToOne(inversedBy: 'tomes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Manga $idManga = null;
+    private ?Manga $manga = null;
 
     public function getId(): ?int
     {
@@ -55,14 +55,14 @@ class Tome
         return $this;
     }
 
-    public function getIdManga(): ?Manga
+    public function getManga(): ?Manga
     {
-        return $this->idManga;
+        return $this->manga;
     }
 
-    public function setIdManga(?Manga $idManga): self
+    public function setIdManga(?Manga $manga): self
     {
-        $this->idManga = $idManga;
+        $this->manga = $manga;
 
         return $this;
     }

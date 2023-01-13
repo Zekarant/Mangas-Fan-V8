@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- Déchargement des données de la table `animes`
 --
 
-INSERT INTO `animes` (`id`, `title_anime`, `image_anime`, `synopsis_anime`, `created_at`, `updated_at`, `coup_coeur`) VALUES
+INSERT INTO `anime` (`id`, `title`, `picture`, `synopsis`, `created_at`, `updated_at`, `is_favorite_monthly`) VALUES
     (1, 'Assassination Classroom', 'https://www.urban-fusions.fr/wp-content/uploads/2021/04/assassination-classroom-fin-anime-manga.jpg', 'Assassination Classroom, de son nom original Ansatsu kyōshitsu (暗殺教室), est un manga shônen écrit et dessiné par Yûsei Matsui. Le manga a été pré-publié de juillet 2012 à mars 2016 dans le Weekly Shônen Jump, et a été compilé en un total de 21 tomes aux couvertures délirantes. Le manga a été adapté en anime dès 2015, pour deux saisons et un total de 47 épisodes. Il aura aussi eu deux OAV ainsi que deux films Live. En France, Assassination Classroom est édité par Kana.', '2022-10-02 22:57:52', NULL, NULL),
     (2, 'Code Geass : Lelouch of the Rebellion', 'https://www.mangasfan.fr/hebergeur/uploads/1644170790.jpeg', 'A l\'époque Edo, les samurai étaient respectés de tous, mais la venue des Amanto (aliens) a entraîné la déchéance des samurai avec l\'interdiction du port de l\'épée. Mais un jeune garçon du nom de Sataka Gintoki décide de vivre à sa manière en devenant un free-lancer (personne qui accepte des petits boulots pour rendre service). Accompagné de ses deux amis Kagura et Shinpachi, ils vivent et se battent en tant que hors-la-loi.', '2022-10-02 22:58:22', NULL, 1),
 (3, 'Dragon Ball Super', 'https://thumb.canalplus.pro/http/unsafe/1280x720/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/58608274', NULL, '2022-10-02 22:58:38', NULL, NULL),
@@ -37,7 +37,7 @@ INSERT INTO `animes` (`id`, `title_anime`, `image_anime`, `synopsis_anime`, `cre
 -- Déchargement des données de la table `articles_anime`
 --
 
-INSERT INTO `articles_anime` (`id`, `id_anime_id`, `title_article`, `cover_article`, `created_at`, `updated_at`) VALUES
+INSERT INTO `article_anime` (`id`, `anime_id`, `title`, `cover_picture`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Koro-sensei', 'https://www.mangasfan.fr/hebergeur/uploads/1594756707.jpeg', '2022-10-03 21:41:59', NULL),
 (2, 1, 'Nagisa Shiota', 'https://www.mangasfan.fr/hebergeur/uploads/1598811584.jpeg', '2022-10-03 21:42:13', NULL),
 (3, 1, 'Gâkuho Asano', 'https://www.mangasfan.fr/hebergeur/uploads/1599163244.jpeg', '2022-10-03 21:42:27', NULL),
@@ -61,7 +61,7 @@ INSERT INTO `category` (`id`, `name`, `slug`, `color`) VALUES
 -- Déchargement des données de la table `mangas`
 --
 
-INSERT INTO `mangas` (`id`, `name_manga`, `finish_manga`, `created_at`, `updated_at`) VALUES
+INSERT INTO `manga` (`id`, `title`, `is_finish`, `created_at`, `updated_at`) VALUES
 (1, 'Vinland Saga', 0, '2022-10-03 19:16:54', NULL),
 (2, 'Dragon Ball Super', 0, '2022-10-03 19:17:10', NULL),
 (3, 'Nanatsu No Taizai', 0, '2022-10-03 19:17:19', NULL),
@@ -101,7 +101,7 @@ INSERT INTO `news_category` (`news_id`, `category_id`) VALUES
 -- Déchargement des données de la table `tome_mangas`
 --
 
-INSERT INTO `tome_mangas` (`id`, `name_tome`, `cover_tome`, `id_manga_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `tome` (`id`, `name`, `cover_picture`, `manga_id`, `created_at`, `updated_at`) VALUES
     (1, 'Tome 26', 'https://cdn1.booknode.com/book_cover/4998/vinland_saga_tome_26-4998415-264-432.jpg', 1, '2022-10-03 19:18:25', NULL),
     (2, 'Tome 9', 'https://images-na.ssl-images-amazon.com/images/I/71PJpd+UnzL.jpg', 1, '2022-10-03 19:18:40', NULL),
     (3, 'Tome 17', 'https://www.glenat.com/sites/default/files/images/livres/couv/9782344053706-001-T.jpeg', 2, '2022-10-03 19:18:51', NULL),
