@@ -10,7 +10,7 @@
     use Symfony\Contracts\HttpClient\HttpClientInterface;
 
     class WebhookDiscordService {
-        const MF_NEWS_TITLE_AUTHOR = "Mangas'Fan - Nouvelle news !";
+        const MF_NEWS_TITLE_AUTHOR = "Manga'Fan - Nouvelle news !";
         const MF_NEWS_URL_AUTHOR = "https://www.mangasfan.fr";
         const MF_NEWS_ICON_AUTHOR = "https://zupimages.net/up/21/03/hjkk.png";
         const MF_NEWS_URL_IMAGE = 'https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg';

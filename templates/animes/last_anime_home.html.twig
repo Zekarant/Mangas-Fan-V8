@@ -1,8 +1,8 @@
 {% for anime in last_animes %}
     <div class="anime">
         <a href="#">
-            <img src="{{ anime.imageAnime }}" alt="Image d'accueil de {{ anime.titleAnime }}" title="Image de l'anime {{ anime.titleAnime }}" />
+            <img src="{{ anime.picture }}" alt="Image d'accueil de {{ anime.title }}" title="Image de l'anime {{ anime.title }}" />
         </a>
-        <h3>{{ anime.titleAnime }}</h3>
+        <h3>{{ anime.title }}</h3>
     </div>
 {% endfor %}

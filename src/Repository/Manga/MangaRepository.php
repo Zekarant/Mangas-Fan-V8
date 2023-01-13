@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Manga;
 
-use App\Entity\Mangas;
+use App\Entity\Manga\Manga;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Mangas>
+ * @extends ServiceEntityRepository<Manga>
  *
- * @method Mangas|null find($id, $lockMode = null, $lockVersion = null)
- * @method Mangas|null findOneBy(array $criteria, array $orderBy = null)
- * @method Mangas[]    findAll()
- * @method Mangas[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Manga|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Manga|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Manga[]    findAll()
+ * @method Manga[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MangasRepository extends ServiceEntityRepository
+class MangaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Mangas::class);
+        parent::__construct($registry, Manga::class);
     }
 
-    public function save(Mangas $entity, bool $flush = false): void
+    public function save(Manga $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MangasRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Mangas $entity, bool $flush = false): void
+    public function remove(Manga $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MangasRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Mangas[] Returns an array of Mangas objects
+//     * @return Manga[] Returns an array of Manga objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MangasRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Mangas
+//    public function findOneBySomeField($value): ?Manga
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

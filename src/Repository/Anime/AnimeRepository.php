@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Anime;
 
-use App\Entity\Animes;
+use App\Entity\Anime\Anime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Animes>
+ * @extends ServiceEntityRepository<Anime>
  *
- * @method Animes|null find($id, $lockMode = null, $lockVersion = null)
- * @method Animes|null findOneBy(array $criteria, array $orderBy = null)
- * @method Animes[]    findAll()
- * @method Animes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Anime|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Anime|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Anime[]    findAll()
+ * @method Anime[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnimesRepository extends ServiceEntityRepository
+class AnimeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Animes::class);
+        parent::__construct($registry, Anime::class);
     }
 
-    public function save(Animes $entity, bool $flush = false): void
+    public function save(Anime $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnimesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Animes $entity, bool $flush = false): void
+    public function remove(Anime $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AnimesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Animes[] Returns an array of Animes objects
+//     * @return Anime[] Returns an array of Anime objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AnimesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Animes
+//    public function findOneBySomeField($value): ?Anime
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
