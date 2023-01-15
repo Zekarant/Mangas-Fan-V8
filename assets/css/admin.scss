@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+  --app-bg: #222;
+  --sidebar: #404040;
+  --sidebar-main-color: #fff;
+  --table-border: #1a2131;
+  --table-header: #1a2131;
+  --app-content-main-color: #fff;
+  --sidebar-link: #fff;
+  --sidebar-active-link: #1d283c;
+  --sidebar-hover-link: #1a2539;
+  --action-color: ##404040;
+  --action-color-hover: #6291fd;
+  --app-content-secondary-color: #1d283c;
+  --filter-reset: #2c394f;
+  --filter-shadow: rgba(16, 24, 39, 0.8) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size: 14px!important;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--app-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  background-color: var(--sidebar);
+  width: 100%;
+  top: 0;
+  padding: 1em;
+  margin-bottom: 2em;
+  text-align: right;
+}
+
+.sidebar {
+  flex-basis: 200px;
+  max-width: 200px;
+  flex-shrink: 0;
+  background-color: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  
+  &-list {
+    list-style-type: none;
+    padding: 0;
+    
+    &-item {
+      position: relative;
+      margin-bottom: 4px;
+      
+      a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px 16px;
+        color: var(--sidebar-link);
+        text-decoration: none;
+        line-height: 24px;
+      }
+      
+      &:hover { background-color: var(--sidebar-hover-link); }
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {&{
+      display: none;
+  }}
+}
+
+.content {
+    margin: 2em;
+}
+
+a {
+  text-decoration: none;
+  color: #60a5fa;
+}
