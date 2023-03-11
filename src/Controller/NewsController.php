@@ -6,6 +6,7 @@ use App\Entity\News;
 use App\Entity\User;
 use App\Entity\Comments;
 use App\Form\Type\CommentType;
+use App\Form\Type\NewsType;
 use App\Repository\NewsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,6 +36,16 @@ class NewsController extends AbstractController
     {
         return $this->render('news/admin/index.html.twig', [
             'news' => $newsRepository->findBy(array(), array('id' => 'DESC'), 15)
+        ]);
+    }
+
+    #[Route('/admin/create', name: 'admin_news_created')]
+    public function createNews(): Response
+    {
+        $news = new News();
+        $newForm = $this->createForm(NewsType::class, $news);
+        return $this->render('news/admin/create.html.twig', [
+            'news_form' => $newForm,
         ]);
     }
 }

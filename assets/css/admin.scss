@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 @import "~bootstrap/scss/bootstrap";
+@import 'imports';
 
 :root {
   --app-bg: #222;
@@ -105,4 +106,13 @@ body {
 a {
   text-decoration: none;
   color: #60a5fa;
+}
+
+.buttonComment {
+  background-color: transparent; /* Green */
+  border: none;
+  color: $pink-button-comment;
+  padding-top: 1em;
+  font-size: pixels-to-em(16);
+  cursor: pointer;
 }
