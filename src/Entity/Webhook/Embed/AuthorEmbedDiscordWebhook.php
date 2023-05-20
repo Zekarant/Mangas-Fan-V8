@@ -6,14 +6,12 @@ use App\Entity\Webhook\DiscordWebhookInterface;
 
 class AuthorEmbedDiscordWebhook implements DiscordWebhookInterface
 {
-    private string $name;
     private ?string $url = null;
     private ?string $iconUrl = null;
     private ?string $proxyIconUrl = null;
 
-    public function __construct(string $name)
+    public function __construct(private readonly string $name)
     {
-        $this->name = $name;
     }
 
     public function setUrl(string $url): void
