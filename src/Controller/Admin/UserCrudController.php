@@ -21,7 +21,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserCrudController extends AbstractCrudController
 {
-    public function __construct(private UserPasswordHasherInterface $passwordHasher, private EntityRepository $entityRepository){}
+    public function __construct(private UserPasswordHasherInterface $passwordHasher, private EntityRepository $entityRepository)
+    {
+    }
 
     public static function getEntityFqcn(): string
     {
@@ -35,21 +37,20 @@ class UserCrudController extends AbstractCrudController
         $qb = $this->entityRepository->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $qb->andWhere('entity.id != :user_id')
             ->setParameter('user_id', $userId);
-        
+
         return $qb;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
-       yield TextField::new('username');
-       yield TextField::new('password')->setFormType(PasswordType::class)->onlyOnForms();
+        yield TextField::new('username');
+        yield TextField::new('password')->setFormType(PasswordType::class)->onlyOnForms();
 
-       yield ChoiceField::new('roles')->allowMultipleChoices()
-       ->setChoices([
-        'Administrator' => 'ROLE_ADMIN',
-        'Newseur' => 'ROLE_NEWSEUR'
-       ]);
+        yield ChoiceField::new('roles')->allowMultipleChoices()
+        ->setChoices([
+         'Administrator' => 'ROLE_ADMIN',
+         'Newseur' => 'ROLE_NEWSEUR',
+        ]);
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
@@ -62,5 +63,4 @@ class UserCrudController extends AbstractCrudController
         $user->setPassword($hashedPassword);
         parent::persistEntity($entityManager, $entityInstance);
     }
-   
 }

@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace App\Model;
 
-interface TimestampedInterface {
-
+interface TimestampedInterface
+{
     public function getCreatedAt(): ?\DateTimeInterface;
 
     public function setCreatedAt(\DateTimeInterface $createdAt);

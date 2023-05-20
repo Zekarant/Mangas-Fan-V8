@@ -4,7 +4,8 @@ namespace App\Entity\Webhook\Embed;
 
 use App\Entity\Webhook\DiscordWebhookInterface;
 
-class EmbedDiscordWebhook implements DiscordWebhookInterface {
+class EmbedDiscordWebhook implements DiscordWebhookInterface
+{
     private ?string $title = null;
     private ?string $type = null;
     private ?string $description = null;
@@ -14,63 +15,76 @@ class EmbedDiscordWebhook implements DiscordWebhookInterface {
     private ?AuthorEmbedDiscordWebhook $author = null;
     private ?ImageEmbedDiscordWebhook $image = null;
 
-    public function getTitle(): ?string {
+    public function getTitle(): ?string
+    {
         return $this->title;
     }
 
-    public function setTitle(string $title): void {
+    public function setTitle(string $title): void
+    {
         $this->title = $title;
     }
 
-    public function getType(): ?string {
+    public function getType(): ?string
+    {
         return $this->type;
     }
 
-    public function setType(string $type): void {
+    public function setType(string $type): void
+    {
         $this->type = $type;
     }
 
-    public function getDescription(): ?string {
+    public function getDescription(): ?string
+    {
         return $this->description;
     }
 
-    public function setDescription(string $description): void {
+    public function setDescription(string $description): void
+    {
         $this->description = $description;
     }
 
-    public function getUrl(): ?string {
+    public function getUrl(): ?string
+    {
         return $this->url;
     }
 
-    public function setUrl(string $url): void {
+    public function setUrl(string $url): void
+    {
         $this->url = $url;
     }
 
-    public function getColor(): ?string {
+    public function getColor(): ?string
+    {
         return $this->color;
     }
 
-    public function setColor(string $color): void {
+    public function setColor(string $color): void
+    {
         $this->color = $color;
     }
 
-    public function setAuthor(AuthorEmbedDiscordWebhook $author): void {
+    public function setAuthor(AuthorEmbedDiscordWebhook $author): void
+    {
         $this->author = $author;
     }
 
-    public function setImage(ImageEmbedDiscordWebhook $image): void {
+    public function setImage(ImageEmbedDiscordWebhook $image): void
+    {
         $this->image = $image;
     }
 
-    public function convertToJson(): array {
+    public function convertToJson(): array
+    {
         return [
-            "title" => $this->getTitle(),
-            "type" => $this->getType(),
-            "description" => $this->getDescription(),
-            "url" => $this->getUrl(),
-            "color" => $this->getColor(),
-            "author" => $this->author->convertToJson(),
-            "image" => $this->image->convertToJson()
+            'title' => $this->getTitle(),
+            'type' => $this->getType(),
+            'description' => $this->getDescription(),
+            'url' => $this->getUrl(),
+            'color' => $this->getColor(),
+            'author' => $this->author->convertToJson(),
+            'image' => $this->image->convertToJson(),
         ];
     }
 }

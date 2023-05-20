@@ -20,15 +20,15 @@ class RegistrationFormType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => 'Nom d\'utilisateur :',
                 'attr' => [
-                    'placeholder' => 'Saisir votre nom d\'utilisateur'
-                ]
+                    'placeholder' => 'Saisir votre nom d\'utilisateur',
+                ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'placeholder' => 'Saisir votre mot de passe'
+                    'placeholder' => 'Saisir votre mot de passe',
                 ],
                 'first_options' => ['label' => 'Mot de passe :', 'attr' => ['placeholder' => 'Saisir votre mot de passe']],
                 'second_options' => ['label' => 'Confirmation du mot de passe :', 'attr' => ['placeholder' => 'Veuillez saisir à nouveau votre mot de passe']],

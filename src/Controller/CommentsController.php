@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
 class CommentsController extends AbstractController
 {
     #[Route('/ajax/comments', name: 'comments_add')]
@@ -29,14 +28,14 @@ class CommentsController extends AbstractController
         $news = $newsRepository->findOneBy(['id' => $commentData['news']]);
         if (!$news) {
             return $this->json([
-                'error' => 'La news n\'existe pas.'
+                'error' => 'La news n\'existe pas.',
             ], Response::HTTP_BAD_REQUEST);
         }
 
         $user = $this->getUser();
-        if(!$user){
+        if (!$user) {
             return $this->json([
-                'code' => 'L\'utilisateur n\'est pas connecté !'
+                'code' => 'L\'utilisateur n\'est pas connecté !',
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -48,12 +47,12 @@ class CommentsController extends AbstractController
         $em->flush();
 
         $html = $this->renderView('comments/index.html.twig', [
-            'comment' => $comment
+            'comment' => $comment,
         ]);
 
         return $this->json([
             'message' => $html,
-            'numberOfComments' => $commentsRepository->count(['news' => $news])
+            'numberOfComments' => $commentsRepository->count(['news' => $news]),
         ]);
     }
 }

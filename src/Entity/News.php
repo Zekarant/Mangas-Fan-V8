@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
 use App\Repository\NewsRepository;
@@ -40,7 +39,7 @@ class News implements TimestampedInterface
     private Collection $categories;
 
     #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]
-    #[OrderBy(["createdAt" => "DESC"])]
+    #[OrderBy(['createdAt' => 'DESC'])]
     private Collection $comments;
 
     #[ORM\ManyToOne]
@@ -217,7 +216,8 @@ class News implements TimestampedInterface
         return $this;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->titleNews;
     }
 
