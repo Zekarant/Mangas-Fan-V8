@@ -16,13 +16,11 @@ class WebhookDiscordService
     final public const MF_NEWS_ICON_AUTHOR = 'https://zupimages.net/up/21/03/hjkk.png';
     final public const MF_NEWS_URL_IMAGE = 'https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg';
 
-    private readonly string $idWebhookDiscord;
-    private readonly string $tokenWebhookDiscord;
-
-    public function __construct(private readonly HttpClientInterface $client)
-    {
-        $this->idWebhookDiscord = $_ENV['ID_WEBHOOK_DISCORD'];
-        $this->tokenWebhookDiscord = $_ENV['TOKEN_WEBHOOK_DISCORD'];
+    public function __construct(
+        private readonly HttpClientInterface $client,
+        private readonly string $idWebhookDiscord,
+        private readonly string $tokenWebhookDiscord
+    ) {
     }
 
     /**

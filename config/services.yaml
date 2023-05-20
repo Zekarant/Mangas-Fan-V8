@@ -6,6 +6,8 @@
 parameters:
     medias_directory: 'public/uploads'
     uploads_directory: 'uploads/'
+    id_webhook_discord: '%env(ID_WEBHOOK_DISCORD)%'
+    token_webhook_discord: '%env(TOKEN_WEBHOOK_DISCORD)%'
 
 services:
     # default configuration for services in *this* file
@@ -23,6 +25,10 @@ services:
             - '../src/Kernel.php'
     # Default configuration
 
+    App\Service\WebhookDiscordService:
+        $idWebhookDiscord: '%id_webhook_discord%'
+        $tokenWebhookDiscord: '%token_webhook_discord%'
+
 discord_webhook:
     default_url:          https://discord.com/api/webhooks/1039980053880131704/SZ0CuPht6W07pY33xWuvFgoQpxl0cSq717dH0Oa8pEfEQuw7-UqcqvxoGR3OoQk5TC89 # required, The Webhook URL for the default service.
     clients:
@@ -33,3 +39,4 @@ discord_webhook:
             avatar_url:           null # optional, URL which is used for the Bot avatar.
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
