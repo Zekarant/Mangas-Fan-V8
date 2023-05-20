@@ -11,18 +11,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class WebhookDiscordService
 {
-    public const MF_NEWS_TITLE_AUTHOR = "Mangas'Fan - Nouvelle news !";
-    public const MF_NEWS_URL_AUTHOR = 'https://www.mangasfan.fr';
-    public const MF_NEWS_ICON_AUTHOR = 'https://zupimages.net/up/21/03/hjkk.png';
-    public const MF_NEWS_URL_IMAGE = 'https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg';
+    final public const MF_NEWS_TITLE_AUTHOR = "Mangas'Fan - Nouvelle news !";
+    final public const MF_NEWS_URL_AUTHOR = 'https://www.mangasfan.fr';
+    final public const MF_NEWS_ICON_AUTHOR = 'https://zupimages.net/up/21/03/hjkk.png';
+    final public const MF_NEWS_URL_IMAGE = 'https://www.mangasfan.fr/hebergeur/uploads/1656883720.jpeg';
 
-    private string $idWebhookDiscord;
-    private string $tokenWebhookDiscord;
-    private HttpClientInterface $client;
+    private readonly string $idWebhookDiscord;
+    private readonly string $tokenWebhookDiscord;
 
-    public function __construct(HttpClientInterface $httpClient)
+    public function __construct(private readonly HttpClientInterface $client)
     {
-        $this->client = $httpClient;
         $this->idWebhookDiscord = $_ENV['ID_WEBHOOK_DISCORD'];
         $this->tokenWebhookDiscord = $_ENV['TOKEN_WEBHOOK_DISCORD'];
     }
