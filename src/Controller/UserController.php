@@ -12,7 +12,7 @@ class UserController extends AbstractController
     #[Route('/user/{id}', name: 'app_user')]
     public function index(User $user): Response
     {
-        if(!$user){
+        if (!$user) {
             return $this->redirectToRoute('app_home');
         }
 

@@ -12,7 +12,7 @@ class CategoryController extends AbstractController
     #[Route('/category/{slug}', name: 'category_show')]
     public function show(?Category $category): Response
     {
-        if(!$category){
+        if (!$category) {
             return $this->redirectToRoute('app_home');
         }
 

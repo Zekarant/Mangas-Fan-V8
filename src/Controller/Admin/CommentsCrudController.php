@@ -18,16 +18,15 @@ class CommentsCrudController extends AbstractCrudController
         return Comments::class;
     }
 
-    public function configureActions(Actions $actions): Actions {
+    public function configureActions(Actions $actions): Actions
+    {
         return $actions->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         yield TextareaField::new('content');
         yield DateTimeField::new('createdAt');
         yield AssociationField::new('user');
     }
-   
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\EventSubscriber;
 
@@ -11,35 +11,36 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class AdminSubscriber implements EventSubscriberInterface {
-
+class AdminSubscriber implements EventSubscriberInterface
+{
     private WebhookDiscordService $webhookDiscordService;
 
-    public function __construct(WebhookDiscordService $webhookDiscordService) {
+    public function __construct(WebhookDiscordService $webhookDiscordService)
+    {
         $this->webhookDiscordService = $webhookDiscordService;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
-            BeforeEntityPersistedEvent::class => [ 'setEntityCreatedAt' ],
+            BeforeEntityPersistedEvent::class => ['setEntityCreatedAt'],
             BeforeEntityUpdatedEvent::class => ['setEntityUpdatedAt'],
-            AfterEntityPersistedEvent::class => [ 'sendWebhookAfterPersist' ]
+            AfterEntityPersistedEvent::class => ['sendWebhookAfterPersist'],
         ];
     }
 
-    public function setEntityCreatedAt(BeforeEntityPersistedEvent $event) : void
+    public function setEntityCreatedAt(BeforeEntityPersistedEvent $event): void
     {
-       $entity = $event->getEntityInstance();
+        $entity = $event->getEntityInstance();
 
-       if (!$entity instanceof TimestampedInterface) {
-           return;
-       }
+        if (!$entity instanceof TimestampedInterface) {
+            return;
+        }
 
-       $entity->setCreatedAt(new \DateTime());
+        $entity->setCreatedAt(new \DateTime());
     }
 
-    public function setEntityUpdatedAt(BeforeEntityUpdatedEvent $event) : void
+    public function setEntityUpdatedAt(BeforeEntityUpdatedEvent $event): void
     {
         $entity = $event->getEntityInstance();
 
@@ -53,7 +54,8 @@ class AdminSubscriber implements EventSubscriberInterface {
     /**
      * @throws TransportExceptionInterface
      */
-    public function sendWebhookAfterPersist(AfterEntityPersistedEvent $event): void {
+    public function sendWebhookAfterPersist(AfterEntityPersistedEvent $event): void
+    {
         $entity = $event->getEntityInstance();
 
         if ($entity instanceof News) {
