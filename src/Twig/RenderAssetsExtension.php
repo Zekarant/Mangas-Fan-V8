@@ -8,18 +8,16 @@ use Twig\TwigFunction;
 
 class RenderAssetsExtension extends AbstractExtension
 {
-    private KernelInterface $appKernel;
-    public const ASSETS_ROUTE = '/assets/images/render/';
+    final public const ASSETS_ROUTE = '/assets/images/render/';
 
-    public function __construct(KernelInterface $appKernel)
+    public function __construct(private readonly KernelInterface $appKernel)
     {
-        $this->appKernel = $appKernel;
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('render_assets', [$this, 'getAllRenderAssets']),
+            new TwigFunction('render_assets', $this->getAllRenderAssets(...)),
         ];
     }
 

@@ -13,11 +13,8 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class AdminSubscriber implements EventSubscriberInterface
 {
-    private WebhookDiscordService $webhookDiscordService;
-
-    public function __construct(WebhookDiscordService $webhookDiscordService)
+    public function __construct(private readonly WebhookDiscordService $webhookDiscordService)
     {
-        $this->webhookDiscordService = $webhookDiscordService;
     }
 
     public static function getSubscribedEvents(): array
@@ -59,10 +56,9 @@ class AdminSubscriber implements EventSubscriberInterface
         $entity = $event->getEntityInstance();
 
         if ($entity instanceof News) {
-            /* @var News */
             $news = $entity;
 
-            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), 8388980);
+            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), 8_388_980);
         }
     }
 }
