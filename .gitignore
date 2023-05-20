@@ -29,3 +29,7 @@ yarn-error.log
 .idea
 
 docker/
+
+###<quality>###
+/tools/php-cs-fixer/vendor
+/.php-cs-fixer.cache
