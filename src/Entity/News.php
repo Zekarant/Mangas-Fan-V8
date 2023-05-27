@@ -9,6 +9,7 @@ use App\Repository\NewsRepository;
 use App\Model\TimestampedInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface, \Stringable
@@ -24,10 +25,10 @@ class News implements TimestampedInterface, \Stringable
     #[ORM\Column(length: 255)]
     private ?string $descriptionNews = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $contentNews = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $keywordsNews = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -46,9 +47,8 @@ class News implements TimestampedInterface, \Stringable
     #[OrderBy(['createdAt' => 'DESC'])]
     private Collection $comments;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn]
-    private ?Images $image = null;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $image = 'default_image.png';
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -56,10 +56,20 @@ class News implements TimestampedInterface, \Stringable
     #[ORM\ManyToOne(inversedBy: 'news')]
     private ?User $author = null;
 
+    #[ORM\Column]
+    private bool $visibility = true;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $sources = null;
+
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: NewsLike::class)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,14 +206,46 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function getImage(): ?Images
+    /**
+     * @return Collection<int, NewsLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(NewsLike $newsLike): self
+    {
+        if (!$this->likes->contains($newsLike)) {
+            $this->likes->add($newsLike);
+            $newsLike->setNews($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(NewsLike $newsLike): self
+    {
+        if ($this->likes->removeElement($newsLike)) {
+            // set the owning side to null (unless already changed)
+            if ($newsLike->getNews() === $this) {
+                $newsLike->setNews(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Images $image): self
+    public function setImage($image = null): self
     {
-        $this->image = $image;
+        if ($image != null) {
+            $this->image = $image;
+        }
 
         return $this;
     }
@@ -220,9 +262,9 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
-        return (string) $this->titleNews;
+        return $this->titleNews ?? '';
     }
 
     public function getAuthor(): ?User
@@ -235,5 +277,55 @@ class News implements TimestampedInterface, \Stringable
         $this->author = $author;
 
         return $this;
+    }
+
+    public function isVisibility(): ?bool
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(bool $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getSources(): ?string
+    {
+        return $this->sources;
+    }
+
+    public function setSources(?string $sources): self
+    {
+        $this->sources = $sources;
+
+        return $this;
+    }
+
+    public function getInteractions(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function getLikesCount(): int
+    {
+        return $this->likes->filter(fn(NewsLike $interaction) => $interaction->isLike())->count();
+    }
+
+    public function getDislikesCount(): int
+    {
+        return $this->likes->filter(fn(NewsLike $interaction) => !$interaction->isLike())->count();
+    }
+
+    public function getOwnReaction(?UserInterface $user): NewsLike | null
+    {
+        $tab = $this->likes->filter(fn(NewsLike $interaction) => $interaction->getUser() === $user);
+
+        if ($tab->isEmpty()) {
+            return null;
+        }
+
+        return $tab->first();
     }
 }

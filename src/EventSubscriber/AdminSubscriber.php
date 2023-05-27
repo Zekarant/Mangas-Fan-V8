@@ -11,10 +11,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class AdminSubscriber implements EventSubscriberInterface
-{
-    public function __construct(private readonly WebhookDiscordService $webhookDiscordService)
-    {
+class AdminSubscriber implements EventSubscriberInterface {
+
+    const RED_BORDER_DISCORD = 8388980;
+    private WebhookDiscordService $webhookDiscordService;
+
+    public function __construct(WebhookDiscordService $webhookDiscordService) {
+        $this->webhookDiscordService = $webhookDiscordService;
     }
 
     public static function getSubscribedEvents(): array
@@ -58,7 +61,13 @@ class AdminSubscriber implements EventSubscriberInterface
         if ($entity instanceof News) {
             $news = $entity;
 
-            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), 8_388_980);
+            $messageParams = [
+                'title' => $news->getTitleNews(),
+                'description' => $news->getDescriptionNews(),
+                'slug' => $news->getSlug(),
+            ];
+
+            $this->webhookDiscordService->sendMessageEmbed($messageParams, self::RED_BORDER_DISCORD, true, 'https://www.mangasfan.fr/lib/images/logoblanc.png');
         }
     }
 }

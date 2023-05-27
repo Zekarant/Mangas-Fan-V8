@@ -5,42 +5,56 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('news-requests') }}
+    {{ encore_entry_script_tags('news') }}
 {% endblock %}
 
 {% block body %}
 <section>
-    <div style="display: flex; justify-content: center; flex-direction: column;">
-        <img src="https://zupimages.net/up/23/01/dblx.png" style="margin-top: 8em;" />
+    <div class="bloc-one-news">
+        <img src="https://zupimages.net/up/23/01/dblx.png" class="banner-news" />
 
         <div>
-            <h1 style="margin-top: 0.7em; font-family: Poppins;">{{ news.titleNews }}</h1>
-            <hr align="left" style="background-color: black; width: 65%; border: 1px solid black; margin-bottom: 2.5em;">
-            <div style="display: flex; justify-content: space-between;">
+            <h1 class="title-one-new">{{ news.titleNews }}</h1>
+            <hr align="left" class="hr-one-news">
+            <div class="info-about-news">
                 <div>
-                    <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">
-                        Par <span><a href="{{ path('app_user', {'id': news.author.id }) }}" style="text-decoration: none; color: #bd00a0; font-weight: bold; font-style: normal;">
+                    <span class="author-one-news">
+                        Par <span><a href="{{ path('app_user', {'id': news.author.id }) }}" class="link-user-news">
                         {{ news.author.username }}</a></span> - {% for roles in news.author.roles %} {{ roles|replace({'ROLE_ADMIN': 'Administrateur,', 'ROLE_NEWSEUR': "Newseur," , 'ROLE_USER': "Membre"}) }} {% endfor %}
+                    </span>
                 </div>
 
                 <div>
-                    <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">News redigée le {{ news.createdAt|date("d/m/Y à H:m") }}
+                    <span class="date-news">News redigée le {{ news.createdAt|date("d/m/Y à H:m") }}
                 </div>
             </div>
 
-            <hr style="margin-top: 1.5em;">
+            <hr class="hr-top">
 
             {# {% for category in news.categories %}
                 <a href="{{ path('category_show', {'slug': category.slug}) }}"><button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button></a>
             {% endfor %} #}
 
-            <article style="margin-top: 2em; ont-family: Poppins;font-size: 18px;font-weight: 300;font-stretch: normal;font-style: normal;line-height: 1.5;letter-spacing: normal;">
+            <article class="content-one-news">
                 {{ news.contentNews|raw }}
             </article>
 
-            <h2 style="font-weight: bold;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;">Commentaires</h2>
+            Likes: <span id="total-like">{{ number_likes }}</span>
+            Dislikes: <span id="total-dislike">{{ number_dislikes }}</span>
+            {% if app.user %}
+                <span id="button-like" class="material-symbols-outlined {{ own_reaction is same as(true) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'like')">
+                    thumb_up
+                </span>
+                
+                <span id="button-dislike" class="material-symbols-outlined {{ own_reaction is same as(false) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'dislike')">
+                thumb_down
+                </span>
+            {% endif %}
+
+            <h2 class="title-comments">Commentaires</h2>
 
             {% if app.user %}
-                <div class="commentArea">
+                <div class="comment-area">
                     {{ form(comment_form, { 'attr': { 'class': 'comment-form' } }) }}
                 </div>
             {% endif %}

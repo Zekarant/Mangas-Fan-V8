@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
         "easycorp/easyadmin-bundle": "^4.7",
+        "friendsofsymfony/ckeditor-bundle": "^2.4",
         "labymod/discord-webhook": "^3.1",
         "labymod/discord-webhook-bundle": "^1.0",
         "phpdocumentor/reflection-docblock": "^5.3",
