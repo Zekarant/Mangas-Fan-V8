@@ -41,7 +41,7 @@
         /**
          * @throws TransportExceptionInterface
          */
-        public function sendMessageEmbed(string $title, string $description, string $url, int $color, bool $showAuthor = true): void {
+        public function sendMessageEmbed(string $title, string $description, string $url, int $color, bool $showAuthor, string $image): void {
             $discordWebhook = new DiscordWebhook();
 
             $embed = new EmbedDiscordWebhook();
@@ -52,7 +52,7 @@
             if ($showAuthor) {
                 $embed->setAuthor($this->mangasFanSignature());
             }
-            $embed->setImage($this->imageNews());
+            $embed->setImage($this->imageNews($image));
 
             $discordWebhook->addEmbed($embed);
 
@@ -83,10 +83,10 @@
             return $author;
         }
 
-        private function imageNews(): ImageEmbedDiscordWebhook {
+        private function imageNews($imageTest): ImageEmbedDiscordWebhook {
             $image = new ImageEmbedDiscordWebhook();
-
-            $image->setUrl(self::MF_NEWS_URL_IMAGE);
+            $image->setUrl('https://127.0.0.1:8000/uploads/' . $imageTest);
+            //$image->setUrl(self::MF_NEWS_URL_IMAGE);
 
             return $image;
         }

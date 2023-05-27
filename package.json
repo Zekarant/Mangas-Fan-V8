@@ -6,6 +6,7 @@
     "@symfony/stimulus-bridge": "^3.2.0",
     "@symfony/webpack-encore": "^4.0.0",
     "bootstrap": "^5.2.3",
+    "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.23.0",
     "file-loader": "6.0.0",
     "regenerator-runtime": "^0.13.9",
@@ -26,5 +27,9 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production --progress"
+  },
+  "dependencies": {
+    "@selectize/selectize": "^0.15.2",
+    "jquery": "^3.7.0"
   }
 }

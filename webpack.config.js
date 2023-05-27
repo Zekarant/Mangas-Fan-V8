@@ -1,5 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -28,8 +28,8 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('admin', './assets/js/admin.js')
     .addEntry('news-requests', './assets/js/news-requests.js')
-
-
+    .addStyleEntry('selectize', './node_modules/@selectize/selectize/dist/css/selectize.css')
+    .addStyleEntry('selectize.default', './node_modules/@selectize/selectize/dist/css/selectize.default.css')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -75,7 +75,17 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
+
+    .addPlugin(new CopyWebpackPlugin({
+        patterns: [
+            { from: 'node_modules/@selectize/selectize/dist/js/selectize.js', to: 'js' },
+            { from: 'node_modules/@selectize/selectize/dist/css/selectize.css', to: 'css' },
+        ],
+    }))
+
+
+
 ;
 
 module.exports = Encore.getWebpackConfig();
