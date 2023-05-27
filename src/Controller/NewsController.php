@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\News;
-use App\Entity\User;
 use App\Entity\Comments;
 use App\Form\Type\CommentType;
 use App\Form\Type\NewsType;
 use App\Repository\NewsRepository;
+use App\Service\WebhookDiscordService;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class NewsController extends AbstractController
 {
@@ -31,21 +36,4 @@ class NewsController extends AbstractController
     }
 
 
-    #[Route('/admin/news', name: 'admin_news')]
-    public function adminNews(NewsRepository $newsRepository): Response
-    {
-        return $this->render('news/admin/index.html.twig', [
-            'news' => $newsRepository->findBy(array(), array('id' => 'DESC'), 15)
-        ]);
-    }
-
-    #[Route('/admin/create', name: 'admin_news_created')]
-    public function createNews(): Response
-    {
-        $news = new News();
-        $newForm = $this->createForm(NewsType::class, $news);
-        return $this->render('news/admin/create.html.twig', [
-            'news_form' => $newForm,
-        ]);
-    }
 }
