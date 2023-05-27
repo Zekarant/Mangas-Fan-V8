@@ -12,7 +12,7 @@
   --sidebar-link: #fff;
   --sidebar-active-link: #1d283c;
   --sidebar-hover-link: #1a2539;
-  --action-color: ##404040;
+  --action-color: #404040;
   --action-color-hover: #6291fd;
   --app-content-secondary-color: #1d283c;
   --filter-reset: #2c394f;
@@ -115,4 +115,17 @@ a {
   padding-top: 1em;
   font-size: pixels-to-em(16);
   cursor: pointer;
+}
+
+.selectize-input {
+  background-color: #212529!important;
+  color: #6C757A!important;
+}
+.selectize-dropdown {
+  background-color: #212529!important;
+  color: $very-light-grey!important;
+}
+.selectize-control.multi .selectize-input>div {
+  background-color: $pink-button-comment!important;
+  color: $very-light-grey!important;
 }

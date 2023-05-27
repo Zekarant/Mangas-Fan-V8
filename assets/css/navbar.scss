@@ -12,7 +12,8 @@ nav {
 }
 
 #container, #imageReseaux {
-    display: flex; 
+    display: flex;
+    align-items: center
 }
 
 .column:nth-child(1) {
