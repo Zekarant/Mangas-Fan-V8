@@ -2,3 +2,4 @@
 import '../css/app.scss';
 import '../css/navbar.scss';
 import '../css/news.scss';
+global.$ = global.jQuery = $;
