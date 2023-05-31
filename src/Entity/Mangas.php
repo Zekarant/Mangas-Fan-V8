@@ -28,6 +28,9 @@ class Mangas
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
+    /**
+     * @var Collection<int, TomeMangas>
+     */
     #[ORM\OneToMany(mappedBy: 'idManga', targetEntity: TomeMangas::class, orphanRemoval: true)]
     private Collection $tomeMangas;
 

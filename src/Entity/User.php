@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -22,8 +23,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
-    #[ORM\Column(type: 'json')]
-    private $roles = [];
+    #[ORM\Column(type: Types::JSON)]
+    private array $roles = [];
 
     /**
      * @var string The hashed password
@@ -31,9 +32,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    /**
+     * @var Collection<int, Comments>
+     */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comments::class)]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, News>
+     */
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: News::class)]
     private Collection $news;
 

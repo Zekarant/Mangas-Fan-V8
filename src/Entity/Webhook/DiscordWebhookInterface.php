@@ -2,10 +2,10 @@
 
 namespace App\Entity\Webhook;
 
-interface DiscordWebhookInterface {
+interface DiscordWebhookInterface
+{
     /**
-     * Method who convert php object on array for json export
-     * @return array
+     * Method who convert php object on array for json export.
      */
     public function convertToJson(): array;
 }

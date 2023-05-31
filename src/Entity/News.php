@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
-class News implements TimestampedInterface
+class News implements TimestampedInterface, \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,17 +30,20 @@ class News implements TimestampedInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $keywordsNews = null;
 
-    #[ORM\Column(type: 'datetime')]
-    private $createdAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $updatedAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'news')]
     private Collection $categories;
 
+    /**
+     * @var Collection<int, Comments>
+     */
     #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]
-    #[OrderBy(["createdAt" => "DESC"])]
+    #[OrderBy(['createdAt' => 'DESC'])]
     private Collection $comments;
 
     #[ORM\ManyToOne]
@@ -217,8 +220,9 @@ class News implements TimestampedInterface
         return $this;
     }
 
-    public function __toString(){
-        return $this->titleNews;
+    public function __toString(): string
+    {
+        return (string) $this->titleNews;
     }
 
     public function getAuthor(): ?User

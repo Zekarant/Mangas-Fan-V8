@@ -5,10 +5,9 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CommentsRepository;
-use App\Entity\News;
 
 #[ORM\Entity(repositoryClass: CommentsRepository::class)]
-class Comments 
+class Comments
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,7 +28,7 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    public function __construct(News $news) 
+    public function __construct(News $news)
     {
         $this->news = $news;
     }

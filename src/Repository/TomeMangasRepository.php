@@ -39,25 +39,26 @@ class TomeMangasRepository extends ServiceEntityRepository
         }
     }
 
-    /** Retourne les 6 derniers tomes ajoutés sur le site
-    *
-    * @return array
+   /**
+    * Retourne les 6 derniers tomes ajoutés sur le site.
     */
-   public function getLastTomeMangas()  {
+   public function getLastTomeMangas(): array
+   {
+       $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->innerJoin('a.idManga', 'c')
+       ;
+       $query = $qb->getQuery();
+       $query->setMaxResults(6);
 
-        $qb = $this->createQueryBuilder('a')
-        ->orderBy('a.createdAt', 'DESC')
-        ->innerJoin('a.idManga', 'c');
-        $query = $qb->getQuery();
-        $query->setMaxResults(6);
-        return $query->getResult();
-       
-    //    $query = $this->createQueryBuilder('m')
-    //    ->join('m.idManga', 't')
-    //    ->addSelect('m')
-    //    ->addSelect('t')
-    //    ->getQuery();
-    //    return $query->getResult();
+       return $query->getResult();
+
+       //    $query = $this->createQueryBuilder('m')
+       //    ->join('m.idManga', 't')
+       //    ->addSelect('m')
+       //    ->addSelect('t')
+       //    ->getQuery();
+       //    return $query->getResult();
    }
 
 //    /**

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Form\Type;
 
@@ -12,15 +12,15 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class CommentType extends AbstractType 
+class CommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('content', TextareaType::class, [
             'label' => 'Votre message',
-            'attr' => array(
+            'attr' => [
                 'placeholder' => 'Saisir votre commentaire',
-            )
+            ],
         ])
         ->add('news', HiddenType::class)
         ->add('sendComment', SubmitType::class, [
@@ -38,7 +38,7 @@ class CommentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Comments::class,
-            'csrf_token_id' => 'comments-add'
+            'csrf_token_id' => 'comments-add',
         ]);
     }
 }

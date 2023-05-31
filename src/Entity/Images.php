@@ -6,7 +6,7 @@ use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImagesRepository::class)]
-class Images
+class Images implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -63,7 +63,8 @@ class Images
         return $this;
     }
 
-    public function __toString(){
-        return $this->name;
+    public function __toString(): string
+    {
+        return (string) $this->name;
     }
 }

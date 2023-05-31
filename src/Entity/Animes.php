@@ -34,6 +34,9 @@ class Animes
     #[ORM\Column(nullable: true)]
     private ?int $coupCoeur = null;
 
+    /**
+     * @var Collection<int, ArticlesAnime>
+     */
     #[ORM\OneToMany(mappedBy: 'idAnime', targetEntity: ArticlesAnime::class, orphanRemoval: true)]
     private Collection $articlesAnimes;
 

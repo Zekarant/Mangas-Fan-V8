@@ -15,13 +15,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(NewsRepository $newsRepository, AnimesRepository $animesRepository, TomeMangasRepository $tomeMangasRepository, ArticlesAnimeRepository $articlesAnimeRepository): Response
     {
-
         return $this->render('home/index.html.twig', [
-            'news' => $newsRepository->findBy(array(), array('id' => 'DESC'), 3),
-            'last_animes' => $animesRepository->findBy(array(), array('id' => 'DESC'), 6),
-            'month_favorite' => $animesRepository->findOneBy(array('coupCoeur' => 1)),
-            'last_mangas' => $tomeMangasRepository->findBy(array(), array('createdAt' => 'DESC'), 6),
-            'last_articles_anime' => $articlesAnimeRepository->findBy(array(), array('createdAt' => 'DESC'), 4)
+            'news' => $newsRepository->findBy([], ['id' => 'DESC'], 3),
+            'last_animes' => $animesRepository->findBy([], ['id' => 'DESC'], 6),
+            'month_favorite' => $animesRepository->findOneBy(['coupCoeur' => 1]),
+            'last_mangas' => $tomeMangasRepository->findBy([], ['createdAt' => 'DESC'], 6),
+            'last_articles_anime' => $articlesAnimeRepository->findBy([], ['createdAt' => 'DESC'], 4),
         ]);
     }
 }

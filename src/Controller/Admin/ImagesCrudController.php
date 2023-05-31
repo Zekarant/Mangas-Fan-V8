@@ -15,25 +15,23 @@ class ImagesCrudController extends AbstractCrudController
         return Images::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
-    $mediaDir = $this->getParameter('medias_directory');
-    $uploadsDir = $this->getParameter('uploads_directory');
+        $mediaDir = $this->getParameter('medias_directory');
+        $uploadsDir = $this->getParameter('uploads_directory');
 
-    yield TextField::new('name');
-    yield TextField::new('alt_text');
+        yield TextField::new('name');
+        yield TextField::new('alt_text');
 
-    $imageField = ImageField::new('filename', 'Image')
-        ->setBasePath($uploadsDir)
-        ->setUploadDir($mediaDir)
-        ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+        $imageField = ImageField::new('filename', 'Image')
+            ->setBasePath($uploadsDir)
+            ->setUploadDir($mediaDir)
+            ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
 
-    if (Crud::PAGE_EDIT == $pageName) {
-        $imageField->setRequired(false);
+        if (Crud::PAGE_EDIT == $pageName) {
+            $imageField->setRequired(false);
+        }
+
+        yield $imageField;
     }
-
-    yield $imageField;
-}
-   
 }
