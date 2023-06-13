@@ -7,10 +7,10 @@ services:
     restart: always
     container_name: mysql-mf
     volumes:
-      - ./docker/mysql/database:/var/lib/mysql
+      - mysql-mf-volume:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: "mangasfan_v8"
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mangasfan_v8}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
     ports:
       - "3306:3306"
 
@@ -23,3 +23,5 @@ services:
       PMA_HOST: mysql
     depends_on:
       - mysql
+volumes:
+  mysql-mf-volume:
