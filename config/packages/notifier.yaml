@@ -7,6 +7,7 @@ framework:
         #texter_transports:
         #    twilio: '%env(TWILIO_DSN)%'
         #    nexmo: '%env(NEXMO_DSN)%'
+        texter_transports:
         channel_policy:
             # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
             urgent: ['discord']
