@@ -43,9 +43,8 @@ class News implements TimestampedInterface
     #[OrderBy(["createdAt" => "DESC"])]
     private Collection $comments;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn]
-    private ?Images $image = null;
+    #[ORM\Column(length: 255)]
+    private $image = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -193,12 +192,12 @@ class News implements TimestampedInterface
         return $this;
     }
 
-    public function getImage(): ?Images
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Images $image): self
+    public function setImage($image): self
     {
         $this->image = $image;
 
@@ -218,7 +217,7 @@ class News implements TimestampedInterface
     }
 
     public function __toString(){
-        return $this->titleNews;
+        return $this->titleNews ?? '';
     }
 
     public function getAuthor(): ?User
