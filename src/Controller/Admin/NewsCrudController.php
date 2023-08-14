@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class NewsCrudController extends AbstractCrudController
 {
@@ -28,24 +29,26 @@ class NewsCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title_news');
+        yield TextField::new('title_news', 'Titre ')->setRequired(true);
  
-        yield SlugField::new('slug')
+        yield SlugField::new('slug', 'Slug')
             ->setTargetFieldName('title_news');
 
-        yield TextField::new('description_news');
+        yield TextField::new('description_news', 'Description')->setRequired(true);
 
-        yield TextareaField::new('content_news');
+        yield TextareaField::new('content_news', 'Contenu')->setRequired(true);
 
-        yield AssociationField::new('categories');
+        yield AssociationField::new('categories', 'Catégories');
         
-        yield ImageField::new('image')
+        yield ImageField::new('image', 'Image')
         ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads');
+
+        yield BooleanField::new('visibility', 'Visibilité')->onlyOnForms();
         
-        yield DateTimeField::new('createdAt')->hideOnForm();
-        yield DateTimeField::new('updatedAt')->hideOnForm();
+        yield DateTimeField::new('createdAt', 'Date de création')->hideOnForm();
+        yield DateTimeField::new('updatedAt', 'Date de mise à jour')->hideOnForm();
     }
 
     public function configureCrud(Crud $crud): Crud

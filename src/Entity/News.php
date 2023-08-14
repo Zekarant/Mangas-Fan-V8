@@ -9,6 +9,7 @@ use App\Repository\NewsRepository;
 use App\Model\TimestampedInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\File;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface
@@ -43,14 +44,17 @@ class News implements TimestampedInterface
     #[OrderBy(["createdAt" => "DESC"])]
     private Collection $comments;
 
-    #[ORM\Column(length: 255)]
-    private $image = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $image = 'default_image.png';
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
     #[ORM\ManyToOne(inversedBy: 'news')]
     private ?User $author = null;
+
+    #[ORM\Column]
+    private ?bool $visibility = true;
 
     public function __construct()
     {
@@ -197,9 +201,11 @@ class News implements TimestampedInterface
         return $this->image;
     }
 
-    public function setImage($image): self
+    public function setImage($image = null): self
     {
-        $this->image = $image;
+        if ($image != null) {
+            $this->image = $image;
+        }
 
         return $this;
     }
@@ -228,6 +234,18 @@ class News implements TimestampedInterface
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function isVisibility(): ?bool
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(bool $visibility): self
+    {
+        $this->visibility = $visibility;
 
         return $this;
     }

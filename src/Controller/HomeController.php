@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     {
 
         return $this->render('home/index.html.twig', [
-            'news' => $newsRepository->findBy(array(), array('id' => 'DESC'), 3),
+            'news' => $newsRepository->findBy(array('visibility' => 1), array('id' => 'DESC'), 3),
             'last_animes' => $animesRepository->findBy(array(), array('id' => 'DESC'), 6),
             'month_favorite' => $animesRepository->findOneBy(array('coupCoeur' => 1)),
             'last_mangas' => $tomeMangasRepository->findBy(array(), array('createdAt' => 'DESC'), 6),
