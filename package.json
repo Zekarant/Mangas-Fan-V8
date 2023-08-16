@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@selectize/selectize": "^0.15.2",
+    "ckeditor4": "4.13.0",
     "jquery": "^3.7.0"
   }
 }
