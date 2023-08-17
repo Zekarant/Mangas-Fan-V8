@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
 use App\Repository\NewsRepository;
 use App\Model\TimestampedInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints\File;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface
@@ -25,10 +23,10 @@ class News implements TimestampedInterface
     #[ORM\Column(length: 255)]
     private ?string $descriptionNews = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $contentNews = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $keywordsNews = null;
 
     #[ORM\Column(type: 'datetime')]
@@ -44,7 +42,7 @@ class News implements TimestampedInterface
     #[OrderBy(["createdAt" => "DESC"])]
     private Collection $comments;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $image = 'default_image.png';
 
     #[ORM\Column(length: 255)]

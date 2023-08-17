@@ -1,13 +1,13 @@
 {% for new in news %}
-    <article class="newsCard">
-        <div class="newsImage">
+    <article class="news-card">
+        <div class="news-image">
             <img src="/uploads/{{ new.image }}" alt="{{ new.image }}" class="imageNews" />
         </div>
-        <div class="contentNews">
-            <h2 class="titleNews">{{ new.titleNews }}</h2>
-            <p class="descriptionNews">{{ new.descriptionNews|raw }}</p>
+        <div class="content-news">
+            <h2 class="title-news">{{ new.titleNews }}</h2>
+            <p class="description-news">{{ new.descriptionNews|raw }}</p>
         </div>
-        <div class="footerNews">
+        <div class="footer-news">
             <a href="{{ path('news_show', {'slug': new.slug}) }}" class="linkArticle">Lire l'article</a>
         </div>
     </article>

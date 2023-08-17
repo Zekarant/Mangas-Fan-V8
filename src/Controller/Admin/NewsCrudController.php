@@ -38,7 +38,8 @@ class NewsCrudController extends AbstractCrudController
             ->setTargetFieldName('title_news')
             ->setColumns(6)
             ->setFormTypeOption('label', 'Slug de la new (Ne pas modifier, il s\'agit de l\'URL utilisée pour la new) :')
-            ->setFormTypeOption('attr', ['placeholder' => 'Slug automatique']);
+            ->setFormTypeOption('attr', ['placeholder' => 'Slug automatique'])
+           ;
 
         yield TextField::new('description_news', 'Description')
             ->setRequired(true)
@@ -64,6 +65,11 @@ class NewsCrudController extends AbstractCrudController
             ->setColumns(6)
             ->setFormTypeOption('label', 'Souhaitez-vous que la new soit visible ?');
 
+         yield TextField::new('keywords_news', 'Mots-clés')
+            ->setColumns(6)
+            ->setFormTypeOption('label', 'Mots-clés :')
+            ->setFormTypeOption('attr', ['placeholder' => 'Saisir des mots-clés séparés par une virgule']);
+
         yield TextEditorField::new('content_news', 'Contenu')
             ->setRequired(true)
             ->setColumns(12)
@@ -73,6 +79,8 @@ class NewsCrudController extends AbstractCrudController
         
         yield DateTimeField::new('createdAt', 'Date de création')->hideOnForm();
         yield DateTimeField::new('updatedAt', 'Date de mise à jour')->hideOnForm();
+
+        
     }
     
 

@@ -36,8 +36,6 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('news-requests', './assets/js/news-requests.js')
-    .addStyleEntry('selectize', './node_modules/@selectize/selectize/dist/css/selectize.css')
-    .addStyleEntry('selectize.default', './node_modules/@selectize/selectize/dist/css/selectize.default.css')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -84,16 +82,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
-
-    .addPlugin(new CopyWebpackPlugin({
-        patterns: [
-            { from: 'node_modules/@selectize/selectize/dist/js/selectize.js', to: 'js' },
-            { from: 'node_modules/@selectize/selectize/dist/css/selectize.css', to: 'css' },
-        ],
-    }))
-
-
-
 ;
 
 module.exports = Encore.getWebpackConfig();

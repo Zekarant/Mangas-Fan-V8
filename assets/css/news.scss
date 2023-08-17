@@ -17,24 +17,24 @@ section {
   margin: auto;
 }
 
-.newsCard {
+.news-card {
   background-color: $dark-blue-background-news-card;
   border-radius: 1.5em;
   margin-bottom: 2em;
   position: relative;
 }
   
-.allNewsGroup .newsCard:first-child {
+.allNewsGroup .news-card:first-child {
   grid-column: 1;
   grid-row: 1 / 3;
   margin-right: 2em;
 }
   
-.newsCard:nth-child(2), .newsCard:nth-child(3) {
+.news-card:nth-child(2), .news-card:nth-child(3) {
   display: flex;
 }
   
-.contentNews {
+.content-news {
   width: 90%;
   padding-left: 1.6em;
   padding-right: 1.6em;
@@ -42,14 +42,14 @@ section {
   font-family: $poppins;
 }
 
-.newsCard:first-child .newsImage {
+.news-card:first-child .news-image {
   width: 100%;
   max-width: 100%;
   height: 17em;
   clip-path: ellipse(100% 100% at 50% 0%);
 }
 
-.newsCard:first-child .imageNews{
+.news-card:first-child .imageNews{
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -57,13 +57,13 @@ section {
 }
 
 
-.newsCard:nth-child(2) .newsImage, .newsCard:nth-child(3) .newsImage {
+.news-card:nth-child(2) .news-image, .news-card:nth-child(3) .news-image {
   width: 12em;
   height: 100%;
   clip-path: ellipse(90% 100% at 5% 50%);
 }
   
-.newsCard:nth-child(2) .imageNews, .newsCard:nth-child(3) .imageNews {
+.news-card:nth-child(2) .imageNews, .news-card:nth-child(3) .imageNews {
   display: block;
   height: 100%;
   width: 100%;
@@ -71,7 +71,7 @@ section {
   border-radius: 1em 0 0 1em;
 }
   
-.footerNews {
+.footer-news {
   min-height: 3em;
   width: 100%;
   position: absolute;
@@ -95,13 +95,13 @@ section {
   padding-bottom: 1em;
 }
   
-.newsCard:first-child .linkArticle {
+.news-card:first-child .linkArticle {
   padding-bottom: 1em;
   padding-left: 1.6em;
   text-align: left;
 }
 
-.titleNews {
+.title-news {
   font-size: 1.5em;
   font-weight: 600;
   font-stretch: normal;
@@ -112,7 +112,7 @@ section {
   color: #fefefe;
 }
 
-.descriptionNews {
+.description-news {
   font-size: 1em;
   font-weight: 300;
   font-stretch: normal;
