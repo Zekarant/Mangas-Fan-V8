@@ -7,6 +7,15 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.active-button {
+    width: 100%;
+  padding: 25px;
+  background-color: coral;
+  color: white;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
 main {
     margin: 7em;
 }

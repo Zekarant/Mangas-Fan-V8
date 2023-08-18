@@ -54,10 +54,21 @@ class News implements TimestampedInterface
     #[ORM\Column]
     private ?bool $visibility = true;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $sources = null;
+
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: NewsLike::class)]
+    private Collection $likes;
+
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: NewsDislike::class)]
+    private Collection $dislikes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->dislikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +255,79 @@ class News implements TimestampedInterface
     public function setVisibility(bool $visibility): self
     {
         $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getSources(): ?string
+    {
+        return $this->sources;
+    }
+
+    public function setSources(?string $sources): self
+    {
+        $this->sources = $sources;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, NewsLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(NewsLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setNews($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(NewsLike $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getNews() === $this) {
+                $like->setNews(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, NewsDislike>
+     */
+    public function getDislikes(): Collection
+    {
+        return $this->dislikes;
+    }
+
+    public function addDislike(NewsDislike $dislike): self
+    {
+        if (!$this->dislikes->contains($dislike)) {
+            $this->dislikes->add($dislike);
+            $dislike->setNews($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDislike(NewsDislike $dislike): self
+    {
+        if ($this->dislikes->removeElement($dislike)) {
+            // set the owning side to null (unless already changed)
+            if ($dislike->getNews() === $this) {
+                $dislike->setNews(null);
+            }
+        }
 
         return $this;
     }

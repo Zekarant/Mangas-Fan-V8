@@ -36,6 +36,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('news-requests', './assets/js/news-requests.js')
+    .addEntry('news', './assets/js/news.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

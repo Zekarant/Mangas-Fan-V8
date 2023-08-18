@@ -70,6 +70,12 @@ class NewsCrudController extends AbstractCrudController
             ->setFormTypeOption('label', 'Mots-clés :')
             ->setFormTypeOption('attr', ['placeholder' => 'Saisir des mots-clés séparés par une virgule']);
 
+        yield TextField::new('sources', 'Sources')
+            ->setColumns(6)
+            ->setFormTypeOption('label', 'Sources :')
+            ->setFormTypeOption('attr', ['placeholder' => 'Saisir les sources de la news séparées par une virgule'])
+            ->onlyOnForms();
+
         yield TextEditorField::new('content_news', 'Contenu')
             ->setRequired(true)
             ->setColumns(12)
