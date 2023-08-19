@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\NewsDislikeRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM; 
 
 #[ORM\Entity(repositoryClass: NewsDislikeRepository::class)]
 class NewsDislike

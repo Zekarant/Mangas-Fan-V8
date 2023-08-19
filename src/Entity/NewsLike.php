@@ -6,7 +6,7 @@ use App\Repository\NewsLikeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NewsLikeRepository::class)]
-class NewsLike
+class NewsLike 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

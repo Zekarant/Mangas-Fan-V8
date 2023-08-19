@@ -9,7 +9,6 @@ use App\Model\TimestampedInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\File;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface
