@@ -5,6 +5,60 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('news-requests') }}
+    <script>
+    function likeNews(newsId) {
+    sendReaction('/news/' + newsId + '/like', newsId, 'like');
+}
+
+function dislikeNews(newsId) {
+    sendReaction('/news/' + newsId + '/dislike', newsId, 'dislike');
+}
+
+function updateReactionsCount(newsId, likesCount, dislikesCount, message, userReaction) {
+    var likesCountElement = document.getElementById('likes-count-' + newsId);
+    var dislikesCountElement = document.getElementById('dislikes-count-' + newsId);
+    var likeButton = document.getElementById('like-button-' + newsId);
+    var dislikeButton = document.getElementById('dislike-button-' + newsId);
+    
+    if (likesCountElement && dislikesCountElement && likeButton && dislikeButton) {
+        likesCountElement.innerText = likesCount;
+        dislikesCountElement.innerText = dislikesCount;
+    }
+
+    var messageElement = document.getElementById('message');
+    if (messageElement) {
+        messageElement.innerText = message;
+    }
+}
+
+
+function sendReaction(url, newsId, reactionType) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.message) {
+                    updateReactionsCount(newsId, response.likes, response.dislikes, response.message);
+                } else if (response.error) {
+                    console.error('Erreur de ' + reactionType + ' :', response.error);
+                }
+            } else {
+                console.error('Erreur de ' + reactionType + ' :', JSON.parse(xhr.responseText).error);
+            }
+        }
+    };
+
+    xhr.send();
+}
+
+
+
+
+</script>
 {% endblock %}
 
 {% block body %}
@@ -26,7 +80,6 @@
                     <span style="font-family: Poppins;font-weight: 300;font-stretch: normal;font-style: italic;line-height: 1.33;letter-spacing: normal;">News redigée le {{ news.createdAt|date("d/m/Y à H:m") }}
                 </div>
             </div>
-
             <hr style="margin-top: 1.5em;">
 
             {# {% for category in news.categories %}
@@ -36,6 +89,12 @@
             <article style="margin-top: 2em; ont-family: Poppins;font-size: 18px;font-weight: 300;font-stretch: normal;font-style: normal;line-height: 1.5;letter-spacing: normal;">
                 {{ news.contentNews|raw }}
             </article>
+
+            Likes: <span id="likes-count-{{ news.getId() }}">{{ news.getLikes().count() }}</span>
+            Dislikes: <span id="dislikes-count-{{ news.getId() }}">{{ news.getDislikes().count() }}</span>
+
+            <button id="like-button-{{ news.getId() }}" onclick="likeNews({{ news.getId() }})">Like</button>
+            <button id="dislike-button-{{ news.getId() }}" onclick="dislikeNews({{ news.getId() }})">Dislike</button>
 
             <h2 style="font-weight: bold;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;">Commentaires</h2>
 

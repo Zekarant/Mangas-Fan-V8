@@ -13,6 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class AdminSubscriber implements EventSubscriberInterface {
 
+    const RED_BORDER_DISCORD = 8388980;
     private WebhookDiscordService $webhookDiscordService;
 
     public function __construct(WebhookDiscordService $webhookDiscordService) {
@@ -60,7 +61,7 @@ class AdminSubscriber implements EventSubscriberInterface {
             /* @var News */
             $news = $entity;
 
-            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), 8388980, true, 'https://www.mangasfan.fr/lib/images/logoblanc.png');
+            $this->webhookDiscordService->sendMessageEmbed($news->getTitleNews(), $news->getDescriptionNews(), $news->getSlug(), self::RED_BORDER_DISCORD, true, 'https://www.mangasfan.fr/lib/images/logoblanc.png');
         }
     }
 }

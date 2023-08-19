@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -19,6 +20,15 @@ Encore
         to: 'images/[path][name]-[hash:8].[ext]'
     })
 
+    .copyFiles([
+        {from: './node_modules/ckeditor4/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
+        {from: './node_modules/ckeditor4/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
+        {from: './node_modules/ckeditor4/lang', to: 'ckeditor/lang/[path][name].[ext]'},
+        {from: './node_modules/ckeditor4/plugins', to: 'ckeditor/plugins/[path][name].[ext]'},
+        {from: './node_modules/ckeditor4/skins', to: 'ckeditor/skins/[path][name].[ext]'},
+        {from: './node_modules/ckeditor4/vendor', to: 'ckeditor/vendor/[path][name].[ext]'}
+    ])
+
     /*
      * ENTRY CONFIG
      *
@@ -26,10 +36,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('admin', './assets/js/admin.js')
     .addEntry('news-requests', './assets/js/news-requests.js')
-    .addStyleEntry('selectize', './node_modules/@selectize/selectize/dist/css/selectize.css')
-    .addStyleEntry('selectize.default', './node_modules/@selectize/selectize/dist/css/selectize.default.css')
+    .addEntry('news', './assets/js/news.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -76,16 +84,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
-
-    .addPlugin(new CopyWebpackPlugin({
-        patterns: [
-            { from: 'node_modules/@selectize/selectize/dist/js/selectize.js', to: 'js' },
-            { from: 'node_modules/@selectize/selectize/dist/css/selectize.css', to: 'css' },
-        ],
-    }))
-
-
-
 ;
 
 module.exports = Encore.getWebpackConfig();

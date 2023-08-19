@@ -33,3 +33,8 @@ discord_webhook:
             avatar_url:           null # optional, URL which is used for the Bot avatar.
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+fos_ck_editor:
+    # ...
+    base_path: "build/ckeditor"
+    js_path:   "build/ckeditor/ckeditor.js"

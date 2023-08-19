@@ -29,7 +29,6 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "@selectize/selectize": "^0.15.2",
-    "jquery": "^3.7.0"
+    "ckeditor4": "^4.22.1"
   }
 }
