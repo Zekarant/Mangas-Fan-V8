@@ -39,10 +39,12 @@
 
             <h2 style="font-weight: bold;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;">Commentaires</h2>
 
-            {% if app.user %} 
-               
-               
+            {% if app.user %}
+                <div class="commentArea">
+                    {{ form(comment_form, { 'attr': { 'class': 'comment-form' } }) }}
+                </div>
             {% endif %}
+
             <div class="comments-list">
                 {% for comment in news.comments %}
                     {% include 'comments/index.html.twig' with [comment] %}
