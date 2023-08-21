@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ccfc3b3991c97de30e19a84cb211810",
+    "content-hash": "5e2412bc6dbc8efdbe0ea175d73c6fbb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2078,54 +2078,6 @@
                 "source": "https://github.com/LabyMod/discord-webhook/tree/3.1.3"
             },
             "time": "2022-01-25T23:34:27+00:00"
-        },
-        {
-            "name": "labymod/discord-webhook-bundle",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LabyMod/discord-webhook-bundle.git",
-                "reference": "04a6adb69237077389bda7fe989271422c86fb20"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LabyMod/discord-webhook-bundle/zipball/04a6adb69237077389bda7fe989271422c86fb20",
-                "reference": "04a6adb69237077389bda7fe989271422c86fb20",
-                "shasum": ""
-            },
-            "require": {
-                "labymod/discord-webhook": "^2.0 || ^3.0",
-                "php": "^8.0",
-                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0",
-                "symfony/string": "^5.0 || ^6.0"
-            },
-            "require-dev": {
-                "roave/security-advisories": "dev-latest"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "DiscordWebhookBundle\\": "src/DiscordWebhookBundle/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Scrummer",
-                    "email": "scrummer@gmx.ch",
-                    "homepage": "https://labymod.net/about",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Discord Webhook Bundle, based on labymod/discord-webhook",
-            "support": {
-                "issues": "https://github.com/LabyMod/discord-webhook-bundle/issues",
-                "source": "https://github.com/LabyMod/discord-webhook-bundle/tree/1.0.2"
-            },
-            "time": "2022-01-26T17:10:33+00:00"
         },
         {
             "name": "laminas/laminas-code",

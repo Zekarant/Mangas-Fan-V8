@@ -29,17 +29,6 @@ services:
         $idWebhookDiscord: '%id_webhook_discord%'
         $tokenWebhookDiscord: '%token_webhook_discord%'
 
-discord_webhook:
-    default_url:          https://discord.com/api/webhooks/1039980053880131704/SZ0CuPht6W07pY33xWuvFgoQpxl0cSq717dH0Oa8pEfEQuw7-UqcqvxoGR3OoQk5TC89 # required, The Webhook URL for the default service.
-    clients:
-        # Prototype
-        name: # choose a name (service-id) for your preconfigured client
-            webhook_url:          https://discord.com/api/webhooks/1039980053880131704/SZ0CuPht6W07pY33xWuvFgoQpxl0cSq717dH0Oa8pEfEQuw7-UqcqvxoGR3OoQk5TC89 # required, The Discord Webhook URL for this client.
-            username:             null # optional, The username for the Discord bot.
-            avatar_url:           null # optional, URL which is used for the Bot avatar.
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-
 fos_ck_editor:
     # ...
     base_path: "build/ckeditor"
