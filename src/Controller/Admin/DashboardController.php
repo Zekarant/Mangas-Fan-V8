@@ -48,10 +48,10 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Catégories', 'fas fa-newspaper', Category::class),
             ]);
 
-            yield MenuItem::subMenu('Images', 'fas fa-photo-video')->setSubItems([
-                MenuItem::linkToCrud('Toutes les images', 'fas fa-photo-video', Images::class),
-                MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Images::class)->setAction(Crud::PAGE_NEW),
-            ]);
+            // yield MenuItem::subMenu('Images', 'fas fa-photo-video')->setSubItems([
+            //     MenuItem::linkToCrud('Toutes les images', 'fas fa-photo-video', Images::class),
+            //     MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Images::class)->setAction(Crud::PAGE_NEW),
+            // ]);
         }
 
         if ($this->isGranted('ROLE_ADMIN')) {

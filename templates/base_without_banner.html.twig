@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -45,7 +46,7 @@
                             </li>
                             {% if app.user %}
                                 <li>
-                                    <a href="{{ path('app_index_staff') }}">Admin</a>
+                                    <a href="{{ path('admin') }}">Admin</a>
                                 </li>
                                 <li>
                                     <span style="color: red;">{{ app.user.username}}</span>

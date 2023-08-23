@@ -3,35 +3,34 @@
 {% block title %}Site d'actualité sur les mangas et les animes{% endblock %}
 
 {% block body %}
-
-    <section class="newsSection">
+    <section class="news-section">
         <h2>Dernières actualités</h2>
-        <div class="allNewsGroup">
+        <div class="all-news-group">
             {% include 'news/item_news.html.twig' with { news } %}
         </div>
-        <div class="linkArchive"><a href="#">Voir toutes les actualités</a></div>
+        <div class="link-archive"><a href="#">Voir toutes les actualités</a></div>
     </section>
 
     <section>
         <h2>Nos dernières japanimation</h2>
-        <div class="lastAnimes">
+        <div class="last-animes">
             {% include 'animes/last_anime_home.html.twig' with { last_animes } %}
         </div>
-        <div class="linkMangas"><a href="#">Voir toutes les japanimations</a></div>
+        <div class="link-mangas"><a href="#">Voir toutes les japanimations</a></div>
     </section>
 
     {% if month_favorite %}
         <section>
             <h2>Notre coup de coeur</h2>
-            <div id="coupCoeur">
+            <div id="favourite">
                 <div class="flexbox">
-                    <div class="itemFlex">
-                        <h3 class="titleCoeur">{{ month_favorite.titleAnime }}</h3>
-                        <div class="synopsisAnime">{{ month_favorite.synopsisAnime }}</div>
-                        <div class="linkAnime">Voir l'anime</div>
+                    <div class="item-flex">
+                        <h3 class="title-favourite">{{ month_favorite.titleAnime }}</h3>
+                        <div class="synopsis-anime">{{ month_favorite.synopsisAnime }}</div>
+                        <div class="link-anime">Voir l'anime</div>
                     </div>
-                    <div class="itemFlex">
-                        <img src="{{ month_favorite.imageAnime }}" class="imageAnime" alt="Image de l'anime {{ month_favorite.titleAnime }}" title="Image de l'anime {{ month_favorite.titleAnime }}" />
+                    <div class="item-flex">
+                        <img src="{{ month_favorite.imageAnime }}" class="image-anime" alt="Image de l'anime {{ month_favorite.titleAnime }}" title="Image de l'anime {{ month_favorite.titleAnime }}" />
                     </div>
                 </div>
             </div>
@@ -40,42 +39,40 @@
 
     <section>
         <h2>Nos derniers mangas</h2>
-        <div class="lastMangas">
+        <div class="last-mangas">
            {% include 'mangas/last_mangas_home.html.twig' with { last_mangas } %}
         </div>
 
-        <div class="linkMangas">
+        <div class="link-mangas">
             <a href="#">Voir tous les mangas</a>
         </div>
     </section>
 
     <section>
         <h2>Mangas'Wiki</h2>
-        <div class="lastArticles">
+        <div class="last-articles">
            {% include 'animes/last_articles_anime.html.twig' with { last_articles_anime } %}
         </div>
 
-        <div class="linkMangas">
+        <div class="link-mangas">
             <a href="#">Voir tous nos wikis</a>
         </div>
     </section>
 
     <section>
         <h2>La boutique</h2>
-        <div id="coupCoeur">
+        <div id="shop">
             <div class="flexbox">
-                <div class="itemBoutique">
+                <div class="item-shop">
                 <img src="https://www.mangasfan.fr/v8/images/logofond.png" class="imageBoutique" alt="Image de la boutique de Mangas'Fan" title="Image de boutique de Mangas'Fan" />
 
                 </div>
-                <div class="itemBoutique">
-                <h3 class="titleCoeur">Dépensez vos Mangas'Points !</h3>
-                    <div class="synopsisAnime">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                    <div class="linkAnime">Découvrir la boutique</div>
+                <div class="item-shop">
+                <h3 class="title-coeur">Dépensez vos Mangas'Points !</h3>
+                    <div class="synopsis-anime">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    <div class="link-anime">Découvrir la boutique</div>
                 </div>
             </div>
         </div>
     </section>
-   
-
 {% endblock %}
