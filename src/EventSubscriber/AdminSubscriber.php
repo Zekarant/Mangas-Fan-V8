@@ -62,8 +62,8 @@ class AdminSubscriber implements EventSubscriberInterface {
             $news = $entity;
 
             $messageParams = [
-                'title' => $news->getTitleNews(),
-                'description' => $news->getDescriptionNews(),
+                'title' => $news->getTitle(),
+                'description' => $news->getDescription(),
                 'slug' => $news->getSlug(),
             ];
 

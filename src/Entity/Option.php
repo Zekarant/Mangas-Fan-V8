@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\OptionsRepository;
+use App\Repository\OptionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OptionsRepository::class)]
-class Options
+#[ORM\Entity(repositoryClass: OptionRepository::class)]
+class Option
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

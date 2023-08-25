@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MangasRepository;
+use App\Repository\MangaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MangasRepository::class)]
-class Mangas
+#[ORM\Entity(repositoryClass: MangaRepository::class)]
+class Manga
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,10 +17,10 @@ class Mangas
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nameManga = null;
+    private ?string $name = null;
 
     #[ORM\Column]
-    private ?int $finishManga = null;
+    private ?bool $isFinish = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -29,14 +29,14 @@ class Mangas
     private ?\DateTimeInterface $updatedAt = null;
 
     /**
-     * @var Collection<int, TomeMangas>
+     * @var Collection<int, TomeManga>
      */
-    #[ORM\OneToMany(mappedBy: 'idManga', targetEntity: TomeMangas::class, orphanRemoval: true)]
-    private Collection $tomeMangas;
+    #[ORM\OneToMany(mappedBy: 'manga', targetEntity: TomeManga::class, orphanRemoval: true)]
+    private Collection $tomes;
 
     public function __construct()
     {
-        $this->tomeMangas = new ArrayCollection();
+        $this->tomes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,26 +44,26 @@ class Mangas
         return $this->id;
     }
 
-    public function getNameManga(): ?string
+    public function getName(): ?string
     {
-        return $this->nameManga;
+        return $this->name;
     }
 
-    public function setNameManga(string $nameManga): self
+    public function setName(string $name): self
     {
-        $this->nameManga = $nameManga;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getFinishManga(): ?int
+    public function getIsFinish(): ?int
     {
-        return $this->finishManga;
+        return $this->isFinish;
     }
 
-    public function setFinishManga(int $finishManga): self
+    public function setIsFinish(int $isFinish): self
     {
-        $this->finishManga = $finishManga;
+        $this->isFinish = $isFinish;
 
         return $this;
     }
@@ -93,29 +93,29 @@ class Mangas
     }
 
     /**
-     * @return Collection<int, TomeMangas>
+     * @return Collection<int, TomeManga>
      */
-    public function getTomeMangas(): Collection
+    public function getTomes(): Collection
     {
-        return $this->tomeMangas;
+        return $this->tomes;
     }
 
-    public function addTomeManga(TomeMangas $tomeManga): self
+    public function addTomeManga(TomeManga $tomeManga): self
     {
-        if (!$this->tomeMangas->contains($tomeManga)) {
-            $this->tomeMangas->add($tomeManga);
-            $tomeManga->setIdManga($this);
+        if (!$this->tomes->contains($tomeManga)) {
+            $this->tomes->add($tomeManga);
+            $tomeManga->setManga($this);
         }
 
         return $this;
     }
 
-    public function removeTomeManga(TomeMangas $tomeManga): self
+    public function removeTomeManga(TomeManga $tomeManga): self
     {
-        if ($this->tomeMangas->removeElement($tomeManga)) {
+        if ($this->tomes->removeElement($tomeManga)) {
             // set the owning side to null (unless already changed)
-            if ($tomeManga->getIdManga() === $this) {
-                $tomeManga->setIdManga(null);
+            if ($tomeManga->getManga() === $this) {
+                $tomeManga->setManga(null);
             }
         }
 

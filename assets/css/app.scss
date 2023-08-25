@@ -9,6 +9,10 @@ body {
 
 main {
     margin: 7em;
+
+    @media (max-width: 600px) {
+        margin: 1em;
+    }
 }
     
 h2 {

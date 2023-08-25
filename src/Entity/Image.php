@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ImagesRepository;
+use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ImagesRepository::class)]
-class Images implements \Stringable
+#[ORM\Entity(repositoryClass: ImageRepository::class)]
+class Image implements \Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

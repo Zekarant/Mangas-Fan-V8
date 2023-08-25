@@ -28,15 +28,14 @@ Encore
         {from: './node_modules/ckeditor4/vendor', to: 'ckeditor/vendor/[path][name].[ext]'}
     ])
 
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
-    .addEntry('app', './assets/js/app.js')
-    .addEntry('news-requests', './assets/js/news-requests.js')
-    .addEntry('news', './assets/js/news.js')
+    // SCSS files
+    .addEntry('app', './assets/style/app.js')
+    .addEntry('home', './assets/style/home.js')
+
+    // Typescript
+    .addEntry('news-requests', './assets/script/news-requests.js')
+    .addEntry('news', './assets/script/news.js')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

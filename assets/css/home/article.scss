@@ -1,0 +1,27 @@
+@import '../imports';
+
+.article--container {
+  width: 21em;
+  min-height: 20em;
+
+  & img {
+    width: 100%;
+    height: 20em;
+    object-fit: cover;
+    border-radius: 1em;
+  }
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: pixels-to-em(10) 0;
+    row-gap: pixels-to-em(8);
+
+    span {
+      font-size: 1.17em;
+      line-height: 1.2rem;
+      font-weight: bolder;
+    }
+  }
+}

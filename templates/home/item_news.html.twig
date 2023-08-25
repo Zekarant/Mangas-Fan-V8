@@ -1,0 +1,24 @@
+<div class="all-news-group">
+    {% for new in news %}
+        <article class="news-card">
+            <div class="news-image">
+                <img src="/uploads/{{ new.image }}"
+                     alt="{{ new.image }}"
+                     class="image-news" />
+            </div>
+
+            <div class="content-news">
+                <h2 class="title-news">{{ new.title }}</h2>
+
+                <p class="description-news">{{ new.description|raw }}</p>
+            </div>
+
+            <div class="footer-news">
+                <a href="{{ path('news_show', {'slug': new.slug}) }}"
+                   class="link-article">
+                    Lire l'article
+                </a>
+            </div>
+        </article>
+    {% endfor %}
+</div>

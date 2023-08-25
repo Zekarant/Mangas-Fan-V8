@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Comments;
-use App\Repository\CommentsRepository;
+use App\Entity\Comment;
+use App\Repository\CommentRepository;
 use App\Repository\NewsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommentsController extends AbstractController
 {
     #[Route('/ajax/comments', name: 'comments_add')]
-    public function add(Request $request, NewsRepository $newsRepository, UserRepository $userRepository, EntityManagerInterface $em, CommentsRepository $commentsRepository): Response
+    public function add(Request $request, NewsRepository $newsRepository, UserRepository $userRepository, EntityManagerInterface $em, CommentRepository $commentsRepository): Response
     {
         $commentData = $request->request->all('comment');
 
@@ -39,7 +39,7 @@ class CommentsController extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $comment = new Comments($news);
+        $comment = new Comment($news);
         $comment->setContent($commentData['content']);
         $comment->setUser($user);
         $comment->setCreatedAt(new \DateTime());

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Animes;
+use App\Entity\ArticleAnime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Animes>
+ * @extends ServiceEntityRepository<ArticlesAnime>
  *
- * @method Animes|null find($id, $lockMode = null, $lockVersion = null)
- * @method Animes|null findOneBy(array $criteria, array $orderBy = null)
- * @method Animes[]    findAll()
- * @method Animes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ArticleAnime|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ArticleAnime|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ArticleAnime[]    findAll()
+ * @method ArticleAnime[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnimesRepository extends ServiceEntityRepository
+class ArticleAnimeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Animes::class);
+        parent::__construct($registry, ArticleAnime::class);
     }
 
-    public function save(Animes $entity, bool $flush = false): void
+    public function save(ArticleAnime $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnimesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Animes $entity, bool $flush = false): void
+    public function remove(ArticleAnime $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AnimesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Animes[] Returns an array of Animes objects
+//     * @return ArticlesAnime[] Returns an array of ArticlesAnime objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AnimesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Animes
+//    public function findOneBySomeField($value): ?ArticlesAnime
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

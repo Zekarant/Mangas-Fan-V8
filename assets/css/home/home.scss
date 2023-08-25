@@ -1,0 +1,108 @@
+@import '../imports';
+
+.last-mangas--container {
+  margin-right: 1em;
+  min-height: 25em;
+
+  img {
+    height: 25em;
+  }
+}
+
+.latest-anime--container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  grid-column-gap: 3em;
+  grid-row-gap: 2em;
+
+  & .article--container {
+    width: 100%;
+
+    img {
+      height: auto;
+    }
+  }
+}
+
+#favourite,
+#shop {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  grid-column-gap: 2em;
+  border-radius: 2em;
+  background-color: $dark-blue-background-navbar;
+  min-height: 19em;
+  height: auto;
+
+  img {
+    border-radius: 1em 0 0 1em;
+    clip-path: ellipse(90% 100% at 5% 50%);
+    float: left;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .shop--container {
+    height: auto;
+    padding: 1em 3em 3em;
+
+    h3 {
+      font-family: $poppins;
+      font-size: 1.5em;
+    }
+
+    .content {
+      font-stretch: normal;
+      font-style: normal;
+      font-weight: 300;
+      letter-spacing: normal;
+      line-height: 1.5;
+      padding-bottom: 3em;
+      text-align: justify;
+    }
+
+    a {
+      color: #f85ed7;
+      font-family: $poppins;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+
+    img {
+      clip-path: none;
+      max-height: pixels-to-em(200);
+      border-radius: 1em 1em 0 0;
+    }
+
+    .shop--container {
+      padding: 0 2em 1em;
+    }
+  }
+}
+
+#favourite {
+  .title-favourite {
+    font-family: $poppins;
+    font-size: 1.5em;
+  }
+}
+
+.latest-articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  gap: 3em;
+  justify-items: center;
+}
+
+a.show-all {
+  font-family: $poppins;
+  font-weight: bold;
+  text-decoration: none;
+  color: $light-pink-link;
+  float: right;
+}

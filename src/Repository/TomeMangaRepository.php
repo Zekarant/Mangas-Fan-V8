@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\TomeMangas;
+use App\Entity\TomeManga;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<TomeMangas>
  *
- * @method TomeMangas|null find($id, $lockMode = null, $lockVersion = null)
- * @method TomeMangas|null findOneBy(array $criteria, array $orderBy = null)
- * @method TomeMangas[]    findAll()
- * @method TomeMangas[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TomeManga|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TomeManga|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TomeManga[]    findAll()
+ * @method TomeManga[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TomeMangasRepository extends ServiceEntityRepository
+class TomeMangaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TomeMangas::class);
+        parent::__construct($registry, TomeManga::class);
     }
 
-    public function save(TomeMangas $entity, bool $flush = false): void
+    public function save(TomeManga $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class TomeMangasRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(TomeMangas $entity, bool $flush = false): void
+    public function remove(TomeManga $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

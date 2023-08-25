@@ -1,2 +1,2 @@
-import { reactNews } from "../script/functions/like";
+import { reactNews } from "./functions/like";
 global.reactNews = (newsId, reaction) => reactNews(newsId, reaction);

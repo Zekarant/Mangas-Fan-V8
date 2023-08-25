@@ -2,27 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\TomeMangasRepository;
+use App\Repository\ArticleAnimeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TomeMangasRepository::class)]
-class TomeMangas
+#[ORM\Entity(repositoryClass: ArticleAnimeRepository::class)]
+class ArticleAnime
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nameTome = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $coverTome = null;
-
-    #[ORM\ManyToOne(inversedBy: 'tomeMangas')]
+    #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Mangas $idManga = null;
+    private ?Anime $anime = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $cover = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -35,38 +35,38 @@ class TomeMangas
         return $this->id;
     }
 
-    public function getNameTome(): ?string
+    public function getAnime(): ?Anime
     {
-        return $this->nameTome;
+        return $this->anime;
     }
 
-    public function setNameTome(string $nameTome): self
+    public function setAnime(?Anime $anime): self
     {
-        $this->nameTome = $nameTome;
+        $this->anime = $anime;
 
         return $this;
     }
 
-    public function getCoverTome(): ?string
+    public function getTitle(): ?string
     {
-        return $this->coverTome;
+        return $this->title;
     }
 
-    public function setCoverTome(string $coverTome): self
+    public function setTitle(string $title): self
     {
-        $this->coverTome = $coverTome;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getIdManga(): ?Mangas
+    public function getCover(): ?string
     {
-        return $this->idManga;
+        return $this->cover;
     }
 
-    public function setIdManga(?Mangas $idManga): self
+    public function setCover(string $cover): self
     {
-        $this->idManga = $idManga;
+        $this->cover = $cover;
 
         return $this;
     }

@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Enums\ReactionCodeEnum;
 use App\Entity\Enums\ReactionEnum;
 use App\Entity\News;
-use App\Entity\Comments;
+use App\Entity\Comment;
 use App\Entity\NewsLike;
 use App\Form\Type\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,7 +26,7 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $comment = new Comments($news);
+        $comment = new Comment($news);
         $commentForm = $this->createForm(CommentType::class, $comment);
 
         $existingInteraction = $news->getOwnReaction($this->getUser());

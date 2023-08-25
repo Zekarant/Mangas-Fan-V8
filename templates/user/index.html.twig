@@ -1,10 +1,8 @@
-{% extends 'base_without_banner.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Profil de {{ user.username }} {% endblock %}
+{% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-
-Bienvenue sur le profil de {{ user.username }}<br/>
-Nombre de commentaires postés sur le site : {{ user.comments|length}}
-
+    Bienvenue sur le profil de {{ user.username }}<br/>
+    Nombre de commentaires postés sur le site : {{ user.comments|length}}
 {% endblock %}
