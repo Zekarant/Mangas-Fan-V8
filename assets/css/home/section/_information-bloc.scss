@@ -1,0 +1,47 @@
+@import '../../imports';
+
+.information-bloc--container {
+  @apply flex flex-col-reverse overflow-hidden bg-blue-dark rounded-xl m-auto
+  lg:h-[350px]
+  sm:flex-row;
+
+  .information-bloc--body {
+    @apply p-8 flex flex-col justify-around;
+
+    h3 {
+      @apply text-lg md:text-xl lg:text-2xl mb-4;
+    }
+
+    div {
+      @apply text-xs md:text-sm lg:text-base;
+
+      @include lineClamp(5);
+    }
+
+    a {
+      @apply max-md:text-sm block text-pink-light font-poppins no-underline mt-4;
+    }
+  }
+
+  .information-bloc--picture {
+    $maximum-height-picture: 175px;
+    $maximum-height-picture-sm: 250px;
+
+    @apply max-h-[#{$maximum-height-picture}] sm:max-h-[#{$maximum-height-picture-sm}];
+
+    clip-path: ellipse(90% 100% at center top);
+
+    img {
+      @apply object-cover h-full w-full
+        max-h-[#{$maximum-height-picture}]
+        sm:max-h-[#{$maximum-height-picture-sm}]
+        lg:max-h-full;
+    }
+
+    @screen sm {
+      @apply min-w-[40%] max-h-full;
+
+      clip-path: ellipse(90% 100% at right center);
+    }
+  }
+}

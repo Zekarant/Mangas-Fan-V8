@@ -1,0 +1,56 @@
+nav.navbar {
+  @apply fixed top-0 left-0
+  flex justify-around items-center
+  max-lg:justify-between max-lg:flex-row-reverse
+  w-full z-max
+  p-4
+  bg-blackNavbar
+  font-poppins;
+
+  a.navbar-homepage {
+    @apply max-lg:hidden;
+  }
+
+  ul {
+    @apply flex gap-x-8 items-center justify-end max-lg:hidden;
+
+    li {
+      @apply list-none text-xl font-semibold text-center;
+
+      a {
+        @apply text-white no-underline;
+      }
+    }
+  }
+
+  div.navbar-search {
+    @apply flex max-lg:hidden
+    bg-blackSearchbar
+    border-blackSearchbarBorder border rounded-lg;
+
+    label {
+      @apply p-4 max-lg:hidden;
+    }
+
+    input {
+      @apply bg-transparent px-2 focus:outline-none
+      hidden xl:block;
+    }
+  }
+
+  div.navbar-profile {
+    @apply flex justify-center items-center gap-x-2 cursor-pointer;
+
+    img {
+      @apply w-14 h-14 max-lg:w-9 max-lg:h-9 rounded-full;
+    }
+  }
+
+  div.navbar-button-expanded {
+    @apply cursor-pointer lg:hidden;
+
+    i {
+      @apply text-3xl;
+    }
+  }
+}

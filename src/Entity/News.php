@@ -20,16 +20,16 @@ class News implements TimestampedInterface, \Stringable
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titleNews = null;
+    private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $descriptionNews = null;
+    private ?string $description = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $contentNews = null;
+    private ?string $content = null;
 
     #[ORM\Column(nullable: true)]
-    private ?string $keywordsNews = null;
+    private ?string $keywords = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -41,9 +41,9 @@ class News implements TimestampedInterface, \Stringable
     private Collection $categories;
 
     /**
-     * @var Collection<int, Comments>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comment::class, orphanRemoval: true)]
     #[OrderBy(['createdAt' => 'DESC'])]
     private Collection $comments;
 
@@ -77,50 +77,50 @@ class News implements TimestampedInterface, \Stringable
         return $this->id;
     }
 
-    public function getTitleNews(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titleNews;
+        return $this->title;
     }
 
-    public function setTitleNews(string $titleNews): self
+    public function setTitle(string $title): self
     {
-        $this->titleNews = $titleNews;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getDescriptionNews(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descriptionNews;
+        return $this->description;
     }
 
-    public function setDescriptionNews(string $descriptionNews): self
+    public function setDescription(string $description): self
     {
-        $this->descriptionNews = $descriptionNews;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getContentNews(): ?string
+    public function getContent(): ?string
     {
-        return $this->contentNews;
+        return $this->content;
     }
 
-    public function setContentNews(string $contentNews): self
+    public function setContent(string $content): self
     {
-        $this->contentNews = $contentNews;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getKeywordsNews(): ?string
+    public function getKeywords(): ?string
     {
-        return $this->keywordsNews;
+        return $this->keywords;
     }
 
-    public function setKeywordsNews(?string $keywordsNews): self
+    public function setKeywords(?string $keywords): self
     {
-        $this->keywordsNews = $keywordsNews;
+        $this->keywords = $keywords;
 
         return $this;
     }
@@ -177,14 +177,14 @@ class News implements TimestampedInterface, \Stringable
     }
 
     /**
-     * @return Collection<int, Comments>
+     * @return Collection<int, Comment>
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comments $comment): self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -194,7 +194,7 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function removeComment(Comments $comment): self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
@@ -264,7 +264,7 @@ class News implements TimestampedInterface, \Stringable
 
     public function __toString()
     {
-        return $this->titleNews ?? '';
+        return $this->title ?? '';
     }
 
     public function getAuthor(): ?User
@@ -303,14 +303,14 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function getInteractions(): Collection
+    public function getVotes(): Collection
     {
         return $this->likes;
     }
 
     public function getLikesCount(): int
     {
-        return $this->likes->filter(fn(NewsLike $interaction) => $interaction->isLike())->count();
+        return $this->likes->filter(fn(NewsLike $votes) => $votes->isLike())->count();
     }
 
     public function getDislikesCount(): int

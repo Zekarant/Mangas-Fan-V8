@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Comments;
+use App\Entity\Comment;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -15,7 +15,7 @@ class CommentsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Comments::class;
+        return Comment::class;
     }
 
     public function configureActions(Actions $actions): Actions

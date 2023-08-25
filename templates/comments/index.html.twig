@@ -1,13 +1,17 @@
 {% set username = comment.user.username %}
-<div class="comment" id="comment-{{ comment.id }}">
+<div class="comment"
+     id="comment-{{ comment.id }}">
     <div class="avatar">
-        <img src="https://zupimages.net/up/23/01/9pu9.png" alt="Avatar de test"/>
+        <img src="https://zupimages.net/up/23/01/9pu9.png"
+             alt="Avatar de test"/>
     </div>
+
     <div class="content">
         <div class="comment-info">
             <div class="comment-username">
                 {{ comment.user.username }}
             </div>
+
             <div class="comment-date">
                 {{ comment.createdAt|date('d F Y') }}
             </div>
@@ -19,6 +23,4 @@
             Répondre
         </div>
     </div>
-    {# {{ comment.createdAt|date('d/m/y') }}
-    <p>{{comment.content}}</p> #}
 </div>

@@ -37,3 +37,5 @@ docker/
 
 # Pictures
 /public/uploads/
+
+.DS_Store
