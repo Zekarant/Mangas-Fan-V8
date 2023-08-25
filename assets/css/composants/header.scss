@@ -1,0 +1,54 @@
+@import '../imports';
+
+
+/* Bannière du site */
+header {
+  font-family: $poppins;
+}
+
+.banner-container {
+  @apply flex relative mt-[92px]
+  max-md:flex-col-reverse md:items-center;
+
+  .banner-content {
+    @apply mt-12 p-4 relative z-10
+      md:pl-20
+      md:max-w-[calc(100%-50dvh)]
+      md:flex md:flex-col md:gap-y-2;
+
+    h1 {
+      @apply text-3xl text-white py-4 font-bold;
+    }
+
+    .slogan {
+      @apply my-1 font-light text-base;
+    }
+
+    .banner-social-network {
+      @apply flex gap-x-1.5 mt-4;
+    }
+  }
+
+  .banner-picture {
+    @apply max-w-full
+    bg-no-repeat bg-contain
+    max-lg:ml-auto
+    md:absolute md:right-0 md:top-0;
+
+    background-image: url('https://www.mangasfan.fr/v8/images/circle.png');
+    background-position: left 50px top;
+
+    img {
+      @apply mt-9 pl-12;
+    }
+  }
+
+  @include defaultConfigurationBannerSize(55svh, 50svh);
+  @include configurationBannerSize('lg', 65svh, 60svh) {
+    @apply text-4xl;
+  }
+
+  @include configurationBannerSize('xl', 85svh, 80svh) {
+    @apply text-6xl;
+  }
+}

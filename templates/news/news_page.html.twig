@@ -1,82 +1,123 @@
-{% extends 'base_without_banner.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{{ news.titleNews }}{% endblock %}
+{% block title %}{{ news.title }}{% endblock %}
 
 {% block additional_head %}
-    {{ parent() }}
-    <meta name="description" content="{{ news.descriptionNews }}">
+  {{ parent() }}
+  <meta name="description" content="{{ news.description }}">
 
-    <!-- Balises de Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@MangasFanOff">
-    <meta name="twitter:creator" content="@MangasFanOff">
-    <meta name="twitter:title" content="{{ news.titleNews }} - Mangas'Fan">
-    <meta name="twitter:description" content="{{ news.descriptionNews }}">
-    <meta name="twitter:image" content="https://zupimages.net/up/23/01/dblx.png">
-    <meta name="twitter:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
+  <!-- Balises de Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@MangasFanOff">
+  <meta name="twitter:creator" content="@MangasFanOff">
+  <meta name="twitter:title" content="{{ news.title }} - Mangas'Fan">
+  <meta name="twitter:description" content="{{ news.description }}">
+  <meta name="twitter:image" content="https://zupimages.net/up/23/01/dblx.png">
+  <meta name="twitter:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
 
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
-    <meta property="og:title" content="{{ news.titleNews }} - Mangas'Fan">
-    <meta property="og:description" content="{{ news.descriptionNews }}">
-    <meta property="og:image" content="https://zupimages.net/up/23/01/dblx.png">
-    <meta property="og:image:alt" content="{{ news.titleNews }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
+  <meta property="og:title" content="{{ news.title }} - Mangas'Fan">
+  <meta property="og:description" content="{{ news.description }}">
+  <meta property="og:image" content="https://zupimages.net/up/23/01/dblx.png">
+  <meta property="og:image:alt" content="{{ news.title }}">
+{% endblock %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('css/news') }}
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('news-requests') }}
-    {{ encore_entry_script_tags('news') }}
+  {{ parent() }}
+  {{ encore_entry_script_tags('news-requests') }}
 {% endblock %}
 
 {% block body %}
-<section>
+  <!-- @todo: work in progress (T-048) -->
+  <section>
     <div class="bloc-one-news">
-        <img src="https://zupimages.net/up/23/01/dblx.png" class="banner-news" />
+      <img src="https://zupimages.net/up/23/01/dblx.png"
+           class="banner-news"/>
 
-        <div>
-            <h1 class="title-one-new">{{ news.titleNews }}</h1>
-            <hr align="left" class="hr-one-news">
-            <div class="info-about-news">
-                <div>
-                    <span class="author-one-news">
-                        Par <span><a href="{{ path('app_user', {'id': news.author.id }) }}" class="link-user-news">
-                        {{ news.author.username }}</a></span> - {% for roles in news.author.roles %} {{ roles|replace({'ROLE_ADMIN': 'Administrateur,', 'ROLE_NEWSEUR': "Newseur," , 'ROLE_USER': "Membre"}) }} {% endfor %}
-                    </span>
-                </div>
+      <div>
+        <h1 class="title-one-new">
+          {{ news.title }}
+        </h1>
 
-                <div>
-                    <span class="date-news">News redigée le {{ news.createdAt|date("d/m/Y à H:m") }}
-                </div>
-            </div>
+        <hr align="left" class="hr-one-news">
+        <div class="info-about-news">
+          <div>
+                        <span class="author-one-news">
+                            Par
+                            <a href="{{ path('app_user', {'id': news.author.id }) }}"
+                               class="link-user-news">
+                                {{ news.author.username }}
+                            </a>
+                            -
+                            {% for roles in news.author.roles %}
+                              {{ roles|replace({'ROLE_ADMIN': 'Administrateur,', 'ROLE_NEWSEUR': "Newseur," , 'ROLE_USER': "Membre"}) }}
+                            {% endfor %}
+                        </span>
+          </div>
 
-            <hr class="hr-top">
-
-            {# {% for category in news.categories %}
-                <a href="{{ path('category_show', {'slug': category.slug}) }}"><button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button></a>
-            {% endfor %} #}
-
-            <article class="content-one-news">
-                {{ news.contentNews|raw }}
-            </article>
-            <a href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ news.slug }}&amp;text={{news.titleNews}} - @MangasFanOff : " target="_blank" class="twitter-button">
-                <i class="fa-brands fa-xl fa-twitter"></i>
-            </a>
-            <h2 class="title-comments">Commentaires</h2>
-
-            {% if app.user %}
-                <div class="comment-area">
-                    {{ form(comment_form, { 'attr': { 'class': 'comment-form' } }) }}
-                </div>
-            {% endif %}
-
-            <div class="comments-list">
-                {% for comment in news.comments %}
-                    {% include 'comments/index.html.twig' with [comment] %}
-                {% endfor %}
-            </div>
+          <div>
+                        <span class="date-news">
+                            News rédigée le {{ news.createdAt|date("d/m/Y à H:m") }}
+                        </span>
+          </div>
         </div>
+
+        <hr class="hr-top">
+
+        {# {% for category in news.categories %}
+                    <a href="{{ path('category_show', {'slug': category.slug}) }}"><button class="buttonCategory" style="background-color: {{ category.color }}">{{ category.name }}</button></a>
+                {% endfor %} #}
+
+        <article class="content-one-news">
+          {{ news.content|raw }}
+        </article>
+
+        <!-- Old
+                Likes: <span id="total-like">{{ number_likes }}</span>
+                Dislikes: <span id="total-dislike">{{ number_dislikes }}</span>
+
+                {% if app.user %}
+                    <span id="button-like"
+                          class="material-symbols-outlined {{ own_reaction is same as(true) ? 'active' : '' }}"
+                          onclick="reactNews({{ news.getId() }}, 'like')">
+                        thumb_up
+                    </span>
+
+                    <span id="button-dislike"
+                          class="material-symbols-outlined {{ own_reaction is same as(false) ? 'active' : '' }}"
+                          onclick="reactNews({{ news.getId() }}, 'dislike')">
+                        thumb_down
+                    </span>
+                {% endif %}
+                -->
+
+        <a
+          href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ news.slug }}&amp;text={{ news.title }} - @MangasFanOff : "
+          target="_blank"
+          class="twitter-button">
+          <i class="fa-brands fa-xl fa-twitter"></i>
+        </a>
+
+        <h2 class="title-comments">Commentaires</h2>
+
+        {% if app.user %}
+          <div class="comment-area">
+            {{ form(comment_form, { 'attr': { 'class': 'comment-form' } }) }}
+          </div>
+        {% endif %}
+
+        <div class="comments-list">
+          {% for comment in news.comments %}
+            {% include 'comments/index.html.twig' with [comment] %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 {% endblock %}

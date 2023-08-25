@@ -1,44 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import 'imports';
 
 body {
-    background-color: $dark-blue-background-website;
-    color: $white;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
+  background-color: $dark-blue-background-website;
+  color: $white;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 main {
-    margin: 7em;
-}
-    
-h2 {
-    font-family: $poppins;
-    font-size: 1.7em;
-    font-weight: 600;
-}
-    
-p {
-    font-family: $poppins;
-    font-size: 1.3em;
-    font-weight: 300;
+  @apply m-6 lg:m-12 xl:m-20;
 }
 
-textarea,
-input[type="text"],
-input[type="email"], 
-input[type="password"] {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: white;
-    background-color: #1e1e1e;
-    background-clip: padding-box;
-    border: 1px solid #1e1e1e;
-    appearance: none;
-    border-radius: 0.375rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    margin-bottom: 2em;
+h2 {
+  font-family: $poppins;
+  font-weight: 600;
+}
+
+p {
+  font-family: $poppins;
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+
+section textarea,
+section input[type="text"],
+section input[type="email"],
+section input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  background-color: #1e1e1e;
+  background-clip: padding-box;
+  border: 1px solid #1e1e1e;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 2em;
 }
