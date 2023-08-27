@@ -406,6 +406,16 @@ section {
     color: $light-red !important;
     border: none;
   }
+  
+  .twitter-button {
+    color: $light-blue;
+    text-decoration: none;
+  }
+
+  .facebook-button {
+    color: $facebook-color;
+    text-decoration: none;
+  }
 }
 
 .comment {
