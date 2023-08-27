@@ -1,14 +1,36 @@
-{% for new in news %}
+
+{% for new in news_data %}
     <article class="news-card">
         <div class="news-image">
-            <img src="/uploads/{{ new.image }}" alt="{{ new.image }}" class="image-news" />
+            <img src="/uploads/{{ new.news.image }}" alt="{{ new.news.image }}" class="image-news" />
         </div>
         <div class="content-news">
-            <h2 class="title-news">{{ new.titleNews }}</h2>
-            <p class="description-news">{{ new.descriptionNews|raw }}</p>
+            <h2 class="title-news">{{ new.news.titleNews }}</h2>
+            <p class="description-news">{{ new.news.descriptionNews|raw }}</p>
+            <span class="author-news-index">Rédigé par {{ new.news.author.username }} le {{ new.news.createdAt|date("d/m/Y") }}</span>
         </div>
         <div class="footer-news">
-            <a href="{{ path('news_show', {'slug': new.slug}) }}" class="link-article">Lire l'article</a>
+            <div class="element-footer">
+            {% if app.user %}
+                {% set likeActiveClass = new.own_reaction is same as(true) ? 'active' : '' %}
+                {% set dislikeActiveClass = new.own_reaction is same as(false) ? 'active' : '' %}
+            {% else %}
+                {% set likeActiveClass = '' %}
+                {% set dislikeActiveClass = '' %}
+            {% endif %}
+
+            <i id="button-like-{{ new.news.getId() }}" class="fa-solid fa-xl fa-thumbs-up {{ likeActiveClass }} like" onclick="reactNews({{ new.news.getId() }}, 'like')"></i>
+            <span id="total-like-{{ new.news.getId() }}">{{ new.number_likes }}</span>
+
+            <i id="button-dislike-{{ new.news.getId() }}" class="fa-solid fa-xl fa-thumbs-down {{ dislikeActiveClass }} dislike share-icon" onclick="reactNews({{ new.news.getId() }}, 'dislike')"></i>
+            <span id="total-dislike-{{ new.news.getId() }}">{{ new.number_dislikes }}</span>
+            <a href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ new.news.slug }}&amp;text={{new.news.titleNews}} - @MangasFanOff : " target="_blank" class="twitter-button">
+                <i class="fa-solid fa-share-nodes fa-xl share-icon"></i>
+            </a>
+            </div>
+            <div class="element-footer">
+                <a href="{{ path('news_show', {'slug': new.news.slug}) }}" class="link-article">Lire l'article</a>
+            </div>
         </div>
     </article>
 {% endfor %}

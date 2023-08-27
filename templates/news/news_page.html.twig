@@ -60,19 +60,8 @@
             <article class="content-one-news">
                 {{ news.contentNews|raw }}
             </article>
-
-            Likes: <span id="total-like">{{ number_likes }}</span>
-            Dislikes: <span id="total-dislike">{{ number_dislikes }}</span>
-            {% if app.user %}
-            <i id="button-like" class="fa-solid fa-xl fa-thumbs-up  {{ own_reaction is same as(true) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'like')"></i>
-            <i id="button-dislike" class="fa-solid fa-xl fa-thumbs-down {{ own_reaction is same as(false) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'dislike')"></i>
-            {% endif %}
-            <br/>
             <a href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ news.slug }}&amp;text={{news.titleNews}} - @MangasFanOff : " target="_blank" class="twitter-button">
                 <i class="fa-brands fa-xl fa-twitter"></i>
-            </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.mangasfan.fr/news/{{ news.slug }}" target="_blank" class="facebook-button">
-                <i class="fa-brands fa-xl fa-facebook"></i>
             </a>
             <h2 class="title-comments">Commentaires</h2>
 

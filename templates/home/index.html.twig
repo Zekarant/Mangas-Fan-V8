@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('news') }}
+{% endblock %}
 
 {% block title %}Site d'actualité sur les mangas et les animes{% endblock %}
 
@@ -6,7 +10,7 @@
     <section class="news-section">
         <h2>Dernières actualités</h2>
         <div class="all-news-group">
-            {% include 'news/item_news.html.twig' with { news } %}
+            {% include 'news/item_news.html.twig' with { news_data } %}
         </div>
         <div class="link-archive"><a href="#">Voir toutes les actualités</a></div>
     </section>

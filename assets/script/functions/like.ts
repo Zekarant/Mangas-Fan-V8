@@ -3,26 +3,26 @@ import {AjaxError} from "../error/ajax-error";
 import {LikeResponse, LikeResponseCode} from "../models/like-response.model";
 
 export function reactNews(newsId: number, reaction: string): void {
-    sendReaction(`/news/${newsId}/reaction/${reaction}`, reaction);
+    sendReaction(`/news/${newsId}/reaction/${reaction}`, reaction, newsId);
 }
 
-function sendReaction(url: string, reaction: string): void {
+function sendReaction(url: string, reaction: string, newsId: number): void {
     postRequest(url, null).then((data: LikeResponse): void => {
-        updateReactionsCount(data, reaction);
+        updateReactionsCount(data, reaction, newsId);
     }).catch((error: AjaxError): void => {
         console.warn(error);
     });
 }
 
-function updateReactionsCount(response: LikeResponse, reaction: string): void {
+function updateReactionsCount(response: LikeResponse, reaction: string, newsId: number): void {
     const { likes, dislikes } = response;
     const ACTIVE_CLASS = 'active';
 
-    const dislikeCount = document.getElementById('total-dislike');
-    const likeCount = document.getElementById('total-like');
+    const dislikeCount = document.getElementById(`total-dislike-${newsId}`);
+    const likeCount = document.getElementById(`total-like-${newsId}`);
 
-    const dislikeButton = document.getElementById('button-dislike');
-    const likeButton = document.getElementById('button-like');
+    const dislikeButton = document.getElementById(`button-dislike-${newsId}`);
+    const likeButton = document.getElementById(`button-like-${newsId}`);
 
     switch (response.message) {
         case LikeResponseCode.REACTION_ADDED:
