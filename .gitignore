@@ -34,3 +34,6 @@ docker/
 /tools/php-cs-fixer/vendor
 /tools/rector/vendor
 /.php-cs-fixer.cache
+
+# Pictures
+/public/uploads/
