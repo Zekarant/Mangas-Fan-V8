@@ -21,16 +21,52 @@ section {
     margin-bottom: 2em;
     position: relative;
 
+    .footer-news {
+      min-height: 3em;
+      width: -webkit-fill-available;
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 1.6em;
+      padding-right: 1.6em;
+      .like.active {
+        color: $light-blue !important;
+        border: none;
+      }
+      
+      .dislike.active {
+        color: $light-red !important;
+        border: none;
+      }
+
+      .share-icon {
+        padding-left: 0.7em;
+      }
+
+      .twitter-button {
+        text-decoration: none;
+        color: $white;
+      }
+     }
+
     &:nth-child(2),
     &:nth-child(3) {
       display: flex;
+
+      .footer-news {
+        padding-left: 11.3em;
+      }
+
+      .author-news-index {
+        display: none;
+      }
     }
 
     &:first-child {
       .link-article {
         padding-bottom: 1em;
-        padding-left: 1.6em;
-        text-align: left;
+        text-align: right;
         color: $light-pink-link;
         text-decoration: none;
         font-weight: 600;
@@ -53,9 +89,6 @@ section {
     &:nth-child(2),
     &:nth-child(3) {
       .link-article {
-        position: absolute;
-        bottom: 0;
-        width: 95%;
         font-family: $poppins;
         font-size: 1em;
         font-weight: 600;
@@ -93,14 +126,13 @@ section {
   padding-right: 1.6em;
   padding-top: 0.5em;
   font-family: $poppins;
+
+  .author-news-index {
+    font-style: italic;
+  }
 }
-  
-.footer-news {
-  min-height: 3em;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
- }
+
+
  
 .title-news {
   font-size: 1.5em;
@@ -397,14 +429,11 @@ section {
     border: none;
   }
 
-  #button-like.active {
-    color: $light-blue !important;
-    border: none;
-  }
-
-  #button-dislike.active {
-    color: $light-red !important;
-    border: none;
+ 
+  
+  .twitter-button {
+    color: $light-blue;
+    text-decoration: none;
   }
 }
 

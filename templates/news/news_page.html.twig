@@ -2,6 +2,28 @@
 
 {% block title %}{{ news.titleNews }}{% endblock %}
 
+{% block additional_head %}
+    {{ parent() }}
+    <meta name="description" content="{{ news.descriptionNews }}">
+
+    <!-- Balises de Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MangasFanOff">
+    <meta name="twitter:creator" content="@MangasFanOff">
+    <meta name="twitter:title" content="{{ news.titleNews }} - Mangas'Fan">
+    <meta name="twitter:description" content="{{ news.descriptionNews }}">
+    <meta name="twitter:image" content="https://zupimages.net/up/23/01/dblx.png">
+    <meta name="twitter:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.mangasfan.fr/news/{{ news.slug }}">
+    <meta property="og:title" content="{{ news.titleNews }} - Mangas'Fan">
+    <meta property="og:description" content="{{ news.descriptionNews }}">
+    <meta property="og:image" content="https://zupimages.net/up/23/01/dblx.png">
+    <meta property="og:image:alt" content="{{ news.titleNews }}">
+
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('news-requests') }}
@@ -38,19 +60,9 @@
             <article class="content-one-news">
                 {{ news.contentNews|raw }}
             </article>
-
-            Likes: <span id="total-like">{{ number_likes }}</span>
-            Dislikes: <span id="total-dislike">{{ number_dislikes }}</span>
-            {% if app.user %}
-                <span id="button-like" class="material-symbols-outlined {{ own_reaction is same as(true) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'like')">
-                    thumb_up
-                </span>
-                
-                <span id="button-dislike" class="material-symbols-outlined {{ own_reaction is same as(false) ? 'active' : '' }}" onclick="reactNews({{ news.getId() }}, 'dislike')">
-                thumb_down
-                </span>
-            {% endif %}
-
+            <a href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ news.slug }}&amp;text={{news.titleNews}} - @MangasFanOff : " target="_blank" class="twitter-button">
+                <i class="fa-brands fa-xl fa-twitter"></i>
+            </a>
             <h2 class="title-comments">Commentaires</h2>
 
             {% if app.user %}
