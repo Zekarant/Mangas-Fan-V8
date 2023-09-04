@@ -56,6 +56,30 @@
             "./config/packages/fos_ckeditor.yaml"
         ]
     },
+<<<<<<< HEAD
+=======
+    "knpuniversity/oauth2-client-bundle": {
+        "version": "2.15",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.20",
+            "ref": "1ff300d8c030f55c99219cc55050b97a695af3f6"
+        },
+        "files": [
+            "./config/packages/knpu_oauth2_client.yaml"
+        ]
+    },
+    "labymod/discord-webhook-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "5ca3ad26a8ce5233cdb80b2ad1b4fdc3f931c18e"
+        }
+    },
+>>>>>>> 016215e6994725528e4300c9e1ad6626601b180c
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
