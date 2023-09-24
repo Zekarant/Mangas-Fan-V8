@@ -35,9 +35,7 @@ class GoogleController extends AbstractController
 
             try {
                 $user = $client->fetchUser();
-                
-
-                $existingUser = $entityManager->getRepository(User::class)->findOneBy(['username' => $user->getFirstName()]);
+                $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
                 if ($existingUser) {
                     $token = new UsernamePasswordToken($existingUser, $user->getFirstName(), $existingUser->getRoles());
                     $tokenStorage->setToken($token);
@@ -45,6 +43,8 @@ class GoogleController extends AbstractController
                     $newUser = new User;
                     $newUser->setUsername($user->getFirstName());
                     $newUser->setRoles(['ROLE_USER']);
+                    $newUser->setEmail($user->getEmail());
+                    $newUser->setAvatar($user->getAvatar());
                     $randomPassword = bin2hex(random_bytes(12)); // Génère un mot de passe de 24 caractères
                     // Hachez le mot de passe aléatoire
                     $hashedPassword = $userPasswordHasher->hashPassword($newUser, $randomPassword);
