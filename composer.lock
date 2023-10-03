@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "5e2412bc6dbc8efdbe0ea175d73c6fbb",
-=======
-    "content-hash": "a7e713ea28a8da1670ce7e063dbdea57",
->>>>>>> 016215e6994725528e4300c9e1ad6626601b180c
+    "content-hash": "8a54a9fc624206fecefd5834c08cbbc8",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2142,6 +2138,54 @@
                 "source": "https://github.com/LabyMod/discord-webhook/tree/3.1.3"
             },
             "time": "2022-01-25T23:34:27+00:00"
+        },
+        {
+            "name": "labymod/discord-webhook-bundle",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LabyMod/discord-webhook-bundle.git",
+                "reference": "04a6adb69237077389bda7fe989271422c86fb20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LabyMod/discord-webhook-bundle/zipball/04a6adb69237077389bda7fe989271422c86fb20",
+                "reference": "04a6adb69237077389bda7fe989271422c86fb20",
+                "shasum": ""
+            },
+            "require": {
+                "labymod/discord-webhook": "^2.0 || ^3.0",
+                "php": "^8.0",
+                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0",
+                "symfony/string": "^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "DiscordWebhookBundle\\": "src/DiscordWebhookBundle/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Scrummer",
+                    "email": "scrummer@gmx.ch",
+                    "homepage": "https://labymod.net/about",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Discord Webhook Bundle, based on labymod/discord-webhook",
+            "support": {
+                "issues": "https://github.com/LabyMod/discord-webhook-bundle/issues",
+                "source": "https://github.com/LabyMod/discord-webhook-bundle/tree/1.0.2"
+            },
+            "time": "2022-01-26T17:10:33+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -8885,6 +8929,71 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wohali/oauth2-discord-new",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wohali/oauth2-discord-new.git",
+                "reference": "2df4d2a882e04c749880797704e4bde8f00ea1d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wohali/oauth2-discord-new/zipball/2df4d2a882e04c749880797704e4bde8f00ea1d9",
+                "reference": "2df4d2a882e04c749880797704e4bde8f00ea1d9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/oauth2-client": "^2.0",
+                "php": "^7.2|^8.0"
+            },
+            "conflict": {
+                "team-reflex/oauth2-discord": ">=1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.3.0",
+                "php-parallel-lint/php-parallel-lint": "~0.9",
+                "phpunit/phpunit": "~8.0",
+                "squizlabs/php_codesniffer": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wohali\\OAuth2\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joan Touzet",
+                    "email": "code@atypical.net",
+                    "homepage": "https://github.com/wohali"
+                }
+            ],
+            "description": "Discord OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+            "keywords": [
+                "authorisation",
+                "authorization",
+                "client",
+                "discord",
+                "oauth",
+                "oauth2"
+            ],
+            "support": {
+                "issues": "https://github.com/wohali/oauth2-discord-new/issues",
+                "source": "https://github.com/wohali/oauth2-discord-new/tree/1.2.1"
+            },
+            "time": "2022-12-29T18:45:10+00:00"
         }
     ],
     "packages-dev": [

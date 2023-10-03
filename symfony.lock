@@ -56,8 +56,6 @@
             "./config/packages/fos_ckeditor.yaml"
         ]
     },
-<<<<<<< HEAD
-=======
     "knpuniversity/oauth2-client-bundle": {
         "version": "2.15",
         "recipe": {
@@ -77,9 +75,11 @@
             "branch": "main",
             "version": "1.0",
             "ref": "5ca3ad26a8ce5233cdb80b2ad1b4fdc3f931c18e"
-        }
+        },
+        "files": [
+            "./config/packages/discord_webhook.yaml"
+        ]
     },
->>>>>>> 016215e6994725528e4300c9e1ad6626601b180c
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
