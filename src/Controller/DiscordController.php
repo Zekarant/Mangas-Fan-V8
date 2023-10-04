@@ -39,7 +39,7 @@ class DiscordController extends AbstractController
                     $tokenStorage->setToken($token);
                 } else {
                     $newUser = new User;
-                    $newUser->setUsername($user->getUsername());
+                    $newUser->setUsername(ucfirst($user->getUsername()));
                     $newUser->setRoles(['ROLE_USER']);
                     $newUser->setEmail($user->getEmail());
                     $newUser->setAvatar($user->getAvatarHash());

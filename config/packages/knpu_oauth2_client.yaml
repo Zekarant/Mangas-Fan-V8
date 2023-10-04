@@ -10,3 +10,9 @@ knpu_oauth2_client:
             client_id: '%env(DISCORD_CLIENT_ID)%'
             client_secret: '%env(DISCORD_CLIENT_SECRET)%'
             redirect_route: 'connect_discord_check'
+        facebook:
+            type: facebook
+            client_id: '%env(FACEBOOK_CLIENT_ID)%'
+            client_secret: '%env(FACEBOOK_CLIENT_SECRET)%'
+            redirect_route: 'connect_facebook_check'
+            graph_api_version: v18.0
