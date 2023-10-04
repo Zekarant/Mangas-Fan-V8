@@ -42,7 +42,7 @@ class DiscordController extends AbstractController
                     $newUser->setUsername(ucfirst($user->getUsername()));
                     $newUser->setRoles(['ROLE_USER']);
                     $newUser->setEmail($user->getEmail());
-                    $newUser->setAvatar($user->getAvatarHash());
+                    $newUser->setAvatar("https://cdn.discordapp.com/avatars/" . $user->getId() . "/" . $user->getAvatarHash() . ".png");
                     $randomPassword = bin2hex(random_bytes(12)); // Génère un mot de passe de 24 caractères
                     // Hachez le mot de passe aléatoire
                     $hashedPassword = $userPasswordHasher->hashPassword($newUser, $randomPassword);
