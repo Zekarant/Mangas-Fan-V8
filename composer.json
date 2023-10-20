@@ -21,7 +21,6 @@
         "league/oauth2-instagram": "^3.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.8",
-        "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "6.2.*",
         "symfony/console": "6.3.*",
         "symfony/doctrine-messenger": "6.2.*",
