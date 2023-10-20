@@ -41,7 +41,7 @@ class WebhookDiscordService
     /**
      * @throws TransportExceptionInterface
      */
-    public function sendMessageEmbed(array $messageParams, int $color, bool $showAuthor = true, string $image): void
+    public function sendMessageEmbed(array $messageParams, int $color, string $image, bool $showAuthor = true): void
     {
         $discordWebhook = new DiscordWebhook();
 

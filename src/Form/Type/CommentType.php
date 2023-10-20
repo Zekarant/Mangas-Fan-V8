@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CommentType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         $builder->add('content', TextareaType::class, [
             'label' => 'Votre message',
@@ -34,6 +34,10 @@ class CommentType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

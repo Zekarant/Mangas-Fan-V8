@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class NewsType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         $builder->add('title_news', TextType::class, [
             'label' => 'Titre de la news : ',
@@ -63,6 +63,10 @@ class NewsType extends AbstractType
         ]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
