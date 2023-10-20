@@ -119,6 +119,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @see UserInterface
+     * @return void
      */
     public function eraseCredentials()
     {
