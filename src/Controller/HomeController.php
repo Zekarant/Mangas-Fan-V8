@@ -16,6 +16,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(NewsRepository $newsRepository, AnimesRepository $animesRepository, TomeMangasRepository $tomeMangasRepository, ArticlesAnimeRepository $articlesAnimeRepository): Response
     {
+        var_dump($this->isGranted('ROLE_NEWS'));
         $newsList = $newsRepository->findBy(['visibility' => 1], ['id' => 'DESC'], 3);
 
         $newsData = [];
