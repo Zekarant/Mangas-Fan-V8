@@ -45,12 +45,37 @@ class UserCrudController extends AbstractCrudController
     {
         yield TextField::new('username');
 
-        yield ChoiceField::new('roles')->allowMultipleChoices()
+        yield ChoiceField::new('roles')
+        ->allowMultipleChoices()
         ->setChoices([
-         'Administrateur' => 'ROLE_ADMIN',
-         'Newseur' => 'ROLE_NEWSEUR'
+            'Administrateur' => 'ROLE_ADMIN',
+            'Développeur' => 'ROLE_DEVELOPPER',
+            'Modérateur' => 'ROLE_MODERATOR',
+            'Rédacteur' => 'ROLE_REDACTOR',
+            'Newseur' => 'ROLE_NEWSEUR',
+            'Animateur' => 'ROLE_ANIMATOR',
+            'Community Manager' => 'ROLE_COMMUNITY',
+            'Designer' => 'ROLE_DESIGNER',
+            'Membre' => 'ROLE_USER',
+            'Membre banni' => 'ROLE_BANNED'
         ]);
     }
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        /** @var User $user */
+        $user = $entityInstance;
+
+        // Assurez-vous que les rôles sont correctement gérés en fonction des choix de l'administrateur
+        $roles = $user->getRoles();
+        // $roles contient maintenant les rôles sélectionnés dans le formulaire
+
+        // Mettez à jour les rôles de l'utilisateur en conséquence
+        $user->setRoles($roles);
+
+        parent::updateEntity($entityManager, $entityInstance);
+    }
+
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {

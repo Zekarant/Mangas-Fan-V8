@@ -23,8 +23,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
-    // #[ORM\Column(type: Types::JSON)]
-    // private array $roles = [];
+    #[ORM\Column(type: Types::JSON)]
+    private array $roles;
 
     /**
      * @var string The hashed password
@@ -44,14 +44,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: News::class)]
     private Collection $news;
 
-    #[ORM\ManyToMany(targetEntity: Role::class)]
-    private Collection $roles;
-
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->news = new ArrayCollection();
-        $this->roles = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
@@ -81,48 +78,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->username;
     }
 
-    // /**
-    //  * @see UserInterface
-    //  */
-    // public function getRoles(): array
-    // {
-    //     $roles = $this->roles;
-    //     // guarantee every user at least has ROLE_USER
-    //     $roles[] = 'ROLE_USER';
-
-    //     return array_unique($roles);
-    // }
-
-    // public function setRoles(array $roles): self
-    // {
-    //     $this->roles = $roles;
-
-    //     return $this;
-    // }
+    /**
+     * @see UserInterface
+     */
     public function getRoles(): array
-{
-    $roleNames = [];
-    foreach ($this->roles as $role) {
-        $roleNames[] = $role->getName(); // Accédez à la propriété "name" de l'objet Role
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    // Ajoutez d'autres rôles si nécessaire
-    // $roleNames[] = 'ROLE_USER'; // Exemple : chaque utilisateur a ROLE_USER
-
-    return $roleNames;
-}
-
-
-    // ...
-
-    public function addRole(Role $role)
+    public function setRoles(array $roles): self
     {
-        $this->roles[] = $role;
-    }
+        $this->roles = $roles;
 
-    public function removeRole(Role $role)
-    {
-        $this->roles->removeElement($role);
+        return $this;
     }
 
     /**

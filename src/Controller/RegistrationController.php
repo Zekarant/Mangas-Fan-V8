@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, RoleRepository $roleRepository): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -29,8 +29,6 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $role = $roleRepository->findOneBy(['keyName' => 'ROLE_MEMBER']); // Remplacez 'ROLE_ADMIN' par le nom du rôle que vous souhaitez attribuer
-            $user->addRole($role);
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

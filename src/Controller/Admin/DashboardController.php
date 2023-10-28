@@ -54,11 +54,11 @@ class DashboardController extends AbstractDashboardController
             // ]);
         }
 
-        if ($this->isGranted('ROLE_ADMIN')) {
+        //if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
             yield MenuItem::subMenu('Comptes', 'fas fa-user')->setSubItems([
                 MenuItem::linkToCrud('Tous les comptes', 'fas fa-user-friends', User::class),
             ]);
-        }
+        //}
     }
 }
