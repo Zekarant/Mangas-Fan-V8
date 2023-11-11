@@ -1,0 +1,6 @@
+{% macro displayRoles(roles) %}
+    {% for roleInfo in roles %}
+    {{ roleInfo.label }}
+        {% if not loop.last %}, {% endif %}
+    {% endfor %}
+{% endmacro %}

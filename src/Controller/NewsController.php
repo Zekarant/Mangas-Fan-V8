@@ -7,12 +7,13 @@ use App\Entity\Enums\ReactionEnum;
 use App\Entity\News;
 use App\Entity\Comments;
 use App\Entity\NewsLike;
+use App\Entity\User;
 use App\Form\Type\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\ExpressionLanguage\Expression;
+use App\Utils\RoleLabelConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -30,8 +31,12 @@ class NewsController extends AbstractController
         $commentForm = $this->createForm(CommentType::class, $comment);
 
         $existingInteraction = $news->getOwnReaction($this->getUser());
+        $author = $news->getAuthor();
+        $rawRoles = $author->getRoles();
+        $roleLabels = array_map([RoleLabelConverter::class, 'convertToLabel'], $rawRoles);
 
         return $this->render('news/news_page.html.twig', [
+            'roles' => $roleLabels,
             'news' => $news,
             'number_likes' => $news->getLikesCount(),
             'number_dislikes' => $news->getDislikesCount(),

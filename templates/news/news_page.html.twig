@@ -1,5 +1,5 @@
 {% extends 'base_without_banner.html.twig' %}
-
+{% import "macros/roles.html.twig" as roles %}
 {% block title %}{{ news.titleNews }}{% endblock %}
 
 {% block additional_head %}
@@ -42,7 +42,8 @@
                 <div>
                     <span class="author-one-news">
                         Par <span><a href="{{ path('app_user', {'id': news.author.id }) }}" class="link-user-news">
-                        {{ news.author.username }}</a></span> - {% for roles in news.author.roles %} {{ roles|replace({'ROLE_ADMIN': 'Administrateur,', 'ROLE_NEWSEUR': "Newseur," , 'ROLE_USER': "Membre"}) }} {% endfor %}
+                        {{ news.author.username }}</a></span> - 
+                        {{ roles.displayRoles(roles) }}
                     </span>
                 </div>
 

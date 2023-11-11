@@ -55,6 +55,10 @@ class CommentsController extends AbstractController
                 'message' => $html,
                 'numberOfComments' => $commentsRepository->count(['news' => $news]),
             ]);
+        } else {
+            return $this->json([
+                'code' => 'USER_NOT_AUTHORIZED',
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }

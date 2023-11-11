@@ -48,6 +48,7 @@ class UserCrudController extends AbstractCrudController
         yield ChoiceField::new('roles')
         ->allowMultipleChoices()
         ->setChoices([
+            'Fondateur' => 'ROLE_FONDATOR',
             'Administrateur' => 'ROLE_ADMIN',
             'Développeur' => 'ROLE_DEVELOPPER',
             'Modérateur' => 'ROLE_MODERATOR',
