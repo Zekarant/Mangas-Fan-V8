@@ -1,25 +1,44 @@
 version: '3'
 
 services:
+  php:
+    container_name: php-mf
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    ports:
+      - "9090:9000"
+    volumes:
+      - ./:/var/www/mf
+    depends_on:
+      - mysql
+    networks:
+      - mf-network
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: nginx-mf
+    ports:
+      - "80:80"
+    networks:
+      - mf-network
   mysql:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     container_name: mysql-mf
     volumes:
-      - ./docker/mysql/database:/var/lib/mysql
+      - mysql-mf-volume:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: "mangasfan_v8"
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mangasfan_v8}
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
     ports:
       - "3306:3306"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - '8010:80'
-    environment:
-      PMA_HOST: mysql
-    depends_on:
-      - mysql
+    networks:
+      - mf-network
+volumes:
+  mysql-mf-volume:
+networks:
+  mf-network:
