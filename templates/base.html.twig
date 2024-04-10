@@ -56,7 +56,7 @@
                             <a href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
                         <li>
-                            <img src="https://www.mangasfan.fr/v8/images/compte.png" alt="Logo de Mangas'Fan" width="60"
+                            <img src="{{ app.user.avatar }}" alt="Logo de Mangas'Fan" width="60"
                              height="60"/>
                         </li>
                     {% else %}
