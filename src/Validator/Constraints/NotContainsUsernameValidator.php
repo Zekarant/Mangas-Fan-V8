@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Validator\Constraints;
 
@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class NotContainsUsernameValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         $username = $this->context->getRoot()->get('username')->getData();
 
