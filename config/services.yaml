@@ -8,6 +8,7 @@ parameters:
     uploads_directory: 'uploads/'
     id_webhook_discord: '%env(ID_WEBHOOK_DISCORD)%'
     token_webhook_discord: '%env(TOKEN_WEBHOOK_DISCORD)%'
+    cdn_url: 'https://cdn.discordapp.com'
 
 services:
     # default configuration for services in *this* file
@@ -28,6 +29,9 @@ services:
     App\Service\WebhookDiscordService:
         $idWebhookDiscord: '%id_webhook_discord%'
         $tokenWebhookDiscord: '%token_webhook_discord%'
+
+    App\Service\SocialAuthenticatorService:
+        $cdnUrl: '%cdn_url%'
 
 fos_ck_editor:
     # ...
