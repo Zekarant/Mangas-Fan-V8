@@ -16,13 +16,13 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class GoogleController extends AbstractController
 {
     #[Route(path: '/connect/google', name: 'connect_google')]
-    public function connectAction(ClientRegistry $clientRegistry)
+    public function googleConnect(ClientRegistry $clientRegistry)
     {
         return $clientRegistry->getClient('google')->redirect([], []);
     }
 
     #[Route(path: '/connect/google/check', name: 'connect_google_check')]
-    public function connectCheckAction(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
+    public function connectCheck(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
     {
         $user = $this->getUser();
 
@@ -33,7 +33,7 @@ class GoogleController extends AbstractController
             // L'utilisateur n'existe pas dans la base de données, nous devons l'ajouter
             $client = $clientRegistry->getClient('google');
 
-            try {
+            
                 $user = $client->fetchUser();
                 $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
                 if ($existingUser) {
@@ -61,11 +61,7 @@ class GoogleController extends AbstractController
                 
 
                 
-            } catch (IdentityProviderException $e) {
-                // something went wrong!
-                // probably you should return the reason to the user
-                var_dump($e->getMessage()); die;
-            }
+            
         }
     }
 

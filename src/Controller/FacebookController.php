@@ -16,18 +16,18 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class FacebookController extends AbstractController
 {
     #[Route(path: '/connect/facebook', name: 'connect_facebook')]
-    public function connectAction(ClientRegistry $clientRegistry)
+    public function facebookConenct(ClientRegistry $clientRegistry)
     {
         return $clientRegistry->getClient('facebook')->redirect([], []);
     }
 
     #[Route(path: '/connect/facebook/check', name: 'connect_facebook_check')]
-    public function connectCheckAction(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
+    public function connectCheck(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
     {
         $user = $this->getUser();
 
         $client = $clientRegistry->getClient('facebook');
-        try {
+        
             $user = $client->fetchUser();
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
             if ($existingUser) {
@@ -55,10 +55,6 @@ class FacebookController extends AbstractController
             
 
             
-        } catch (IdentityProviderException $e) {
-            // something went wrong!
-            // probably you should return the reason to the user
-            var_dump($e->getMessage()); die;
-        }
+        
     }
 }

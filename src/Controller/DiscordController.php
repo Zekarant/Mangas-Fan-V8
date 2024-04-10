@@ -16,13 +16,13 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class DiscordController extends AbstractController
 {
     #[Route(path: '/connect/discord', name: 'connect_discord')]
-    public function connectAction(ClientRegistry $clientRegistry)
+    public function discordConnection(ClientRegistry $clientRegistry)
     {
         return $clientRegistry->getClient('discord')->redirect([], []);
     }
 
     #[Route(path: '/connect/discord/check', name: 'connect_discord_check')]
-    public function connectCheckAction(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
+    public function connectCheck(EntityManagerInterface $entityManager, ClientRegistry $clientRegistry, UserPasswordHasherInterface $userPasswordHasher, TokenStorageInterface $tokenStorage)
     {
         $user = $this->getUser();
 
@@ -31,7 +31,7 @@ class DiscordController extends AbstractController
             return $this->redirectToRoute('app_home');
         } else {
             $client = $clientRegistry->getClient('discord');
-            try {
+            
                 $user = $client->fetchUser();
                 $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
                 if ($existingUser) {
@@ -59,11 +59,7 @@ class DiscordController extends AbstractController
                 
 
                 
-            } catch (IdentityProviderException $e) {
-                // something went wrong!
-                // probably you should return the reason to the user
-                var_dump($e->getMessage()); die;
-            }
+            
         }
     }
 }

@@ -68,9 +68,6 @@ class RegistrationFormType extends AbstractType
                         'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/',
                         'message' => 'Le mot de passe doit contenir au moins une majuscule, une minuscule et un chiffre.',
                     ]),
-                    new NotContainsUsername([
-                        'message' => 'Le mot de passe ne peut pas contenir votre nom d\'utilisateur.',
-                    ]),
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -79,10 +76,9 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Vous devez accepter les CGU du site.']),
                 ],
-            ])
-        ;
+            ]);
     }
-    
+
 
     // public function configureOptions(OptionsResolver $resolver): void
     // {
