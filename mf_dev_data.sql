@@ -1,7 +1,7 @@
 -- Complete user
-INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'Test', '[\"ROLE_ADMIN\", \"ROLE_NEWSEUR\"]', '$2y$13$cK1a0OZOXGDqTnkDRaOiJeyp3HCwpl3XPUvyUV1cK1Gfy17p.uzby'),
-(2, 'Zekarant', '[\"ROLE_ADMIN\", \"ROLE_NEWSEUR\"]', '$2y$13$DCCsBwMea7c/fmXjh8HHquiibt7e8pSMl8K5wZfGzDqwtpmbRKoTS');
+INSERT INTO `user` (`id`, `username`, `roles`, `password`, `email`, `avatar`) VALUES
+(1, 'Test', '[\"ROLE_ADMIN\", \"ROLE_NEWSEUR\"]', '$2y$13$cK1a0OZOXGDqTnkDRaOiJeyp3HCwpl3XPUvyUV1cK1Gfy17p.uzby', 'test@test.fr', ''),
+(2, 'Zekarant', '[\"ROLE_ADMIN\", \"ROLE_NEWSEUR\"]', '$2y$13$DCCsBwMea7c/fmXjh8HHquiibt7e8pSMl8K5wZfGzDqwtpmbRKoTS', 'test2@test.fr', '');
 
 -- Complete animes
 INSERT INTO `anime` (`id`, `title`, `image`, `synopsis`, `created_at`, `updated_at`, `is_favorite`) VALUES

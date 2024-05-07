@@ -5,6 +5,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
   Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+const getEndpointAssetStyle = (nameFile) => `./assets/endpoints/style/${nameFile}.js`;
+const getEndpointAssetScript = (nameFile) => `./assets/endpoints/script/${nameFile}.js`;
+
 Encore
   // directory where compiled assets will be stored
   .setOutputPath('public/build/')
@@ -33,14 +36,14 @@ Encore
   ])
 
   // SCSS files
-  .addEntry('app', './assets/style/app.js')
-  .addEntry('home', './assets/style/home.js')
-  .addEntry('css/news', './assets/style/news.js')
+  .addEntry('app', getEndpointAssetStyle('app'))
+  .addEntry('home', getEndpointAssetStyle('home'))
+  .addEntry('css/news', getEndpointAssetStyle('news'))
 
   // Typescript
-  .addEntry('news-requests', './assets/script/news-requests.js')
-  .addEntry('navbar', './assets/script/navbar.js')
-  .addEntry('js/home', './assets/script/home.js')
+  .addEntry('news-requests', getEndpointAssetScript('news-requests'))
+  .addEntry('navbar', getEndpointAssetScript('navbar'))
+  .addEntry('js/home', getEndpointAssetScript('home'))
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
