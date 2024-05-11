@@ -14,12 +14,19 @@ module.exports = {
         'blue': {
           'dark': '#141720'
         },
+        'red': {
+          'light': '#F9AAA4',
+          'dark': '#870F3F'
+        },
         'pink': {
           'light': '#F85ED7',
-          'scroll': '#FF32F1'
+          'normal': '#FF32F1'
         },
         'grey': {
-          'veryLight': '#FEFEFE'
+          'veryLight': '#FEFEFE',
+          'inactive': '#474751',
+          'input': '#191924',
+          'section': '#1C1C28'
         }
       },
       zIndex: {

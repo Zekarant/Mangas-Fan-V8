@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import 'imports';
+@import 'composants/alert-message';
 
 body {
   background-color: $dark-blue-background-website;

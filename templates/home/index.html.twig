@@ -1,4 +1,4 @@
-{% extends 'base_with_banner.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Site d'actualité sur les mangas et les animes{% endblock %}
 
@@ -10,6 +10,10 @@
 {% block javascripts %}
   {{ parent() }}
   {{ encore_entry_script_tags('js/home') }}
+{% endblock %}
+
+{% block banner %}
+  {% include "home/banner.html.twig" %}
 {% endblock %}
 
 {% block body %}

@@ -1,0 +1,23 @@
+div.input-with-icon {
+  @apply flex bg-grey-input rounded-xl p-2;
+
+  label {
+    @apply px-2 py-1;
+  }
+
+  input {
+    @apply w-full bg-transparent px-2 p-1 focus:outline-none text-base;
+
+    /** Disable background on autofilled on input **/
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: #ffffff;
+      -webkit-text-size-adjust: auto;
+      transition: background-color 5000s ease-in-out 0s;
+      box-shadow: inset 0 0 20px 20px #23232329;
+    }
+  }
+}

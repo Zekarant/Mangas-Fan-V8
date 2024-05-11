@@ -1,0 +1,11 @@
+.alert-message {
+  @apply relative px-6 py-4 rounded-lg my-4;
+
+  &.error {
+    @apply bg-red-light text-red-dark;
+  }
+
+  .close-button {
+    @apply absolute right-3 top-4 text-white cursor-pointer;
+  }
+}
