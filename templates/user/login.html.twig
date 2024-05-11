@@ -1,54 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter au site{% endblock %}
+{% block title %}Connexion{% endblock %}
 
-{% block body %}
-    <section>
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('css/login') }}
+{% endblock %}
+
+{% block banner %}
+  {% embed 'base/banner.html.twig' %}
+    {% block banner_content %}
+      <section>
         <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                </div>
-            {% endif %}
+          {% if error %}
+            <div class="alert alert-danger">
+              {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+          {% endif %}
 
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.userIdentifier }},
-                    <a href="{{ path('app_logout') }}">Logout</a>
-                </div>
-            {% endif %}
+          {% if app.user %}
+            <div class="mb-3">
+              You are logged in as {{ app.user.userIdentifier }},
+              <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+          {% endif %}
 
-            <h1>Me connecter au site</h1>
+          <h1>Me connecter au site</h1>
 
-            <label for="inputUsername">Nom d'utilisateur : </label>
-            <input type="text"
-                   value="{{ last_username }}"
-                   name="username"
-                   id="inputUsername"
-                   class="form-control"
-                   autocomplete="username"
-                   required
-                   autofocus
-                   placeholder="Saisir votre nom d'utilisateur" />
+          <label for="inputUsername">Nom d'utilisateur : </label>
+          <input type="text"
+                 value="{{ last_username }}"
+                 name="username"
+                 id="inputUsername"
+                 class="form-control"
+                 autocomplete="username"
+                 required
+                 autofocus
+                 placeholder="Saisir votre nom d'utilisateur"/>
 
-            <label for="inputPassword">Mot de passe : </label>
-            <input type="password"
-                   name="password"
-                   id="inputPassword"
-                   class="form-control"
-                   autocomplete="current-password"
-                   required placeholder="Saisir votre mot de passe" />
+          <label for="inputPassword">Mot de passe : </label>
+          <input type="password"
+                 name="password"
+                 id="inputPassword"
+                 class="form-control"
+                 autocomplete="current-password"
+                 required
+                 placeholder="Saisir votre mot de passe"/>
 
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}" />
+          <input type="hidden" name="_csrf_token"
+                 value="{{ csrf_token('authenticate') }}"/>
 
-        <button class="buttonComment" type="submit">
+          <button class="buttonComment" type="submit">
             Me connecter
-        </button>
+          </button>
 
-        <a href="{{ path('connect_google') }}" class="btn btn-google">S'inscrire avec Google</a>
-        <a href="{{ path('connect_discord') }}" class="btn btn-discord">S'inscrire avec Discord</a>
-        <a href="{{ path('connect_facebook') }}" class="btn btn-facebook">S'inscrire avec Facebook</a>
-    </form>
-</section>
+          <a href="{{ path('connect_google') }}" class="btn btn-google">S'inscrire avec Google</a>
+          <a href="{{ path('connect_discord') }}" class="btn btn-discord">S'inscrire avec Discord</a>
+          <a href="{{ path('connect_facebook') }}" class="btn btn-facebook">S'inscrire avec Facebook</a>
+        </form>
+      </section>
+    {% endblock %}
+  {% endembed %}
 {% endblock %}

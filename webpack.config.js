@@ -39,6 +39,7 @@ Encore
   .addEntry('app', getEndpointAssetStyle('app'))
   .addEntry('home', getEndpointAssetStyle('home'))
   .addEntry('css/news', getEndpointAssetStyle('news'))
+  .addEntry('css/login', getEndpointAssetStyle('login'))
 
   // Typescript
   .addEntry('news-requests', getEndpointAssetScript('news-requests'))
