@@ -30,7 +30,7 @@
 
   &.latest-mangas--container {
     @apply flex overflow-x-auto;
-    scrollbar-color: theme('colors.pink.scroll') transparent;
+    scrollbar-color: theme('colors.pink.normal') transparent;
 
     .article--container {
       @apply min-w-[200px];

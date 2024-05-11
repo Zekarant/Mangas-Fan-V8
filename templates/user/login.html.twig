@@ -10,55 +10,131 @@
 {% block banner %}
   {% embed 'base/banner.html.twig' %}
     {% block banner_content %}
-      <section>
-        <form method="post">
-          {% if error %}
-            <div class="alert alert-danger">
-              {{ error.messageKey|trans(error.messageData, 'security') }}
-            </div>
-          {% endif %}
+      <div class="login--container">
+        <div class="login--nav">
+          <span>Connexion</span>
 
-          {% if app.user %}
-            <div class="mb-3">
-              You are logged in as {{ app.user.userIdentifier }},
-              <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-          {% endif %}
+          <a href="#">Inscription</a>
+        </div>
 
-          <h1>Me connecter au site</h1>
+        {% if error %}
+          {% include 'composant/alert-message.html.twig' with {
+            class: 'error',
+            message: error.messageKey|trans(error.messageData, 'security')
+          } %}
+        {% endif %}
 
-          <label for="inputUsername">Nom d'utilisateur : </label>
-          <input type="text"
-                 value="{{ last_username }}"
-                 name="username"
-                 id="inputUsername"
-                 class="form-control"
-                 autocomplete="username"
-                 required
-                 autofocus
-                 placeholder="Saisir votre nom d'utilisateur"/>
+        <div class="login--quick-interaction">
+          <h3>Se connecter avec :</h3>
 
-          <label for="inputPassword">Mot de passe : </label>
-          <input type="password"
-                 name="password"
-                 id="inputPassword"
-                 class="form-control"
-                 autocomplete="current-password"
-                 required
-                 placeholder="Saisir votre mot de passe"/>
+          <div class="login--quick-interaction--content">
+            <a href="{{ path('connect_google') }}">
+              <i class="fa-brands fa-google"></i>
+            </a>
 
-          <input type="hidden" name="_csrf_token"
-                 value="{{ csrf_token('authenticate') }}"/>
+            <a href="{{ path('connect_discord') }}">
+              <i class="fa-brands fa-discord"></i>
+            </a>
 
-          <button class="buttonComment" type="submit">
-            Me connecter
+            <a href="{{ path('connect_facebook') }}">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+
+        <hr />
+
+        <h3>Se connecter avec un pseudo</h3>
+
+        <form method="post" autocomplete="off">
+          <input type="hidden"
+                 name="_csrf_token"
+                 value="{{ csrf_token('authenticate') }}" />
+
+          <div class="input-with-icon">
+            <label for="inputUsername">
+              <i class="fa-solid fa-user"></i>
+            </label>
+
+            <input type="text"
+                   value="{{ last_username }}"
+                   name="username"
+                   id="inputUsername"
+                   class="form-control"
+                   required
+                   autofocus
+                   placeholder="Votre pseudo"/>
+          </div>
+
+          <div class="input-with-icon">
+            <label for="inputPassword">
+              <i class="fa-solid fa-key"></i>
+            </label>
+
+            <input type="password"
+                   name="password"
+                   id="inputPassword"
+                   class="form-control"
+                   required
+                   placeholder="Saisir votre mot de passe"/>
+          </div>
+
+          <a class="link"
+             href="#">
+            Mot de passe oublié ?
+          </a>
+
+          <button type="submit">
+            Se connecter
           </button>
-
-          <a href="{{ path('connect_google') }}" class="btn btn-google">S'inscrire avec Google</a>
-          <a href="{{ path('connect_discord') }}" class="btn btn-discord">S'inscrire avec Discord</a>
-          <a href="{{ path('connect_facebook') }}" class="btn btn-facebook">S'inscrire avec Facebook</a>
         </form>
-      </section>
+      </div>
+
+{#      <section>#}
+{#        <form method="post">#}
+{#          {% if error %}#}
+{#            <div class="alert alert-danger">#}
+{#              {{ error.messageKey|trans(error.messageData, 'security') }}#}
+{#            </div>#}
+{#          {% endif %}#}
+
+{#          {% if app.user %}#}
+{#            <div class="mb-3">#}
+{#              You are logged in as {{ app.user.userIdentifier }},#}
+{#              <a href="{{ path('app_logout') }}">Logout</a>#}
+{#            </div>#}
+{#          {% endif %}#}
+
+{#          <h1>Me connecter au site</h1>#}
+
+{#          <label for="inputUsername">Nom d'utilisateur : </label>#}
+{#          <input type="text"#}
+{#                 value="{{ last_username }}"#}
+{#                 name="username"#}
+{#                 id="inputUsername"#}
+{#                 class="form-control"#}
+{#                 autocomplete="username"#}
+{#                 required#}
+{#                 autofocus#}
+{#                 placeholder="Saisir votre nom d'utilisateur"/>#}
+
+{#          <label for="inputPassword">Mot de passe : </label>#}
+{#          <input type="password"#}
+{#                 name="password"#}
+{#                 id="inputPassword"#}
+{#                 class="form-control"#}
+{#                 autocomplete="current-password"#}
+{#                 required#}
+{#                 placeholder="Saisir votre mot de passe"/>#}
+
+{#          <input type="hidden" name="_csrf_token"#}
+{#                 value="{{ csrf_token('authenticate') }}"/>#}
+
+{#          <button class="buttonComment" type="submit">#}
+{#            Me connecter#}
+{#          </button>#}
+{#        </form>#}
+{#      </section>#}
     {% endblock %}
   {% endembed %}
 {% endblock %}

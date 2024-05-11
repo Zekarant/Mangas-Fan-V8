@@ -1,0 +1,55 @@
+@use "composants/input-with-icon";
+
+.login, .register {
+  &--container {
+    @apply bg-grey-section rounded-xl p-6 min-h-[50svh] xl:min-w-[550px];
+
+    h3 {
+      @apply text-sm sm:text-base;
+    }
+
+    hr {
+      @apply my-4 border-grey-inactive;
+    }
+
+    .input-with-icon {
+      @apply my-4;
+    }
+
+    a.link {
+      @apply block max-md:text-sm text-pink-normal no-underline font-poppins my-6;
+    }
+
+    button {
+      @apply bg-pink-normal rounded-md px-4 py-2;
+    }
+  }
+
+  &--nav {
+    @apply flex gap-x-4 mb-2 xl:text-lg;
+
+    span {
+      @apply inline-block text-pink-normal pb-2 border-b-2 border-pink-normal mb-2;
+    }
+
+    a {
+      @apply no-underline text-grey-inactive;
+
+      &:hover {
+        @apply text-white;
+      }
+    }
+  }
+
+  &--quick-interaction {
+    @apply flex gap-x-4 items-center;
+
+    &--content {
+      @apply flex gap-x-4;
+
+      a {
+        @apply rounded-full bg-white text-pink-normal w-7 h-7 text-center leading-7;
+      }
+    }
+  }
+}
