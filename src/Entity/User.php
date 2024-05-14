@@ -26,16 +26,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
     /**
-     * @var Collection<int, Comments>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comments::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
 
     /**
@@ -43,6 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: News::class)]
     private Collection $news;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $avatar = null;
 
     public function __construct()
     {
@@ -113,22 +116,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @see UserInterface
+     * @return void
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
     /**
-     * @return Collection<int, Comments>
+     * @return Collection<int, Comment>
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comments $comment): self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -138,7 +142,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeComment(Comments $comment): self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
@@ -176,6 +180,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $news->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar): static
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

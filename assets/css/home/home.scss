@@ -1,0 +1,28 @@
+@import '../imports';
+
+@import './section/articles';
+@import './section/information-bloc';
+
+main {
+  @apply flex flex-col gap-8;
+}
+
+h2 {
+  @apply text-xl sm:text-2xl lg:text-3xl mb-6;
+}
+
+a.show-all {
+  @apply block text-right max-md:text-sm text-pink-light font-bold no-underline font-poppins mb-4;
+}
+
+@screen sm {
+  .shop--container {
+    .information-bloc--container {
+      @apply flex-row-reverse;
+    }
+
+    .information-bloc--picture {
+      clip-path: ellipse(90% 100% at left center);
+    }
+  }
+}

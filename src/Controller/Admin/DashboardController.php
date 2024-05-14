@@ -4,8 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\News;
 use App\Entity\Category;
-use App\Entity\Comments;
-use App\Entity\Images;
+use App\Entity\Comment;
+use App\Entity\Image;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,14 +48,14 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Catégories', 'fas fa-newspaper', Category::class),
             ]);
 
-            yield MenuItem::subMenu('Images', 'fas fa-photo-video')->setSubItems([
-                MenuItem::linkToCrud('Toutes les images', 'fas fa-photo-video', Images::class),
-                MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Images::class)->setAction(Crud::PAGE_NEW),
-            ]);
+            // yield MenuItem::subMenu('Images', 'fas fa-photo-video')->setSubItems([
+            //     MenuItem::linkToCrud('Toutes les images', 'fas fa-photo-video', Images::class),
+            //     MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', Images::class)->setAction(Crud::PAGE_NEW),
+            // ]);
         }
 
         if ($this->isGranted('ROLE_ADMIN')) {
-            yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comments::class);
+            yield MenuItem::linkToCrud('Commentaires', 'fas fa-comments', Comment::class);
             yield MenuItem::subMenu('Comptes', 'fas fa-user')->setSubItems([
                 MenuItem::linkToCrud('Tous les comptes', 'fas fa-user-friends', User::class),
             ]);

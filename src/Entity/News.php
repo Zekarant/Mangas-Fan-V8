@@ -9,6 +9,7 @@ use App\Repository\NewsRepository;
 use App\Model\TimestampedInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
 class News implements TimestampedInterface, \Stringable
@@ -19,16 +20,16 @@ class News implements TimestampedInterface, \Stringable
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titleNews = null;
+    private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $descriptionNews = null;
+    private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $contentNews = null;
+    #[ORM\Column(type: 'text')]
+    private ?string $content = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $keywordsNews = null;
+    #[ORM\Column(nullable: true)]
+    private ?string $keywords = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -40,15 +41,14 @@ class News implements TimestampedInterface, \Stringable
     private Collection $categories;
 
     /**
-     * @var Collection<int, Comments>
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comments::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: Comment::class, orphanRemoval: true)]
     #[OrderBy(['createdAt' => 'DESC'])]
     private Collection $comments;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn]
-    private ?Images $image = null;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $image = 'default_image.png';
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -56,10 +56,20 @@ class News implements TimestampedInterface, \Stringable
     #[ORM\ManyToOne(inversedBy: 'news')]
     private ?User $author = null;
 
+    #[ORM\Column]
+    private bool $visibility = true;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $sources = null;
+
+    #[ORM\OneToMany(mappedBy: 'news', targetEntity: NewsLike::class)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,50 +77,50 @@ class News implements TimestampedInterface, \Stringable
         return $this->id;
     }
 
-    public function getTitleNews(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titleNews;
+        return $this->title;
     }
 
-    public function setTitleNews(string $titleNews): self
+    public function setTitle(string $title): self
     {
-        $this->titleNews = $titleNews;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getDescriptionNews(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descriptionNews;
+        return $this->description;
     }
 
-    public function setDescriptionNews(string $descriptionNews): self
+    public function setDescription(string $description): self
     {
-        $this->descriptionNews = $descriptionNews;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getContentNews(): ?string
+    public function getContent(): ?string
     {
-        return $this->contentNews;
+        return $this->content;
     }
 
-    public function setContentNews(string $contentNews): self
+    public function setContent(string $content): self
     {
-        $this->contentNews = $contentNews;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getKeywordsNews(): ?string
+    public function getKeywords(): ?string
     {
-        return $this->keywordsNews;
+        return $this->keywords;
     }
 
-    public function setKeywordsNews(?string $keywordsNews): self
+    public function setKeywords(?string $keywords): self
     {
-        $this->keywordsNews = $keywordsNews;
+        $this->keywords = $keywords;
 
         return $this;
     }
@@ -167,14 +177,14 @@ class News implements TimestampedInterface, \Stringable
     }
 
     /**
-     * @return Collection<int, Comments>
+     * @return Collection<int, Comment>
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comments $comment): self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -184,7 +194,7 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function removeComment(Comments $comment): self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
@@ -196,14 +206,46 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function getImage(): ?Images
+    /**
+     * @return Collection<int, NewsLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(NewsLike $newsLike): self
+    {
+        if (!$this->likes->contains($newsLike)) {
+            $this->likes->add($newsLike);
+            $newsLike->setNews($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(NewsLike $newsLike): self
+    {
+        if ($this->likes->removeElement($newsLike)) {
+            // set the owning side to null (unless already changed)
+            if ($newsLike->getNews() === $this) {
+                $newsLike->setNews(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?Images $image): self
+    public function setImage($image = null): self
     {
-        $this->image = $image;
+        if ($image != null) {
+            $this->image = $image;
+        }
 
         return $this;
     }
@@ -220,9 +262,9 @@ class News implements TimestampedInterface, \Stringable
         return $this;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
-        return (string) $this->titleNews;
+        return $this->title ?? '';
     }
 
     public function getAuthor(): ?User
@@ -235,5 +277,55 @@ class News implements TimestampedInterface, \Stringable
         $this->author = $author;
 
         return $this;
+    }
+
+    public function isVisibility(): ?bool
+    {
+        return $this->visibility;
+    }
+
+    public function setVisibility(bool $visibility): self
+    {
+        $this->visibility = $visibility;
+
+        return $this;
+    }
+
+    public function getSources(): ?string
+    {
+        return $this->sources;
+    }
+
+    public function setSources(?string $sources): self
+    {
+        $this->sources = $sources;
+
+        return $this;
+    }
+
+    public function getVotes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function getLikesCount(): int
+    {
+        return $this->likes->filter(fn(NewsLike $votes) => $votes->isLike())->count();
+    }
+
+    public function getDislikesCount(): int
+    {
+        return $this->likes->filter(fn(NewsLike $interaction) => !$interaction->isLike())->count();
+    }
+
+    public function getOwnReaction(?UserInterface $user): NewsLike | null
+    {
+        $tab = $this->likes->filter(fn(NewsLike $interaction) => $interaction->getUser() === $user);
+
+        if ($tab->isEmpty()) {
+            return null;
+        }
+
+        return $tab->first();
     }
 }

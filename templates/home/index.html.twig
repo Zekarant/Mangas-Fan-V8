@@ -1,81 +1,108 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_with_banner.html.twig' %}
 
 {% block title %}Site d'actualité sur les mangas et les animes{% endblock %}
 
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('js/home') }}
+{% endblock %}
+
 {% block body %}
+  <section class="news-section">
+    <h2>Dernières actualités</h2>
 
-    <section class="newsSection">
-        <h2>Dernières actualités</h2>
-        <div class="allNewsGroup">
-            {% include 'news/item_news.html.twig' with { news } %}
-        </div>
-        <div class="linkArchive"><a href="#">Voir toutes les actualités</a></div>
-    </section>
+    {% include 'home/item_news.html.twig' with { news_data } %}
 
+    <a href="#"
+       class="show-all">
+      Voir toutes les actualités
+    </a>
+  </section>
+
+  <section>
+    <h2>Nos dernières japanimation</h2>
+    <div class="article-section--container latest-anime--container">
+      {% for anime in last_animes %}
+        {% include 'home/article.html.twig' with {
+          picture: anime.image,
+          name: anime.title
+        } %}
+      {% endfor %}
+    </div>
+
+    <a href="#"
+       class="show-all mt-8">
+      Voir toutes les japanimations
+    </a>
+  </section>
+
+  {% if month_favorite %}
     <section>
-        <h2>Nos dernières japanimation</h2>
-        <div class="lastAnimes">
-            {% include 'animes/last_anime_home.html.twig' with { last_animes } %}
-        </div>
-        <div class="linkMangas"><a href="#">Voir toutes les japanimations</a></div>
+      <h2>Notre coup de coeur</h2>
+
+      <div class="monthly-favorite--container">
+        {% include 'home/information-bloc.html.twig' with {
+          title: month_favorite.title,
+          content: month_favorite.synopsis,
+          linkName: 'Voir l\'anime',
+          picture: month_favorite.image
+        } %}
+      </div>
     </section>
+  {% endif %}
 
-    {% if month_favorite %}
-        <section>
-            <h2>Notre coup de coeur</h2>
-            <div id="coupCoeur">
-                <div class="flexbox">
-                    <div class="itemFlex">
-                        <h3 class="titleCoeur">{{ month_favorite.titleAnime }}</h3>
-                        <div class="synopsisAnime">{{ month_favorite.synopsisAnime }}</div>
-                        <div class="linkAnime">Voir l'anime</div>
-                    </div>
-                    <div class="itemFlex">
-                        <img src="{{ month_favorite.imageAnime }}" class="imageAnime" alt="Image de l'anime {{ month_favorite.titleAnime }}" title="Image de l'anime {{ month_favorite.titleAnime }}" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    {% endif %}
+  <section>
+    <h2>Nos derniers mangas</h2>
 
-    <section>
-        <h2>Nos derniers mangas</h2>
-        <div class="lastMangas">
-           {% include 'mangas/last_mangas_home.html.twig' with { last_mangas } %}
-        </div>
+    <div class="article-section--container latest-mangas--container">
+      {% for tome in last_tomes %}
+        {% include 'home/article.html.twig' with {
+          picture: tome.cover,
+          name: tome.name,
+          subName: tome.manga.name
+        } %}
+      {% endfor %}
+    </div>
 
-        <div class="linkMangas">
-            <a href="#">Voir tous les mangas</a>
-        </div>
-    </section>
+    <a href="#"
+       class="show-all mt-8">
+      Voir tous les mangas
+    </a>
+  </section>
 
-    <section>
-        <h2>Mangas'Wiki</h2>
-        <div class="lastArticles">
-           {% include 'animes/last_articles_anime.html.twig' with { last_articles_anime } %}
-        </div>
+  <section>
+    <h2>Mangas'Wiki</h2>
 
-        <div class="linkMangas">
-            <a href="#">Voir tous nos wikis</a>
-        </div>
-    </section>
+    <div class="article-section--container mangas-wiki--container">
+      {% for article in last_articles_anime %}
+        {% include 'home/article.html.twig' with {
+          picture: article.cover,
+          name: article.title
+        } %}
+      {% endfor %}
+    </div>
 
-    <section>
-        <h2>La boutique</h2>
-        <div id="coupCoeur">
-            <div class="flexbox">
-                <div class="itemBoutique">
-                <img src="https://www.mangasfan.fr/v8/images/logofond.png" class="imageBoutique" alt="Image de la boutique de Mangas'Fan" title="Image de boutique de Mangas'Fan" />
+    <a href="#"
+       class="show-all mt-8">
+      Voir tous nos wikis
+    </a>
+  </section>
 
-                </div>
-                <div class="itemBoutique">
-                <h3 class="titleCoeur">Dépensez vos Mangas'Points !</h3>
-                    <div class="synopsisAnime">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                    <div class="linkAnime">Découvrir la boutique</div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
+  <section>
+    <h2>La boutique</h2>
 
+    <div class="shop--container">
+      {% include 'home/information-bloc.html.twig' with {
+        title: 'Dépensez vos Mangas\'Points !',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        linkName: 'Découvrir la boutique',
+        picture: asset('build/images/boutique-logo.png')
+      } %}
+    </div>
+  </section>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_with_banner.html.twig' %}
 
 {% block title %}{{ category.name }}{% endblock %}
 
@@ -6,7 +6,10 @@
     <main class="container">
         <div class="row g-5">
             <div class="col">
-                <h3 class="border-bottom">Catégorie : {{ category.name }}</h3>
+                <h3 class="border-bottom">
+                    Catégorie : {{ category.name }}
+                </h3>
+
                 <div class="allNewsGroup">
                     {% include 'news/item_news.html.twig' with { news: category.news } %}
                 </div> 

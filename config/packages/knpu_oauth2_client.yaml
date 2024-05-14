@@ -1,0 +1,18 @@
+knpu_oauth2_client:
+    clients:
+        google:
+            type: google
+            client_id: '%env(GOOGLE_CLIENT_ID)%'
+            client_secret: '%env(GOOGLE_CLIENT_SECRET)%'
+            redirect_route: 'connect_google_check'
+        discord:
+            type: discord
+            client_id: '%env(DISCORD_CLIENT_ID)%'
+            client_secret: '%env(DISCORD_CLIENT_SECRET)%'
+            redirect_route: 'connect_discord_check'
+        facebook:
+            type: facebook
+            client_id: '%env(FACEBOOK_CLIENT_ID)%'
+            client_secret: '%env(FACEBOOK_CLIENT_SECRET)%'
+            redirect_route: 'connect_facebook_check'
+            graph_api_version: v18.0

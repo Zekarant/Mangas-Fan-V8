@@ -41,19 +41,22 @@ class WebhookDiscordService
     /**
      * @throws TransportExceptionInterface
      */
-    public function sendMessageEmbed(string $title, string $description, string $url, int $color, bool $showAuthor = true): void
+    public function sendMessageEmbed(array $messageParams, int $color, string $image, bool $showAuthor = true): void
     {
         $discordWebhook = new DiscordWebhook();
 
         $embed = new EmbedDiscordWebhook();
-        $embed->setTitle($title);
-        $embed->setDescription($description);
-        $embed->setUrl('https://127.0.0.1:8000/news/'.$url);
+        $embed->setTitle($messageParams['title']);
+        $embed->setDescription($messageParams['description']);
+        $baseUrl = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
+        $slug = $baseUrl . '/news/' . $messageParams['slug'];
+        $embed->setUrl($slug);
+        //$embed->setUrl('https://127.0.0.1:8000/news/' . $messageParams['slug']);
         $embed->setColor($color);
         if ($showAuthor) {
             $embed->setAuthor($this->mangasFanSignature());
         }
-        $embed->setImage($this->imageNews());
+        $embed->setImage($this->imageNews($image));
 
         $discordWebhook->addEmbed($embed);
 
@@ -87,11 +90,15 @@ class WebhookDiscordService
         return $author;
     }
 
-    private function imageNews(): ImageEmbedDiscordWebhook
+    private function imageNews($imageTest): ImageEmbedDiscordWebhook
     {
         $image = new ImageEmbedDiscordWebhook();
+        $baseUrl = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
+        $imageUrl = $baseUrl . '/uploads/' . $imageTest;
 
-        $image->setUrl(self::MF_NEWS_URL_IMAGE);
+        $image->setUrl($imageUrl);
+        //$image->setUrl('https://127.0.0.1:8000/uploads/' . $imageTest);
+        //$image->setUrl(self::MF_NEWS_URL_IMAGE);
 
         return $image;
     }

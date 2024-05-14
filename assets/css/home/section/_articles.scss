@@ -1,0 +1,43 @@
+@import '../../imports';
+
+.article-section--container {
+  @apply grid gap-x-8 gap-y-5;
+
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+
+  .article--container {
+    @apply w-full;
+
+    img {
+      @apply w-full object-cover rounded-lg h-auto;
+    }
+
+    div {
+      @apply flex flex-col items-center;
+
+      margin: pixels-to-em(10) 0;
+      row-gap: pixels-to-em(8);
+
+      span {
+        @apply text-xs md:text-base lg:text-xl font-extrabold text-center;
+      }
+    }
+  }
+
+  &.mangas-wiki--container img {
+    @apply h-32 lg:h-52 xl:h-72;
+  }
+
+  &.latest-mangas--container {
+    @apply flex overflow-x-auto;
+    scrollbar-color: theme('colors.pink.scroll') transparent;
+
+    .article--container {
+      @apply min-w-[200px];
+    }
+
+    img {
+      @apply h-[20rem] lg:h-[25rem];
+    }
+  }
+}

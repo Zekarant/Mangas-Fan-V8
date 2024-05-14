@@ -2,25 +2,42 @@
 
 namespace App\Controller;
 
-use App\Repository\AnimesRepository;
-use App\Repository\ArticlesAnimeRepository;
+use App\Entity\News;
+use App\Repository\AnimeRepository;
+use App\Repository\ArticleAnimeRepository;
 use App\Repository\NewsRepository;
-use App\Repository\TomeMangasRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\TomeMangaRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(NewsRepository $newsRepository, AnimesRepository $animesRepository, TomeMangasRepository $tomeMangasRepository, ArticlesAnimeRepository $articlesAnimeRepository): Response
+    public function index(NewsRepository $newsRepository, AnimeRepository $animeRepository, TomeMangaRepository $tomeMangaRepository, ArticleAnimeRepository $articlesAnimeRepository): Response
     {
+        $newsList = $newsRepository->findBy(['visibility' => 1], ['id' => 'DESC'], 3);
+
+        $newsData = [];
+
+        foreach ($newsList as $currentNews) {
+            // @todo: should be ameliorate
+            $existingInteraction = $currentNews->getOwnReaction($this->getUser());
+
+            $newsData[] = [
+                'news' => $currentNews,
+                'number_likes' => $currentNews->getLikesCount(),
+                'number_dislikes' => $currentNews->getDislikesCount(),
+                'own_reaction' => $existingInteraction?->isLike()
+            ];
+        }
+
         return $this->render('home/index.html.twig', [
-            'news' => $newsRepository->findBy([], ['id' => 'DESC'], 3),
-            'last_animes' => $animesRepository->findBy([], ['id' => 'DESC'], 6),
-            'month_favorite' => $animesRepository->findOneBy(['coupCoeur' => 1]),
-            'last_mangas' => $tomeMangasRepository->findBy([], ['createdAt' => 'DESC'], 6),
-            'last_articles_anime' => $articlesAnimeRepository->findBy([], ['createdAt' => 'DESC'], 4),
+            'news_data' => $newsData,
+            'last_animes' => $animeRepository->findBy([], ['id' => 'DESC'], 6),
+            'month_favorite' => $animeRepository->findOneBy(['isFavorite' => 1]),
+            'last_tomes' => $tomeMangaRepository->findBy([], ['createdAt' => 'DESC'], 6),
+            'last_articles_anime' => $articlesAnimeRepository->findBy([], ['createdAt' => 'DESC'], 4)
         ]);
     }
 }

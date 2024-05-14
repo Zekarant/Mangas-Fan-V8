@@ -1,0 +1,70 @@
+<nav class="navbar">
+    <a href="{{ path('app_home') }}"
+       class="navbar-homepage">
+        <img src="https://www.mangasfan.fr/v8/images/logo.png"
+             alt="Logo de Mangas'Fan"
+             width="60"
+             height="60" />
+    </a>
+
+    <div class="navbar-search">
+        <label for="navbar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </label>
+
+        <input id="navbar-search"
+               placeholder="Recherche"
+               type="text" />
+    </div>
+
+    <ul>
+        <li>
+            <a href="#">Animes</a>
+        </li>
+
+        <li>
+            <a href="#">Mangas</a>
+        </li>
+
+        <li>
+            <a href="#">Wiki</a>
+        </li>
+
+        <li>
+            <a href="#">Boutique</a>
+        </li>
+
+        {% if app.user %}
+            <li>
+                <a href="{{ path('admin') }}">Admin</a>
+            </li>
+
+            <li>
+                <span style="color: red;">{{ app.user.username }}</span>
+            </li>
+
+            <li>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ path('app_register') }}">S'inscrire</a>
+            </li>
+
+            <li>
+                <a href="{{ path('app_login') }}">Connexion</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <div class="navbar-profile">
+        <img src="https://www.mangasfan.fr/v8/images/compte.png"
+             alt="Logo de Mangas'Fan" />
+
+        <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="navbar-button-expanded">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+</nav>
