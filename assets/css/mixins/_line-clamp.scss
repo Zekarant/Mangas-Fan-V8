@@ -1,0 +1,9 @@
+@mixin lineClamp($numberLine) {
+  @supports (-webkit-line-clamp: $numberLine) {
+    white-space: initial;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: $numberLine;
+    -webkit-box-orient: vertical;
+  }
+}

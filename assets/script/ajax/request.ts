@@ -1,5 +1,5 @@
-import { mapStringToErrorEnum } from '../enum/error.enum';
-import { AjaxError } from '../error/ajax-error';
+import {mapStringToErrorEnum} from '../helper/error.helper';
+import {AjaxError} from '../error/ajax-error';
 
 export async function getRequest(route: string): Promise<any> {
   const response = await fetch(route, {
@@ -9,7 +9,7 @@ export async function getRequest(route: string): Promise<any> {
   return responseRequest(response);
 }
 
-export async function postRequest(route: string, body: any): Promise<any> {
+export async function postRequest(route: string, body?: any): Promise<any> {
   const response = await fetch(route, {
     body,
     method: 'POST',

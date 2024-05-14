@@ -1,0 +1,56 @@
+<div class="news-list--container">
+  {% for new in news_data %}
+    <article class="news-card">
+      <div class="news-image">
+        <img src="/uploads/{{ new.news.image }}"
+             alt="{{ new.news.title }}"/>
+      </div>
+
+      <div class="content-news">
+        <h2>{{ new.news.title }}</h2>
+
+        <p class="description-news">{{ new.news.description|raw }}</p>
+
+        <span class="author-news-index">Rédigé par {{ new.news.author.username }} le {{ new.news.createdAt|date("d/m/Y") }}</span>
+
+        <div class="flex justify-between w-full flex-row pt-8 lg:pt-2 mt-auto">
+          <div class="flex gap-x-4 max-md:text-xs">
+            {% if app.user %}
+              {% set likeActiveClass = new.own_reaction is same as(true) ? 'fa-solid active' : 'fa-regular' %}
+              {% set dislikeActiveClass = new.own_reaction is same as(false) ? 'fa-solid active' : 'fa-regular' %}
+            {% else %}
+              {% set likeActiveClass = 'fa-regular' %}
+              {% set dislikeActiveClass = 'fa-regular' %}
+            {% endif %}
+
+            <div class="news-like {{ app.user ? 'news-like-clickable' : '' }}"
+                 data-id="{{ new.news.getId() }}">
+              <i class="fa-regular fa-xl fa-thumbs-up {{ likeActiveClass }}"></i>
+
+              <span>{{ new.number_likes }}</span>
+            </div>
+
+            <div class="news-dislike {{ app.user ? 'news-dislike-clickable' : '' }}"
+                 data-id="{{ new.news.getId() }}">
+              <i class="fa-regular fa-xl fa-thumbs-down {{ dislikeActiveClass }}"></i>
+
+              <span>{{ new.number_dislikes }}</span>
+            </div>
+
+            <!-- @todo: probably better to construct twitter redirection on controller ? -->
+            <a href="https://twitter.com/share?url=https://www.mangasfan.fr/news/{{ new.news.slug }}&amp;text={{ new.news.title }} - @MangasFanOff : "
+               target="_blank"
+               class="twitter-button">
+              <i class="fa-solid fa-share-nodes fa-xl share-icon"></i>
+            </a>
+          </div>
+
+          <a href="{{ path('news_show', {'slug': new.news.slug}) }}"
+             class="link-article">
+            Lire l'article
+          </a>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</div>

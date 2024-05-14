@@ -1,0 +1,29 @@
+@mixin defaultConfigurationBannerSize($banner-size, $picture-size, $title-size: 2rem) {
+  & {
+    @apply min-h-[#{$banner-size}]
+  }
+
+  .banner-content h1 {
+    @content;
+  }
+
+  .banner-picture {
+    @apply h-[#{$picture-size}] w-[#{$picture-size}];
+
+    img {
+      @apply max-h-[calc(#{$banner-size}-theme('spacing.9'))];
+    }
+  }
+}
+
+@mixin configurationBannerSize($size, $banner-size, $picture-size, $title-size: 2rem) {
+  @screen #{$size} {
+    .banner-content {
+      max-width: calc(100% - #{$picture-size});
+    }
+
+    @include defaultConfigurationBannerSize($banner-size, $picture-size, $title-size) {
+      @content;
+    }
+  }
+}

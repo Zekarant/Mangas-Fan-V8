@@ -1,0 +1,15 @@
+<div class="article--container">
+  <a href="#">
+    <img src="{{ picture }}"
+         alt="{{ name }}"
+         title="{{ name }}"/>
+  </a>
+
+  <div>
+    <span>{{ name }}</span>
+
+    {% if subName is defined and subName is not null %}
+      <span>{{ subName }}</span>
+    {% endif %}
+  </div>
+</div>

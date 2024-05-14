@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\News;
-use App\Entity\Comments;
+use App\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,7 +30,7 @@ class CommentType extends AbstractType
 
         $builder->get('news')->addModelTransformer(new CallbackTransformer(
             fn (News $news) => $news->getId(),
-            fn (News $news) => $news->getTitleNews()
+            fn (News $news) => $news->getTitle()
         ));
     }
 
@@ -41,7 +41,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Comments::class,
+            'data_class' => Comment::class,
             'csrf_token_id' => 'comments-add',
         ]);
     }
