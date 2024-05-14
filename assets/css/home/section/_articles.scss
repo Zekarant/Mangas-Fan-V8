@@ -24,8 +24,14 @@
     }
   }
 
-  &.mangas-wiki--container img {
-    @apply h-32 lg:h-52 xl:h-72;
+  &.mangas-wiki--container {
+    @screen xl {
+      grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    }
+
+    img {
+      @apply h-32 lg:h-52 xl:h-72;
+    }
   }
 
   &.latest-mangas--container {

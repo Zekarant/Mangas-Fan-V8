@@ -2,7 +2,7 @@
 
 .information-bloc--container {
   @apply flex flex-col-reverse overflow-hidden bg-blue-dark rounded-xl m-auto
-  lg:h-[350px]
+  lg:h-[350px] 2xl:h-[400px]
   sm:flex-row;
 
   .information-bloc--body {
