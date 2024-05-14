@@ -25,20 +25,20 @@ class NewsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title_news', 'Titre')
+        yield TextField::new('title', 'Titre')
             ->setRequired(true)
             ->setColumns(6)
             ->setFormTypeOption('label', 'Titre :')
             ->setFormTypeOption('attr', ['placeholder' => 'Saisir un titre pour la new']);
 
         yield SlugField::new('slug', 'Slug')
-            ->setTargetFieldName('title_news')
+            ->setTargetFieldName('title')
             ->setColumns(6)
             ->setFormTypeOption('label', 'Slug de la new (Ne pas modifier, il s\'agit de l\'URL utilisée pour la new) :')
             ->setFormTypeOption('attr', ['placeholder' => 'Slug automatique'])
-           ;
+        ;
 
-        yield TextField::new('description_news', 'Description')
+        yield TextField::new('description', 'Description')
             ->setRequired(true)
             ->setColumns(6)
             ->setFormTypeOption('label', 'Description :')
@@ -62,7 +62,7 @@ class NewsCrudController extends AbstractCrudController
             ->setColumns(6)
             ->setFormTypeOption('label', 'Souhaitez-vous que la new soit visible ?');
 
-         yield TextField::new('keywords_news', 'Mots-clés')
+        yield TextField::new('keywords', 'Mots-clés')
             ->setColumns(6)
             ->setFormTypeOption('label', 'Mots-clés :')
             ->setFormTypeOption('attr', ['placeholder' => 'Saisir des mots-clés séparés par une virgule']);
@@ -73,7 +73,7 @@ class NewsCrudController extends AbstractCrudController
             ->setFormTypeOption('attr', ['placeholder' => 'Saisir les sources de la news séparées par une virgule'])
             ->onlyOnForms();
 
-        yield TextEditorField::new('content_news', 'Contenu')
+        yield TextEditorField::new('content', 'Contenu')
             ->setRequired(true)
             ->setColumns(12)
             ->setFormTypeOption('label', 'Saisir le contenu :')
